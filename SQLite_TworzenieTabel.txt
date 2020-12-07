@@ -1,0 +1,192 @@
+DROP TABLE IF EXISTS Alejki;
+DROP TABLE IF EXISTS Polki;
+DROP TABLE IF EXISTS Szczegolowe_Informacje;
+DROP TABLE IF EXISTS Kategorie;
+DROP TABLE IF EXISTS Produkty;
+DROP TABLE IF EXISTS Magazyn;
+DROP TABLE IF EXISTS Sklep;
+DROP TABLE IF EXISTS Dane_Klienta;
+DROP TABLE IF EXISTS Zamowienia;
+DROP TABLE IF EXISTS Pozycja_Zamowienia;
+DROP TABLE IF EXISTS Hurtownie;
+DROP TABLE IF EXISTS Produkty_Hurtownie;
+DROP TABLE IF EXISTS Stanowiska;
+DROP TABLE IF EXISTS Pracownicy;
+DROP TABLE IF EXISTS Dostawy;
+DROP TABLE IF EXISTS Pozycja_Dostawy;
+DROP TABLE IF EXISTS Transporty;
+DROP TABLE IF EXISTS Pozycja_Transportu;
+DROP TABLE IF EXISTS Transakcje;
+DROP TABLE IF EXISTS Pozycja_Transakcji;
+DROP TABLE IF EXISTS Paragony;
+DROP TABLE IF EXISTS Faktury;
+
+
+CREATE TABLE Alejki(
+    ID_Alejki INTEGER PRIMARY KEY
+);
+
+
+CREATE TABLE Polki(
+    ID_Polki INTEGER PRIMARY KEY
+);
+
+CREATE TABLE Szczegolowe_Informacje(
+    ID_Szczegolu INTEGER PRIMARY KEY AUTOINCREMENT,
+    Kolor TEXT,
+    Waga INTEGER,
+    Dodatkowe_Informacje TEXT,
+    Alergeny TEXT,
+    Wymiary TEXT
+);
+
+CREATE TABLE Kategorie(
+    ID_Kategorii INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nazwa TEXT
+);
+
+CREATE TABLE Produkty(
+    ID_Produktu INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nazwa TEXT,
+    Koszt REAL,
+    ID_Kategorii INTEGER,
+    ID_Szczegolowe_Informacje INTEGER,
+    FOREIGN KEY(ID_Kategorii) REFERENCES Kategorie(ID_Kategorii),
+    FOREIGN KEY(ID_Szczegolowe_Informacje) REFERENCES Szczegolowe_Informacje(ID_Szczegolu)
+);
+
+CREATE TABLE Magazyn(
+    ID_Produktu INTEGER,
+    ID_Alejki INTEGER,
+    ID_Polki INTEGER,
+    Ilosc REAL,
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu),
+    FOREIGN KEY(ID_Alejki) REFERENCES Alejki(ID_Alejki),
+    FOREIGN KEY(ID_Polki) REFERENCES Polki(ID_Polki)
+
+);
+
+CREATE TABLE Sklep(
+    ID_Produktu INTEGER,
+    ilosc REAL,
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+);
+
+CREATE TABLE Dane_Klienta(
+    ID_Klienta INTEGER PRIMARY KEY AUTOINCREMENT,
+    Imie TEXT,
+    Nazwisko TEXT,
+    Tel_Kontaktowy TEXT
+);
+
+CREATE TABLE Zamowienia(
+    ID_Zamowienia INTEGER PRIMARY KEY AUTOINCREMENT,
+    Czy_Zrealizowano INTEGER,
+    Termin_Zlozenia TEXT,
+    Przewidywany_Termin_Realizacji TEXT,
+    ID_Klienta INTEGER,
+    FOREIGN KEY(ID_Klienta) REFERENCES Dane_Klienta(ID_Klienta)
+);
+
+CREATE TABLE Pozycja_Zamowienia(
+    ID_Zamowienia INTEGER,
+    ID_Produktu INTEGER,
+    Ilosc REAL,
+    Koszt REAL,
+    FOREIGN KEY(ID_Zamowienia) REFERENCES Zamowienia(ID_Zamowienia),
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+);
+
+CREATE TABLE Hurtownie(
+    ID_Hurtowni INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nazwa_Hurtowni TEXT,
+    Kontakt_Do_Hurtowni TEXT
+);
+
+CREATE TABLE Produkty_Hurtownie(
+    ID_Produktu INTEGER,
+    ID_Hurtowni INTEGER,
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+    FOREIGN KEY(ID_Hurtowni) REFERENCES Hurtownie(ID_Hurtowni)
+);
+
+CREATE TABLE Stanowiska(
+    ID_Stanowiska INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nazwa_Stanowiska TEXT
+);
+
+CREATE TABLE Pracownicy(
+    ID_Pracownika INTEGER PRIMARY KEY AUTOINCREMENT,
+    Imie TEXT,
+    Nazwisko TEXT,
+    ID_Stanowiska INTEGER,
+    FOREIGN KEY(ID_Stanowiska) REFERENCES Stanowiska(ID_Stanowiska)
+);
+
+CREATE TABLE Dostawy(
+    ID_Dostawy INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID_Pracownika_Odbierajacego INTEGER,
+    Data_Dostawy TEXT,
+    ID_Hurtowni INTEGER,
+    Koszt REAL,
+    FOREIGN KEY(ID_Pracownika_Odbierajacego) REFERENCES Pracownicy(ID_Pracownika),
+    FOREIGN KEY(ID_Hurtowni) REFERENCES Hurtownie(ID_Hurtowni)
+);
+
+CREATE TABLE Pozycja_Dostawy(
+    ID_Produktu INTEGER,
+    Ilosc_Produktu REAL,
+    ID_Dostawy INTEGER,
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu),
+    FOREIGN KEY(ID_Dostawy) REFERENCES Dostawy(ID_Dostawy)
+);
+
+CREATE TABLE Transporty(
+    ID_Transportu INTEGER PRIMARY KEY AUTOINCREMENT,
+    Data_Transportu TEXT,
+    ID_Pracownika INTEGER,
+    FOREIGN KEY(ID_Pracownika) REFERENCES Pracownicy(ID_Pracownika)
+);
+
+CREATE TABLE Pozycja_Transportu(
+    ID_Transportu INTEGER,
+    ID_Produktu INTEGER,
+    Ilosc REAL,
+    FOREIGN KEY(ID_Transportu) REFERENCES Transporty(ID_Transportu),
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+);
+
+CREATE TABLE Transakcje(
+    ID_Transakcji INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID_Pracownika INTEGER,
+    Data TEXT,
+    Kwota REAL,
+    FOREIGN KEY(ID_Pracownika) REFERENCES Pracownicy(ID_Pracownika)
+);
+
+CREATE TABLE Pozycja_Transakcji(
+    ID_Transakcji INTEGER,
+    ID_Produktu INTEGER,
+    Ilosc REAL,
+    Cena_Jednostkowa REAL,
+    FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji),
+    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+);
+
+CREATE TABLE Paragony(
+    ID_Transakcji INTEGER UNIQUE,
+    FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji)
+);
+
+CREATE TABLE Faktury(
+    ID_Transakcji INTEGER UNIQUE,
+    Termin_Platnosci TEXT,
+    Czy_Oplacono INTEGER,
+    Nazwa TEXT,
+    Adres TEXT,
+    NIP TEXT,
+    FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji)
+);
+
+INSERT INTO Alejki (ID_Alejki) VALUES (1);
+INSERT INTO Polki (ID_Polki) VALUES (1);
