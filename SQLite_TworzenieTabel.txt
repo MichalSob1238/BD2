@@ -187,6 +187,3 @@ CREATE TABLE Faktury(
     NIP TEXT,
     FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji)
 );
-
-INSERT INTO Alejki (ID_Alejki) VALUES (1);
-INSERT INTO Polki (ID_Polki) VALUES (1);
