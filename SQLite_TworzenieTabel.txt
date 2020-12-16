@@ -22,168 +22,269 @@ DROP TABLE IF EXISTS Paragony;
 DROP TABLE IF EXISTS Faktury;
 
 
-CREATE TABLE Alejki(
-    ID_Alejki INTEGER PRIMARY KEY
+ 
+CREATE TABLE IF NOT EXISTS alejka ( id_alejki INTEGER  );
+
+ALTER TABLE alejka ADD CONSTRAINT alejka_pk PRIMARY KEY ( id_alejki );
+
+
+CREATE TABLE IF NOT EXISTS dane_klienta (
+    id_klienta           INTEGER  ,
+    imie                 VARCHAR(40   ),
+    nazwisko             VARCHAR(40   ),
+    telefon_kontaktowy   INTEGER
 );
 
+ALTER TABLE dane_klienta ADD CONSTRAINT dane_klienta_pk PRIMARY KEY ( id_klienta );
 
-CREATE TABLE Polki(
-    ID_Polki INTEGER PRIMARY KEY
+DROP TABLE IF EXISTS dostawa ; CREATE TABLE IF NOT EXISTS dostawa (
+    id_dostawy                    INTEGER  ,
+    data_dostawy                  DATE,
+    koszt                         INTEGER,
+    hurtownia_id_hurtowni         INTEGER  ,
+    pracownicy_id_odbierajacego   INTEGER  
 );
 
-CREATE TABLE Szczegolowe_Informacje(
-    ID_Szczegolu INTEGER PRIMARY KEY AUTOINCREMENT,
-    Kolor TEXT,
-    Waga INTEGER,
-    Dodatkowe_Informacje TEXT,
-    Alergeny TEXT,
-    Wymiary TEXT
+ALTER TABLE dostawa ADD CONSTRAINT dostawa_pk PRIMARY KEY ( id_dostawy );
+
+DROP TABLE IF EXISTS faktura ; CREATE TABLE IF NOT EXISTS faktura (
+    termin_platnosci           DATE,
+    czy_oplacono               INTEGER,
+    nazwa                      VARCHAR(40   ),
+    adres                      VARCHAR(40   ),
+    nip                        INTEGER,
+    transakcja_id_transakcji   INTEGER  
 );
 
-CREATE TABLE Kategorie(
-    ID_Kategorii INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nazwa TEXT
+DROP TABLE IF EXISTS hurtownia ; CREATE TABLE IF NOT EXISTS hurtownia (
+    id_hurtowni   INTEGER  ,
+    nazwa         VARCHAR(40   ),
+    kontakt       VARCHAR(40   )
 );
 
-CREATE TABLE Produkty(
-    ID_Produktu INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nazwa TEXT,
-    Koszt REAL,
-    ID_Kategorii INTEGER,
-    ID_Szczegolowe_Informacje INTEGER,
-    FOREIGN KEY(ID_Kategorii) REFERENCES Kategorie(ID_Kategorii),
-    FOREIGN KEY(ID_Szczegolowe_Informacje) REFERENCES Szczegolowe_Informacje(ID_Szczegolu)
+ALTER TABLE hurtownia ADD CONSTRAINT hurtownia_pk PRIMARY KEY ( id_hurtowni );
+
+DROP TABLE IF EXISTS kategorie ; CREATE TABLE IF NOT EXISTS kategorie (
+    id_kategori   INTEGER  ,
+    nazwa         VARCHAR(40   )
 );
 
-CREATE TABLE Magazyn(
-    ID_Produktu INTEGER,
-    ID_Alejki INTEGER,
-    ID_Polki INTEGER,
-    Ilosc REAL,
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu),
-    FOREIGN KEY(ID_Alejki) REFERENCES Alejki(ID_Alejki),
-    FOREIGN KEY(ID_Polki) REFERENCES Polki(ID_Polki)
+ALTER TABLE kategorie ADD CONSTRAINT kategorie_pk PRIMARY KEY ( id_kategori );
 
+DROP TABLE IF EXISTS magazyn ; CREATE TABLE IF NOT EXISTS magazyn (
+    ilosc                INTEGER,
+    polka_id_polki       INTEGER  ,
+    alejka_id_alejki     INTEGER  ,
+    produkt_id_prudukt   INTEGER  
 );
 
-CREATE TABLE Sklep(
-    ID_Produktu INTEGER,
-    ilosc REAL,
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+ALTER TABLE magazyn ADD CONSTRAINT magazyn_pk PRIMARY KEY ( produkt_id_prudukt );
+
+DROP TABLE IF EXISTS paragon ; CREATE TABLE IF NOT EXISTS paragon (
+    transakcja_id_transakcji INTEGER  
 );
 
-CREATE TABLE Dane_Klienta(
-    ID_Klienta INTEGER PRIMARY KEY AUTOINCREMENT,
-    Imie TEXT,
-    Nazwisko TEXT,
-    Tel_Kontaktowy TEXT
+DROP TABLE IF EXISTS polka ; CREATE TABLE IF NOT EXISTS polka (
+    id_polki INTEGER  
 );
 
-CREATE TABLE Zamowienia(
-    ID_Zamowienia INTEGER PRIMARY KEY AUTOINCREMENT,
-    Czy_Zrealizowano INTEGER,
-    Termin_Zlozenia TEXT,
-    Przewidywany_Termin_Realizacji TEXT,
-    ID_Klienta INTEGER,
-    FOREIGN KEY(ID_Klienta) REFERENCES Dane_Klienta(ID_Klienta)
+ALTER TABLE polka ADD CONSTRAINT polka_pk PRIMARY KEY ( id_polki );
+
+DROP TABLE IF EXISTS pozycja_dostawy ; CREATE TABLE IF NOT EXISTS pozycja_dostawy (
+    ilosc_produktu       INTEGER,
+    dostawa_id_dostawy   INTEGER  ,
+    produkt_id_prudukt   INTEGER  
 );
 
-CREATE TABLE Pozycja_Zamowienia(
-    ID_Zamowienia INTEGER,
-    ID_Produktu INTEGER,
-    Ilosc REAL,
-    Koszt REAL,
-    FOREIGN KEY(ID_Zamowienia) REFERENCES Zamowienia(ID_Zamowienia),
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+DROP TABLE IF EXISTS pozycja_paragon ; CREATE TABLE IF NOT EXISTS pozycja_paragon (
+    ilosc                      INTEGER,
+    cena_jednostkowa         INTEGER,
+    transakcja_id_transakcji   INTEGER  ,
+    produkt_id_prudukt         INTEGER  
 );
 
-CREATE TABLE Hurtownie(
-    ID_Hurtowni INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nazwa_Hurtowni TEXT,
-    Kontakt_Do_Hurtowni TEXT
+DROP TABLE IF EXISTS pozycja_transportu ; CREATE TABLE IF NOT EXISTS pozycja_transportu (
+    ilosc                     INTEGER,
+    transport_id_transportu   INTEGER  ,
+    produkt_id_prudukt        INTEGER  
 );
 
-CREATE TABLE Produkty_Hurtownie(
-    ID_Produktu INTEGER,
-    ID_Hurtowni INTEGER,
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
-    FOREIGN KEY(ID_Hurtowni) REFERENCES Hurtownie(ID_Hurtowni)
+DROP TABLE IF EXISTS pozycja_zamowienia ; CREATE TABLE IF NOT EXISTS pozycja_zamowienia (
+    ilosc                      INTEGER,
+    koszt                      INTEGER,
+    zamowienia_id_zamowienia   INTEGER  ,
+    produkt_id_prudukt         INTEGER  
 );
 
-CREATE TABLE Stanowiska(
-    ID_Stanowiska INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nazwa_Stanowiska TEXT
+DROP TABLE IF EXISTS pracownicy  ; CREATE TABLE IF NOT EXISTS pracownicy (
+    id_pracownika              INTEGER  ,
+    imie                       VARCHAR(40   ),
+    nazwisko                   VARCHAR(40   ),
+    stanowiska_id_stanowiska   INTEGER  
 );
 
-CREATE TABLE Pracownicy(
-    ID_Pracownika INTEGER PRIMARY KEY AUTOINCREMENT,
-    Imie TEXT,
-    Nazwisko TEXT,
-    ID_Stanowiska INTEGER,
-    FOREIGN KEY(ID_Stanowiska) REFERENCES Stanowiska(ID_Stanowiska)
+ALTER TABLE pracownicy ADD CONSTRAINT pracownicy_pk PRIMARY KEY ( id_pracownika );
+
+DROP TABLE IF EXISTS produkt ; CREATE TABLE IF NOT EXISTS produkt (
+    id_prudukt              INTEGER  ,
+    nazwa                   VARCHAR(40   ),
+    koszt                   INTEGER,
+    kategorie_id_kategori   INTEGER  
 );
 
-CREATE TABLE Dostawy(
-    ID_Dostawy INTEGER PRIMARY KEY AUTOINCREMENT,
-    ID_Pracownika_Odbierajacego INTEGER,
-    Data_Dostawy TEXT,
-    ID_Hurtowni INTEGER,
-    Koszt REAL,
-    FOREIGN KEY(ID_Pracownika_Odbierajacego) REFERENCES Pracownicy(ID_Pracownika),
-    FOREIGN KEY(ID_Hurtowni) REFERENCES Hurtownie(ID_Hurtowni)
+ALTER TABLE produkt ADD CONSTRAINT produkt_pk PRIMARY KEY ( id_prudukt );
+
+DROP TABLE IF EXISTS produkt_hurtownia ; CREATE TABLE IF NOT EXISTS produkt_hurtownia (
+    produkt_id_prudukt      INTEGER  ,
+    hurtownia_id_hurtowni   INTEGER  
 );
 
-CREATE TABLE Pozycja_Dostawy(
-    ID_Produktu INTEGER,
-    Ilosc_Produktu REAL,
-    ID_Dostawy INTEGER,
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu),
-    FOREIGN KEY(ID_Dostawy) REFERENCES Dostawy(ID_Dostawy)
+DROP TABLE IF EXISTS sklep ; CREATE TABLE IF NOT EXISTS sklep (
+    ilosc                INTEGER,
+    produkt_id_prudukt   INTEGER  
 );
 
-CREATE TABLE Transporty(
-    ID_Transportu INTEGER PRIMARY KEY AUTOINCREMENT,
-    Data_Transportu TEXT,
-    ID_Pracownika INTEGER,
-    FOREIGN KEY(ID_Pracownika) REFERENCES Pracownicy(ID_Pracownika)
+ALTER TABLE sklep ADD CONSTRAINT sklep_pk PRIMARY KEY ( produkt_id_prudukt );
+
+DROP TABLE IF EXISTS stanowiska ; CREATE TABLE IF NOT EXISTS stanowiska (
+    id_stanowiska   INTEGER  ,
+    nazwa           VARCHAR(40   )
 );
 
-CREATE TABLE Pozycja_Transportu(
-    ID_Transportu INTEGER,
-    ID_Produktu INTEGER,
-    Ilosc REAL,
-    FOREIGN KEY(ID_Transportu) REFERENCES Transporty(ID_Transportu),
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+ALTER TABLE stanowiska ADD CONSTRAINT stanowiska_pk PRIMARY KEY ( id_stanowiska );
+
+DROP TABLE IF EXISTS szczegolowe_informacje ; CREATE TABLE IF NOT EXISTS szczegolowe_informacje (
+    kolor                  VARCHAR(40   ),
+    waga                   INTEGER,
+    dodadkowe_informacje   VARCHAR(40   ),
+    alergeny               VARCHAR(40   ),
+    wymary                 VARCHAR(40   ),
+    produkt_id_prudukt     INTEGER  
 );
 
-CREATE TABLE Transakcje(
-    ID_Transakcji INTEGER PRIMARY KEY AUTOINCREMENT,
-    ID_Pracownika INTEGER,
-    Data TEXT,
-    Kwota REAL,
-    FOREIGN KEY(ID_Pracownika) REFERENCES Pracownicy(ID_Pracownika)
+ALTER TABLE szczegolowe_informacje ADD CONSTRAINT szczegolowe_informacje_pk PRIMARY KEY ( produkt_id_prudukt );
+
+DROP TABLE IF EXISTS transakcja ; CREATE TABLE IF NOT EXISTS transakcja (
+    id_transakcji              INTEGER  ,
+    data                       DATE,
+    kwota                      INTEGER,
+    pracownicy_id_pracownika   INTEGER  ,
+    typ                        VARCHAR(40   )
 );
 
-CREATE TABLE Pozycja_Transakcji(
-    ID_Transakcji INTEGER,
-    ID_Produktu INTEGER,
-    Ilosc REAL,
-    Cena_Jednostkowa REAL,
-    FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji),
-    FOREIGN KEY(ID_Produktu) REFERENCES Produkty(ID_Produktu)
+ALTER TABLE transakcja ADD CONSTRAINT transakcja_pk PRIMARY KEY ( id_transakcji );
+
+DROP TABLE IF EXISTS transport ; CREATE TABLE IF NOT EXISTS transport (
+    id_transportu              INTEGER  ,
+    data                       DATE,
+    pracownicy_id_pracownika   INTEGER  
 );
 
-CREATE TABLE Paragony(
-    ID_Transakcji INTEGER UNIQUE,
-    FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji)
+ALTER TABLE transport ADD CONSTRAINT transport_pk PRIMARY KEY ( id_transportu );
+
+DROP TABLE IF EXISTS zamowienia ; CREATE TABLE IF NOT EXISTS zamowienia (
+    id_zamowienia                    INTEGER  ,
+    czy_zrealizoawno                 CHAR(1),
+    termin_zlozenia                  DATE,
+    przewidywany_termin_realizacji   DATE,
+    dane_klienta_id_klienta          INTEGER  
 );
 
-CREATE TABLE Faktury(
-    ID_Transakcji INTEGER UNIQUE,
-    Termin_Platnosci TEXT,
-    Czy_Oplacono INTEGER,
-    Nazwa TEXT,
-    Adres TEXT,
-    NIP TEXT,
-    FOREIGN KEY(ID_Transakcji) REFERENCES Transakcje(ID_Transakcji)
-);
+ALTER TABLE zamowienia ADD CONSTRAINT zamowienia_pk PRIMARY KEY ( id_zamowienia );
+
+ALTER TABLE dostawa
+    ADD CONSTRAINT dostawa_hurtownia_fk FOREIGN KEY ( hurtownia_id_hurtowni )
+        REFERENCES hurtownia ( id_hurtowni );
+
+ALTER TABLE dostawa
+    ADD CONSTRAINT dostawa_pracownicy_fk FOREIGN KEY ( pracownicy_id_odbierajacego )
+        REFERENCES pracownicy ( id_pracownika );
+
+ALTER TABLE faktura
+    ADD CONSTRAINT faktura_transakcja_fk FOREIGN KEY ( transakcja_id_transakcji )
+        REFERENCES transakcja ( id_transakcji );
+
+ALTER TABLE magazyn
+    ADD CONSTRAINT magazyn_alejka_fk FOREIGN KEY ( alejka_id_alejki )
+        REFERENCES alejka ( id_alejki );
+
+ALTER TABLE magazyn
+    ADD CONSTRAINT magazyn_polka_fk FOREIGN KEY ( polka_id_polki )
+        REFERENCES polka ( id_polki );
+
+ALTER TABLE magazyn
+    ADD CONSTRAINT magazyn_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE paragon
+    ADD CONSTRAINT paragon_transakcja_fk FOREIGN KEY ( transakcja_id_transakcji )
+        REFERENCES transakcja ( id_transakcji );
+
+ALTER TABLE pozycja_dostawy
+    ADD CONSTRAINT pozycja_dostawy_dostawa_fk FOREIGN KEY ( dostawa_id_dostawy )
+        REFERENCES dostawa ( id_dostawy );
+
+ALTER TABLE pozycja_dostawy
+    ADD CONSTRAINT pozycja_dostawy_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE pozycja_paragon
+    ADD CONSTRAINT pozycja_paragon_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE pozycja_paragon
+    ADD CONSTRAINT pozycja_paragon_transakcja_fk FOREIGN KEY ( transakcja_id_transakcji )
+        REFERENCES transakcja ( id_transakcji );
+
+ALTER TABLE pozycja_transportu
+    ADD CONSTRAINT pozycja_transp_transport_fk FOREIGN KEY ( transport_id_transportu )
+        REFERENCES transport ( id_transportu );
+
+ALTER TABLE pozycja_transportu
+    ADD CONSTRAINT pozycja_transportu_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE pozycja_zamowienia
+    ADD CONSTRAINT pozycja_zam_zamowienia_fk FOREIGN KEY ( zamowienia_id_zamowienia )
+        REFERENCES zamowienia ( id_zamowienia );
+
+ALTER TABLE pozycja_zamowienia
+    ADD CONSTRAINT pozycja_zamowienia_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE pracownicy
+    ADD CONSTRAINT pracownicy_stanowiska_fk FOREIGN KEY ( stanowiska_id_stanowiska )
+        REFERENCES stanowiska ( id_stanowiska );
+
+ALTER TABLE produkt_hurtownia
+    ADD CONSTRAINT produkt_hurtownia_hurtownia_fk FOREIGN KEY ( hurtownia_id_hurtowni )
+        REFERENCES hurtownia ( id_hurtowni );
+
+ALTER TABLE produkt_hurtownia
+    ADD CONSTRAINT produkt_hurtownia_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE produkt
+    ADD CONSTRAINT produkt_kategorie_fk FOREIGN KEY ( kategorie_id_kategori )
+        REFERENCES kategorie ( id_kategori );
+
+ALTER TABLE sklep
+    ADD CONSTRAINT sklep_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE szczegolowe_informacje
+    ADD CONSTRAINT szczegolowe_info_produkt_fk FOREIGN KEY ( produkt_id_prudukt )
+        REFERENCES produkt ( id_prudukt );
+
+ALTER TABLE transakcja
+    ADD CONSTRAINT transakcja_pracownicy_fk FOREIGN KEY ( pracownicy_id_pracownika )
+        REFERENCES pracownicy ( id_pracownika );
+
+ALTER TABLE transport
+    ADD CONSTRAINT transport_pracownicy_fk FOREIGN KEY ( pracownicy_id_pracownika )
+        REFERENCES pracownicy ( id_pracownika );
+
+ALTER TABLE zamowienia
+    ADD CONSTRAINT zamowienia_dane_klienta_fk FOREIGN KEY ( dane_klienta_id_klienta )
+        REFERENCES dane_klienta ( id_klienta );
+ 
