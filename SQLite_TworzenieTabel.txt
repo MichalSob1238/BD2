@@ -1,25 +1,26 @@
-DROP TABLE IF EXISTS Alejki;
-DROP TABLE IF EXISTS Polki;
-DROP TABLE IF EXISTS Szczegolowe_Informacje;
-DROP TABLE IF EXISTS Kategorie;
-DROP TABLE IF EXISTS Produkty;
-DROP TABLE IF EXISTS Magazyn;
-DROP TABLE IF EXISTS Sklep;
-DROP TABLE IF EXISTS Dane_Klienta;
-DROP TABLE IF EXISTS Zamowienia;
-DROP TABLE IF EXISTS Pozycja_Zamowienia;
-DROP TABLE IF EXISTS Hurtownie;
-DROP TABLE IF EXISTS Produkty_Hurtownie;
-DROP TABLE IF EXISTS Stanowiska;
-DROP TABLE IF EXISTS Pracownicy;
-DROP TABLE IF EXISTS Dostawy;
-DROP TABLE IF EXISTS Pozycja_Dostawy;
-DROP TABLE IF EXISTS Transporty;
-DROP TABLE IF EXISTS Pozycja_Transportu;
-DROP TABLE IF EXISTS Transakcje;
-DROP TABLE IF EXISTS Pozycja_Transakcji;
-DROP TABLE IF EXISTS Paragony;
-DROP TABLE IF EXISTS Faktury;
+DROP TABLE IF EXISTS magazyn;
+DROP TABLE IF EXISTS alejka;
+DROP TABLE IF EXISTS polka;
+DROP TABLE IF EXISTS szczegolowe_informacje;
+DROP TABLE IF EXISTS pozycja_transportu;
+DROP TABLE IF EXISTS pozycja_zamowienia;
+DROP TABLE IF EXISTS pozycja_dostawy;
+DROP TABLE IF EXISTS pozycja_paragon;
+DROP TABLE IF EXISTS produkt_hurtownia;
+DROP TABLE IF EXISTS sklep;
+DROP TABLE IF EXISTS produkt;
+DROP TABLE IF EXISTS kategorie;
+DROP TABLE IF EXISTS zamowienia;
+DROP TABLE IF EXISTS dane_klienta;
+DROP TABLE IF EXISTS dostawa;
+DROP TABLE IF EXISTS paragon;
+DROP TABLE IF EXISTS faktura;
+DROP TABLE IF EXISTS transakcja;
+DROP TABLE IF EXISTS transport;
+DROP TABLE IF EXISTS hurtownia;
+DROP TABLE IF EXISTS pracownicy;
+DROP TABLE IF EXISTS stanowiska;
+DROP TABLE IF EXISTS pluszaczek;
 
 
  
@@ -30,8 +31,8 @@ ALTER TABLE alejka ADD CONSTRAINT alejka_pk PRIMARY KEY ( id_alejki );
 
 CREATE TABLE IF NOT EXISTS dane_klienta (
     id_klienta           INTEGER  ,
-    imie                 VARCHAR(40   ),
-    nazwisko             VARCHAR(40   ),
+    imie                 VARCHAR(40),
+    nazwisko             VARCHAR(40),
     telefon_kontaktowy   INTEGER
 );
 
@@ -50,31 +51,31 @@ ALTER TABLE dostawa ADD CONSTRAINT dostawa_pk PRIMARY KEY ( id_dostawy );
 DROP TABLE IF EXISTS faktura ; CREATE TABLE IF NOT EXISTS faktura (
     termin_platnosci           DATE,
     czy_oplacono               INTEGER,
-    nazwa                      VARCHAR(40   ),
-    adres                      VARCHAR(40   ),
+    nazwa                      VARCHAR(40),
+    adres                      VARCHAR(40),
     nip                        INTEGER,
     transakcja_id_transakcji   INTEGER  
 );
 
 DROP TABLE IF EXISTS hurtownia ; CREATE TABLE IF NOT EXISTS hurtownia (
-    id_hurtowni   INTEGER  ,
-    nazwa         VARCHAR(40   ),
-    kontakt       VARCHAR(40   )
+    id_hurtowni   INTEGER,
+    nazwa         VARCHAR(40),
+    kontakt       VARCHAR(40)
 );
 
 ALTER TABLE hurtownia ADD CONSTRAINT hurtownia_pk PRIMARY KEY ( id_hurtowni );
 
 DROP TABLE IF EXISTS kategorie ; CREATE TABLE IF NOT EXISTS kategorie (
-    id_kategori   INTEGER  ,
-    nazwa         VARCHAR(40   )
+    id_kategori   INTEGER,
+    nazwa         VARCHAR(40)
 );
 
 ALTER TABLE kategorie ADD CONSTRAINT kategorie_pk PRIMARY KEY ( id_kategori );
 
 DROP TABLE IF EXISTS magazyn ; CREATE TABLE IF NOT EXISTS magazyn (
     ilosc                INTEGER,
-    polka_id_polki       INTEGER  ,
-    alejka_id_alejki     INTEGER  ,
+    polka_id_polki       INTEGER,
+    alejka_id_alejki     INTEGER,
     produkt_id_prudukt   INTEGER  
 );
 
@@ -92,42 +93,42 @@ ALTER TABLE polka ADD CONSTRAINT polka_pk PRIMARY KEY ( id_polki );
 
 DROP TABLE IF EXISTS pozycja_dostawy ; CREATE TABLE IF NOT EXISTS pozycja_dostawy (
     ilosc_produktu       INTEGER,
-    dostawa_id_dostawy   INTEGER  ,
+    dostawa_id_dostawy   INTEGER,
     produkt_id_prudukt   INTEGER  
 );
 
 DROP TABLE IF EXISTS pozycja_paragon ; CREATE TABLE IF NOT EXISTS pozycja_paragon (
     ilosc                      INTEGER,
-    cena_jednostkowa         INTEGER,
-    transakcja_id_transakcji   INTEGER  ,
+    cena_jednostkowa           INTEGER,
+    transakcja_id_transakcji   INTEGER,
     produkt_id_prudukt         INTEGER  
 );
 
 DROP TABLE IF EXISTS pozycja_transportu ; CREATE TABLE IF NOT EXISTS pozycja_transportu (
     ilosc                     INTEGER,
-    transport_id_transportu   INTEGER  ,
+    transport_id_transportu   INTEGER,
     produkt_id_prudukt        INTEGER  
 );
 
 DROP TABLE IF EXISTS pozycja_zamowienia ; CREATE TABLE IF NOT EXISTS pozycja_zamowienia (
     ilosc                      INTEGER,
     koszt                      INTEGER,
-    zamowienia_id_zamowienia   INTEGER  ,
+    zamowienia_id_zamowienia   INTEGER,
     produkt_id_prudukt         INTEGER  
 );
 
 DROP TABLE IF EXISTS pracownicy  ; CREATE TABLE IF NOT EXISTS pracownicy (
-    id_pracownika              INTEGER  ,
-    imie                       VARCHAR(40   ),
-    nazwisko                   VARCHAR(40   ),
+    id_pracownika              INTEGER,
+    imie                       VARCHAR(40),
+    nazwisko                   VARCHAR(40),
     stanowiska_id_stanowiska   INTEGER  
 );
 
 ALTER TABLE pracownicy ADD CONSTRAINT pracownicy_pk PRIMARY KEY ( id_pracownika );
 
 DROP TABLE IF EXISTS produkt ; CREATE TABLE IF NOT EXISTS produkt (
-    id_prudukt              INTEGER  ,
-    nazwa                   VARCHAR(40   ),
+    id_prudukt              INTEGER,
+    nazwa                   VARCHAR(40),
     koszt                   INTEGER,
     kategorie_id_kategori   INTEGER  
 );
@@ -135,7 +136,7 @@ DROP TABLE IF EXISTS produkt ; CREATE TABLE IF NOT EXISTS produkt (
 ALTER TABLE produkt ADD CONSTRAINT produkt_pk PRIMARY KEY ( id_prudukt );
 
 DROP TABLE IF EXISTS produkt_hurtownia ; CREATE TABLE IF NOT EXISTS produkt_hurtownia (
-    produkt_id_prudukt      INTEGER  ,
+    produkt_id_prudukt      INTEGER,
     hurtownia_id_hurtowni   INTEGER  
 );
 
@@ -147,35 +148,35 @@ DROP TABLE IF EXISTS sklep ; CREATE TABLE IF NOT EXISTS sklep (
 ALTER TABLE sklep ADD CONSTRAINT sklep_pk PRIMARY KEY ( produkt_id_prudukt );
 
 DROP TABLE IF EXISTS stanowiska ; CREATE TABLE IF NOT EXISTS stanowiska (
-    id_stanowiska   INTEGER  ,
-    nazwa           VARCHAR(40   )
+    id_stanowiska   INTEGER,
+    nazwa           VARCHAR(40)
 );
 
 ALTER TABLE stanowiska ADD CONSTRAINT stanowiska_pk PRIMARY KEY ( id_stanowiska );
 
 DROP TABLE IF EXISTS szczegolowe_informacje ; CREATE TABLE IF NOT EXISTS szczegolowe_informacje (
-    kolor                  VARCHAR(40   ),
+    kolor                  VARCHAR(40),
     waga                   INTEGER,
-    dodadkowe_informacje   VARCHAR(40   ),
-    alergeny               VARCHAR(40   ),
-    wymary                 VARCHAR(40   ),
+    dodadkowe_informacje   VARCHAR(40),
+    alergeny               VARCHAR(40),
+    wymary                 VARCHAR(40),
     produkt_id_prudukt     INTEGER  
 );
 
 ALTER TABLE szczegolowe_informacje ADD CONSTRAINT szczegolowe_informacje_pk PRIMARY KEY ( produkt_id_prudukt );
 
 DROP TABLE IF EXISTS transakcja ; CREATE TABLE IF NOT EXISTS transakcja (
-    id_transakcji              INTEGER  ,
+    id_transakcji              INTEGER,
     data                       DATE,
     kwota                      INTEGER,
-    pracownicy_id_pracownika   INTEGER  ,
-    typ                        VARCHAR(40   )
+    pracownicy_id_pracownika   INTEGER,
+    typ                        VARCHAR(40)
 );
 
 ALTER TABLE transakcja ADD CONSTRAINT transakcja_pk PRIMARY KEY ( id_transakcji );
 
 DROP TABLE IF EXISTS transport ; CREATE TABLE IF NOT EXISTS transport (
-    id_transportu              INTEGER  ,
+    id_transportu              INTEGER,
     data                       DATE,
     pracownicy_id_pracownika   INTEGER  
 );
@@ -183,7 +184,7 @@ DROP TABLE IF EXISTS transport ; CREATE TABLE IF NOT EXISTS transport (
 ALTER TABLE transport ADD CONSTRAINT transport_pk PRIMARY KEY ( id_transportu );
 
 DROP TABLE IF EXISTS zamowienia ; CREATE TABLE IF NOT EXISTS zamowienia (
-    id_zamowienia                    INTEGER  ,
+    id_zamowienia                    INTEGER,
     czy_zrealizoawno                 CHAR(1),
     termin_zlozenia                  DATE,
     przewidywany_termin_realizacji   DATE,
