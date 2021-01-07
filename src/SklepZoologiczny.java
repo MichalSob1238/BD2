@@ -1,8 +1,6 @@
-import controller.DataGenerator;
+import controller.DataGeneratorController;
 import controller.DatabaseController;
 import model.Model;
-import controller.DatabaseController;
-import view.View;
 
 import java.awt.EventQueue;
 import java.io.IOException;
@@ -16,9 +14,11 @@ public class SklepZoologiczny {
                 Model model = new Model();
                 try {
                     DatabaseController.initialize();
-                    DataGenerator gen = new DataGenerator();
+                    DataGeneratorController gen = new DataGeneratorController();
                     gen.generateDaneKlienta(100);
-                } catch (IOException e) {
+                    gen.generateStanowisko();
+                    gen.generatePracownik(40);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
