@@ -1,13 +1,13 @@
 package model;
 
-public class Pozycja_zamowienia {
+public class Pozycja_zamowienie {
 
     int amount;
     float cost;
     int order_id;
     int product_id;
 
-    public Pozycja_zamowienia(int amount, float cost, int order_id, int product_id) {
+    public Pozycja_zamowienie(int amount, float cost, int order_id, int product_id) {
         this.amount = amount;
         this.cost = cost;
         this.order_id = order_id;
