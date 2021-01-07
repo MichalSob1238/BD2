@@ -2,6 +2,7 @@ package controller;
 import controller.DatabaseController;
 
 import com.github.javafaker.Faker;
+import model.Pracownik;
 import model.Stanowisko;
 
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 public class DataGeneratorController {
 
@@ -47,5 +49,14 @@ public class DataGeneratorController {
 
     }
 
+    public void generateTransport(int transportsNum){
+        DatabaseController db = new DatabaseController();
+        List<Pracownik> employees = db.selectAllFromPracownik();
+        Faker faker = new Faker(new Locale("pl"));
+        for(int i = 0; i < transportsNum; i++){
+            Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
+            db.insertIntoTransport(faker.date().past(1000, TimeUnit.DAYS), employee.getId());
+        }
+    }
 }
 

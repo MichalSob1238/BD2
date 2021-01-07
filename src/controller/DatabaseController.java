@@ -1,5 +1,6 @@
 package controller;
 
+import model.Pracownik;
 import model.Stanowisko;
 
 import java.sql.*;
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseController {
@@ -17,9 +19,6 @@ public class DatabaseController {
     private static final String password = "BD2haslo";
 
     public static void initialize() throws IOException {
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + s);
         Path fileName = Path.of("./src/res/tableCreation.txt");
         String InitialCreation = Files.readString(fileName);
         System.out.println(InitialCreation);
@@ -82,6 +81,18 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoTransport(Date date, int employeeId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO transport VALUES(default,?,?)");
+            insert.setDate(1, new java.sql.Date(date.getTime()));
+            insert.setInt(2, employeeId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -97,5 +108,23 @@ public class DatabaseController {
            ex.printStackTrace();
         }
         return positions;
+    }
+
+    List<Pracownik> selectAllFromPracownik(){
+        List<Pracownik> employees = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from pracownik");
+
+            while (rs.next()) {
+                employees.add(new Pracownik(rs.getInt("id_pracownik"), rs.getString("imie"),
+                        rs.getString("nazwisko"), rs.getInt("stanowisko_id_stanowisko")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return employees;
     }
 }
