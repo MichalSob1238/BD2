@@ -1,0 +1,6 @@
+okna:
+
+-okno logowania (zrobione)
+-okno logowania po błędnej próbie (zrobione)
+-okno startowe pracownika (zrobione)
+-okno startowe menadżera (zrobione)
