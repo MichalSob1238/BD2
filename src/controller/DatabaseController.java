@@ -120,6 +120,23 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoFaktura(String invoiceNr, Date dueDate, boolean ifPayed, String name, String address, String NIP, int transactionId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO faktura VALUES(default,?,?,?,?,?,?,?)");
+            insert.setString(1, invoiceNr);
+            insert.setDate(2, new java.sql.Date(dueDate.getTime()));
+            insert.setBoolean(3,ifPayed);
+            insert.setString(4, name);
+            insert.setString(5, address);
+            insert.setString(6,NIP);
+            insert.setInt(7, transactionId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -153,5 +170,43 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return employees;
+    }
+
+    List<Transakcja> selectAllFromTransakcja(){
+        List<Transakcja> transactions = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from transakcja");
+
+            while (rs.next()) {
+                transactions.add(new Transakcja(rs.getInt("id_transakcja"), rs.getDate("data"),
+                        rs.getDouble("kwota"), rs.getInt("pracownik_id_pracownik"),
+                        Transakcja.transactionType.valueOf(rs.getString("typ"))));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return transactions;
+    }
+
+    List<Transakcja> selectFakturaOnlyFromTransakcja(){
+        List<Transakcja> transactions = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from transakcja WHERE typ ='FAKTURA'");
+
+            while (rs.next()) {
+                transactions.add(new Transakcja(rs.getInt("id_transakcja"), rs.getDate("data"),
+                        rs.getDouble("kwota"), rs.getInt("pracownik_id_pracownik"),
+                        Transakcja.transactionType.valueOf(rs.getString("typ"))));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return transactions;
     }
 }

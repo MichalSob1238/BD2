@@ -1,21 +1,20 @@
 package controller;
-import controller.DatabaseController;
 
 import com.github.javafaker.Faker;
+import model.Faktura;
 import model.Pracownik;
 import model.Stanowisko;
 import model.Transakcja;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class DataGeneratorController {
-        final double maximumTransactionCost = 1500;
+        final double MAXIMUMTRANSACTIONCOST = 1500;
+        final double EMAILONLY = 0.6;
+        final double PHONENUMBERONLY = 0.3;
+        final double NOTPAYED = 0.9;
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
@@ -66,7 +65,7 @@ public class DataGeneratorController {
         Faker faker = new Faker(new Locale("pl"));
         for(int i = 0; i < transactionNum; i++){
             Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
-            double cost = Double.parseDouble(faker.commerce().price(0, maximumTransactionCost).replaceAll(",","."));
+            double cost = Double.parseDouble(faker.commerce().price(0, MAXIMUMTRANSACTIONCOST).replaceAll(",","."));
             db.insertIntoTransakcja(faker.date().past(1000, TimeUnit.DAYS), cost,
                     employee.getId(), Transakcja.randomTransactionType());
         }
@@ -78,13 +77,32 @@ public class DataGeneratorController {
         String contact;
         for (int i=0; i< warehouseNum; i++){
             double random = ThreadLocalRandom.current().nextDouble(0, 1);
-            if(random <0.3)
+            if(random < PHONENUMBERONLY)
                 contact = faker.phoneNumber().subscriberNumber(9);
-            else if(random > 0.6)
+            else if(random > EMAILONLY)
                 contact = faker.internet().safeEmailAddress();
             else
                 contact = faker.phoneNumber().subscriberNumber(9) + " " + faker.internet().safeEmailAddress();
             db.insertIntoHurtownia(faker.company().name(), contact);
+        }
+    }
+
+    public void generateFaktura(){
+        DatabaseController db = new DatabaseController();
+        Faker faker = new Faker(new Locale("pl"));
+        List<Transakcja> transactions = db.selectFakturaOnlyFromTransakcja();
+        Calendar calendar = Calendar.getInstance();
+        for (Transakcja transaction : transactions) {
+            calendar.setTime(transaction.getDate());
+            double random = ThreadLocalRandom.current().nextDouble(0, 1);
+            boolean ifPayed;
+            if(random >= NOTPAYED)
+                ifPayed = false;
+            else
+                ifPayed = true;
+            String invoiceNr = transaction.getId() + "/" + (calendar.get(Calendar.MONTH)+1) + calendar.get(Calendar.YEAR);
+            db.insertIntoFaktura(invoiceNr, faker.date().between(transaction.getDate(), new Date()), ifPayed,
+                    faker.company().name(), faker.address().fullAddress(), Faktura.generateNIP(), transaction.getId());
         }
     }
 }

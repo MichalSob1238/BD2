@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS faktura (
     termin_platnosci           DATE,
     czy_oplacono               INTEGER,
     nazwa                      VARCHAR(40),
-    adres                      VARCHAR(40),
-    nip                        INTEGER,
+    adres                      VARCHAR(100),
+    nip                        VARCHAR(10),
     transakcja_id_transakcja INTEGER
 );
 
