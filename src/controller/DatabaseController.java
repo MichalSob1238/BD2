@@ -2,6 +2,7 @@ package controller;
 
 import model.Pracownik;
 import model.Stanowisko;
+import model.Transakcja;
 
 import java.sql.*;
 import java.io.IOException;
@@ -87,6 +88,20 @@ public class DatabaseController {
             PreparedStatement insert = conn.prepareStatement("INSERT INTO transport VALUES(default,?,?)");
             insert.setDate(1, new java.sql.Date(date.getTime()));
             insert.setInt(2, employeeId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    void insertIntoTransakcja(Date date, double value, int employeeId, Transakcja.transactionType type){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO transakcja VALUES(default,?,?,?,?)");
+            insert.setDate(1, new java.sql.Date(date.getTime()));
+            insert.setDouble(2, value);
+            insert.setInt(3, employeeId);
+            insert.setString(4, type.name());
             insert.execute();
         }catch (SQLException ex){
             ex.printStackTrace();

@@ -4,6 +4,7 @@ import controller.DatabaseController;
 import com.github.javafaker.Faker;
 import model.Pracownik;
 import model.Stanowisko;
+import model.Transakcja;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class DataGeneratorController {
-
+        final double maximumTransactionCost = 1500;
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
@@ -56,6 +57,18 @@ public class DataGeneratorController {
         for(int i = 0; i < transportsNum; i++){
             Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
             db.insertIntoTransport(faker.date().past(1000, TimeUnit.DAYS), employee.getId());
+        }
+    }
+
+    public void generateTransakcja(int transactionNum){
+        DatabaseController db = new DatabaseController();
+        List<Pracownik> employees = db.selectAllFromPracownik();
+        Faker faker = new Faker(new Locale("pl"));
+        for(int i = 0; i < transactionNum; i++){
+            Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
+            double cost = Double.parseDouble(faker.commerce().price(0, maximumTransactionCost).replaceAll(",","."));
+            db.insertIntoTransakcja(faker.date().past(1000, TimeUnit.DAYS), cost,
+                    employee.getId(), Transakcja.randomTransactionType());
         }
     }
 }
