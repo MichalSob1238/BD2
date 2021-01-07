@@ -4,3 +4,5 @@ okna:
 -okno logowania po błędnej próbie (zrobione)
 -okno startowe pracownika (zrobione)
 -okno startowe menadżera (zrobione)
+-okno zakupu (prace trwają)
+-okno zwrotu (prace trwają)
