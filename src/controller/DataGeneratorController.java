@@ -71,5 +71,21 @@ public class DataGeneratorController {
                     employee.getId(), Transakcja.randomTransactionType());
         }
     }
+
+    public void generateHurtownia(int warehouseNum){
+        DatabaseController db = new DatabaseController();
+        Faker faker = new Faker(new Locale("pl"));
+        String contact;
+        for (int i=0; i< warehouseNum; i++){
+            double random = ThreadLocalRandom.current().nextDouble(0, 1);
+            if(random <0.3)
+                contact = faker.phoneNumber().subscriberNumber(9);
+            else if(random > 0.6)
+                contact = faker.internet().safeEmailAddress();
+            else
+                contact = faker.phoneNumber().subscriberNumber(9) + " " + faker.internet().safeEmailAddress();
+            db.insertIntoHurtownia(faker.company().name(), contact);
+        }
+    }
 }
 

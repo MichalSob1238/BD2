@@ -108,6 +108,18 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoHurtownia(String name, String contact){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO hurtownia VALUES(default,?,?)");
+            insert.setString(1, name);
+            insert.setString(2, contact);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
