@@ -38,10 +38,10 @@ public class Produkt {
 
     int id;
     String name;
-    float cost;
+    double cost;
     int category_id;
 
-    public Produkt(int id, String name, float cost, int category_id) {
+    public Produkt(int id, String name, double cost, int category_id) {
         this.id = id;
         this.name = name;
         this.cost = cost;
@@ -64,11 +64,11 @@ public class Produkt {
         this.name = name;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 

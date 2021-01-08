@@ -187,6 +187,18 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoProduktHurtownia(int productId, int warehouseId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO produkt_hurtownia VALUES(?,?)");
+            insert.setInt(1, productId);
+            insert.setInt(2, warehouseId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -313,5 +325,22 @@ public class DatabaseController {
         }
         return categories;
     }
+    List<Produkt> selectAllFromProdukt(){
+        List<Produkt> products = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from produkt");
 
+            while (rs.next()) {
+                products.add(new Produkt(rs.getInt("id_produkt"),
+                        rs.getString("nazwa"), rs.getDouble("koszt"),
+                        rs.getInt("kategoria_id_kategoria")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return products;
+    }
 }

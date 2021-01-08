@@ -111,7 +111,7 @@ public class DataGeneratorController {
         }
     }
 
-    public void generatorDostawa(int deliveriesNum){
+    public void generateDostawa(int deliveriesNum){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
         List<Pracownik> employees= db.selectAllFromPracownik();
@@ -123,7 +123,7 @@ public class DataGeneratorController {
                     employees.get(ThreadLocalRandom.current().nextInt(0, employees.size())).getId());
         }
     }
-    public void generatorZamowienie(int ordersNum){
+    public void generateZamowienie(int ordersNum){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
         List<DaneKlienta> clients = db.selectAllFromDaneKlienta();
@@ -142,7 +142,7 @@ public class DataGeneratorController {
         }
     }
 
-    public void generatorKategoria(){
+    public void generateKategoria(){
         DatabaseController db = new DatabaseController();
         List<Kategoria.category> categories = Kategoria.getCategory();
         for (Kategoria.category category : categories) {
@@ -150,7 +150,7 @@ public class DataGeneratorController {
         }
     }
 
-    public void generatorProdukt(){
+    public void generateProdukt(){
         DatabaseController db = new DatabaseController();
         List<Produkt.animal> animals = Produkt.getAnimals();
         List<Produkt.productType> products = Produkt.getProductTypes();
@@ -172,6 +172,16 @@ public class DataGeneratorController {
                             categoryId);
                 }
             }
+        }
+    }
+
+    public void generateProduktHurtownia(){
+        DatabaseController db = new DatabaseController();
+        List<Produkt> products = db.selectAllFromProdukt();
+        List<Hurtownia> warehouses = db.selectAllFromHurtownia();
+        for (Produkt product: products) {
+            int randomIndex = ThreadLocalRandom.current().nextInt(0, warehouses.size());
+            db.insertIntoProduktHurtownia(product.getId(), warehouses.get(randomIndex).getId());
         }
     }
 
