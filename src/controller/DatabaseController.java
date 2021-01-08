@@ -163,6 +163,17 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoKategoria(String category){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO kategoria VALUES(default,?)");
+            insert.setString(1, category);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {

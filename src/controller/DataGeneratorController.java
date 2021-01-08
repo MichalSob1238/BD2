@@ -137,5 +137,14 @@ public class DataGeneratorController {
                     clients.get( ThreadLocalRandom.current().nextInt(0, clients.size())).getId());
         }
     }
+
+    public void generatorKategoria(){
+        DatabaseController db = new DatabaseController();
+        List<Kategoria.category> categories = Kategoria.getCategory();
+        for (Kategoria.category category : categories) {
+            db.insertIntoKategoria(category.toString());
+        }
+    }
+
 }
 

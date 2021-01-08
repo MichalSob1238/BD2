@@ -1,14 +1,21 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Kategoria {
 
-    int id;
-    String name;
-
-    public Kategoria(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public enum category{
+        POŻYWIENIE,
+        AKCESORIA,
+        ZABAWKI,
+        HIGIENA,
+        INNE
     }
+
+    int id;
+    category name;
 
     public int getId() {
         return id;
@@ -18,11 +25,21 @@ public class Kategoria {
         this.id = id;
     }
 
-    public String getName() {
+    public category getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(category name) {
         this.name = name;
+    }
+
+    public Kategoria(int id, category name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public static List<Kategoria.category> getCategory(){
+        List<Kategoria.category> values = Arrays.asList(Kategoria.category.values());
+        return values;
     }
 }

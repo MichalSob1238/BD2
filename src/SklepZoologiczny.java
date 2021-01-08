@@ -23,8 +23,8 @@ public class SklepZoologiczny {
                     //gen.generateHurtownia(17);
                     //gen.generateFaktura();
                     //gen.generatorDostawa(350);
-                    gen.generatorZamowienie(370);
-
+                    //gen.generatorZamowienie(370);
+                    gen.generatorKategoria();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
