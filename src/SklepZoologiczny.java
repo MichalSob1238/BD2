@@ -26,7 +26,9 @@ public class SklepZoologiczny {
                     //gen.generateZamowienie(370);
                     //gen.generateKategoria();
                     //gen.generateProdukt();
-                    gen.generateProduktHurtownia();
+                    //gen.generateProduktHurtownia();
+                    //gen.generateMagazyn();
+                    gen.generateSklep();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

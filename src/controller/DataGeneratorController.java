@@ -6,7 +6,6 @@ import model.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class DataGeneratorController {
         final double MAXIMUMTRANSACTIONCOST = 1500;
@@ -19,6 +18,9 @@ public class DataGeneratorController {
         final double MINIMUMPRODUCTCOST = 10;
         final double MAXIMUMPRODUCTCOST = 500;
         final int MAXIMUMQUANTITY = 10;
+        final int MAXIMUMPRODUCTSTOREHOUSE = 50;
+        final int ALLEYSNUMBER = 8;
+        final int SHELVESNUMBER = 20;
 
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
@@ -182,6 +184,25 @@ public class DataGeneratorController {
         for (Produkt product: products) {
             int randomIndex = ThreadLocalRandom.current().nextInt(0, warehouses.size());
             db.insertIntoProduktHurtownia(product.getId(), warehouses.get(randomIndex).getId());
+        }
+    }
+
+    public void generateMagazyn(){
+        DatabaseController db = new DatabaseController();
+        List<Produkt> products = db.selectAllFromProdukt();
+        for (Produkt product: products) {
+            int quantity = ThreadLocalRandom.current().nextInt(0, MAXIMUMPRODUCTSTOREHOUSE);
+            db.insertIntoMagazyn(quantity, ThreadLocalRandom.current().nextInt(0, ALLEYSNUMBER),
+                    ThreadLocalRandom.current().nextInt(0, SHELVESNUMBER), product.getId());
+        }
+    }
+
+    public void generateSklep(){
+        DatabaseController db = new DatabaseController();
+        List<Produkt> products = db.selectAllFromProdukt();
+        for (Produkt product: products) {
+            int quantity = ThreadLocalRandom.current().nextInt(0, 5);
+            db.insertIntoSklep(quantity,product.getId());
         }
     }
 

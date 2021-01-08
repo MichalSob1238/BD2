@@ -199,6 +199,32 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoMagazyn(int quantity, int shelfId, int alleyId, int productId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO magazyn VALUES(?,?,?,?)");
+            insert.setInt(1, quantity);
+            insert.setInt(2, shelfId);
+            insert.setInt(3, alleyId);
+            insert.setInt(4, productId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    void insertIntoSklep(int quantity, int productId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO sklep VALUES(?,?)");
+            insert.setInt(1, quantity);
+            insert.setInt(2, productId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {

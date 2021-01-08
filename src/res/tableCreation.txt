@@ -21,8 +21,6 @@ DROP TABLE IF EXISTS hurtownia;
 DROP TABLE IF EXISTS pracownik;
 DROP TABLE IF EXISTS stanowisko;
 
- 
-CREATE TABLE IF NOT EXISTS alejka ( id_alejka INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY );
 
 
 CREATE TABLE IF NOT EXISTS dane_klienta (
@@ -72,19 +70,9 @@ CREATE TABLE IF NOT EXISTS kategoria (
 DROP TABLE IF EXISTS magazyn ;
 CREATE TABLE IF NOT EXISTS magazyn (
     ilosc                INTEGER,
-    polka_id_polki       INTEGER,
-    alejka_id_alejka     INTEGER,
+    nr_polki       INTEGER,
+    nr_alejki     INTEGER,
     produkt_id_produkt   INTEGER NOT NULL PRIMARY KEY
-);
-
-DROP TABLE IF EXISTS paragon ;
-CREATE TABLE IF NOT EXISTS paragon (
-    transakcja_id_transakcja INTEGER
-);
-
-DROP TABLE IF EXISTS polka ;
-CREATE TABLE IF NOT EXISTS polka (
-    id_polki INTEGER  NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
 
 DROP TABLE IF EXISTS pozycja_dostawa ;
@@ -199,14 +187,6 @@ ALTER TABLE dostawa
 ALTER TABLE faktura
     ADD CONSTRAINT faktura_transakcja_fk FOREIGN KEY ( transakcja_id_transakcja)
         REFERENCES transakcja ( id_transakcja);
-
-ALTER TABLE magazyn
-    ADD CONSTRAINT magazyn_alejka_fk FOREIGN KEY ( alejka_id_alejka )
-        REFERENCES alejka ( id_alejka );
-
-ALTER TABLE magazyn
-    ADD CONSTRAINT magazyn_polka_fk FOREIGN KEY ( polka_id_polki )
-        REFERENCES polka ( id_polki );
 
 ALTER TABLE magazyn
     ADD CONSTRAINT magazyn_produkt_fk FOREIGN KEY ( produkt_id_produkt )
