@@ -68,10 +68,17 @@ public class DataGeneratorController {
     public void generateTransport(int transportsNum){
         DatabaseController db = new DatabaseController();
         List<Pracownik> employees = db.selectAllFromPracownik();
+        List<Produkt> products = db.selectAllFromProdukt();
         Faker faker = new Faker(new Locale("pl"));
         for(int i = 0; i < transportsNum; i++){
             Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
-            db.insertIntoTransport(faker.date().past(1000, TimeUnit.DAYS), employee.getId());
+            int transportId = db.insertIntoTransport(faker.date().past(1000, TimeUnit.DAYS), employee.getId());
+            int quantity = ThreadLocalRandom.current().nextInt(MINIMUMDELIVERYPRODUCTS, MAXIMUMDELIVERYPRODUCTS);
+            for (int j = 0; j<quantity; j++){
+                int productQuantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMQUANTITYDELIVERY);
+                db.insertIntoPozycjaTransport(productQuantity,
+                        transportId, products.get(ThreadLocalRandom.current().nextInt(1, products.size())).getId());
+            }
         }
     }
 
@@ -141,7 +148,6 @@ public class DataGeneratorController {
             int deliveryId = db.insertIntoDostawa(faker.date().past(1000, TimeUnit.DAYS), sum,
                     warehouses.get(ThreadLocalRandom.current().nextInt(0, warehouses.size())).getId(),
                     employees.get(ThreadLocalRandom.current().nextInt(0, employees.size())).getId());
-            System.out.println(deliveryId);
             for (int productId: productIds.keySet()) {
                 db.insertIntoPozycjaDostawa(productIds.get(productId), deliveryId, productId);
             }

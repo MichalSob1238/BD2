@@ -80,16 +80,21 @@ public class DatabaseController {
         }
     }
 
-    void insertIntoTransport(Date date, int employeeId){
+    int insertIntoTransport(Date date, int employeeId){
         try{
             Connection conn = getConnection();
-            PreparedStatement insert = conn.prepareStatement("INSERT INTO transport VALUES(default,?,?)");
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO transport VALUES(default,?,?)", Statement.RETURN_GENERATED_KEYS);
             insert.setDate(1, new java.sql.Date(date.getTime()));
             insert.setInt(2, employeeId);
             insert.execute();
+            ResultSet keys = insert.getGeneratedKeys();
+            if (keys.next()) {
+                return keys.getInt(1);
+            }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return -1;
     }
 
     void insertIntoTransakcja(Date date, double value, int employeeId, Transakcja.transactionType type){
@@ -148,7 +153,6 @@ public class DatabaseController {
             if (keys.next()) {
                 return keys.getInt(1);
             }
-
         }catch (SQLException ex){
             ex.printStackTrace();
         }
