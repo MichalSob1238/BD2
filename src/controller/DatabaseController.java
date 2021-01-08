@@ -135,18 +135,24 @@ public class DatabaseController {
         }
     }
 
-    void insertIntoDostawa( Date dueDate, double value, int warehouseId, int employeeId){
+    int insertIntoDostawa( Date dueDate, double value, int warehouseId, int employeeId){
         try{
             Connection conn = getConnection();
-            PreparedStatement insert = conn.prepareStatement("INSERT INTO dostawa VALUES(default,?,?,?,?)");
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO dostawa VALUES(default,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
             insert.setDate(1,new java.sql.Date(dueDate.getTime()));
             insert.setDouble(2, value);
             insert.setInt(3, warehouseId);
             insert.setInt(4, employeeId);
-            insert.execute();
+            insert.executeUpdate();
+            ResultSet keys = insert.getGeneratedKeys();
+            if (keys.next()) {
+                return keys.getInt(1);
+            }
+
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return -1;
     }
 
     void insertIntoZamowienie(boolean ifCompleted, Date orderDate, Date realisationDate, int clientId){
@@ -219,6 +225,60 @@ public class DatabaseController {
             PreparedStatement insert = conn.prepareStatement("INSERT INTO sklep VALUES(?,?)");
             insert.setInt(1, quantity);
             insert.setInt(2, productId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    void insertIntoPozycjaDostawa(int quantity, int deliveryId, int productId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO pozycja_dostawa VALUES(?,?,?)");
+            insert.setInt(1, quantity);
+            insert.setInt(2, deliveryId);
+            insert.setInt(3, productId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    void insertIntoPozycjaParagon(int quantity, double cost, int transactionId, int productId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO pozycja_paragon VALUES(?,?,?,?)");
+            insert.setInt(1, quantity);
+            insert.setDouble(2, cost);
+            insert.setInt(3, transactionId);
+            insert.setInt(4, productId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    void insertIntoPozycjaTransport(int quantity, int transportId, int productId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO pozycja_transport VALUES(?,?,?)");
+            insert.setInt(1, quantity);
+            insert.setInt(2, transportId);
+            insert.setInt(3, productId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    void insertIntoPozycjaZamówienie(int quantity, double cost, int orderId, int productId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO pozycja_zamowienie VALUES(?,?,?,?)");
+            insert.setInt(1, quantity);
+            insert.setDouble(2,cost);
+            insert.setInt(3, orderId);
+            insert.setInt(4, productId);
             insert.execute();
         }catch (SQLException ex){
             ex.printStackTrace();

@@ -3,6 +3,10 @@ package controller;
 import com.github.javafaker.Faker;
 import model.*;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -12,11 +16,16 @@ public class DataGeneratorController {
         final double EMAILONLY = 0.6;
         final double PHONENUMBERONLY = 0.3;
         final double NOTPAYED = 0.9;
-        final double MINIMUMDELIVERYCOST = 1500;
-        final double MAXIMUMDELIVERYCOST = 20000;
+        //
+        final int MINIMUMDELIVERYPRODUCTS = 10;
+        final int MAXIMUMDELIVERYPRODUCTS = 20;
+        final int MAXIMUMQUANTITYDELIVERY = 10;
+        //
         final double ORDERCOMPLETION = 0.8;
+        //
         final double MINIMUMPRODUCTCOST = 10;
         final double MAXIMUMPRODUCTCOST = 500;
+        //
         final int MAXIMUMQUANTITY = 10;
         final int MAXIMUMPRODUCTSTOREHOUSE = 50;
         final int ALLEYSNUMBER = 8;
@@ -113,16 +122,29 @@ public class DataGeneratorController {
         }
     }
 
-    public void generateDostawa(int deliveriesNum){
+    public void generateDostawa(int deliveriesNum) throws SQLException {
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
         List<Pracownik> employees= db.selectAllFromPracownik();
         List<Hurtownia> warehouses = db.selectAllFromHurtownia();
+        List<Produkt> products = db.selectAllFromProdukt();
         for(int i=0; i< deliveriesNum; i++){
-            db.insertIntoDostawa(faker.date().past(1000, TimeUnit.DAYS),
-                    ThreadLocalRandom.current().nextDouble(MINIMUMDELIVERYCOST,MAXIMUMDELIVERYCOST),
+            int quantity = ThreadLocalRandom.current().nextInt(MINIMUMDELIVERYPRODUCTS, MAXIMUMDELIVERYPRODUCTS);
+            double sum = 0;
+            Map<Integer, Integer> productIds = new TreeMap<>();
+            for(int j = 0; j< quantity; j++){
+                int productQuantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMQUANTITYDELIVERY);
+                Produkt product  = products.get(ThreadLocalRandom.current().nextInt(0, products.size()));
+                sum += product.getCost() * productQuantity;
+                productIds.put(product.getId(),productQuantity);
+            }
+            int deliveryId = db.insertIntoDostawa(faker.date().past(1000, TimeUnit.DAYS), sum,
                     warehouses.get(ThreadLocalRandom.current().nextInt(0, warehouses.size())).getId(),
                     employees.get(ThreadLocalRandom.current().nextInt(0, employees.size())).getId());
+            System.out.println(deliveryId);
+            for (int productId: productIds.keySet()) {
+                db.insertIntoPozycjaDostawa(productIds.get(productId), deliveryId, productId);
+            }
         }
     }
     public void generateZamowienie(int ordersNum){

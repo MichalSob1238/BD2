@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS pozycja_dostawa (
 DROP TABLE IF EXISTS pozycja_paragon ;
 CREATE TABLE IF NOT EXISTS pozycja_paragon (
     ilosc                      INTEGER,
-    cena_jednostkowa           INTEGER,
+    cena_jednostkowa           DECIMAL(8,2),
     transakcja_id_transakcja   INTEGER,
     produkt_id_produkt         INTEGER
 );
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS pozycja_transport (
 DROP TABLE IF EXISTS pozycja_zamowienie ;
 CREATE TABLE IF NOT EXISTS pozycja_zamowienie (
     ilosc                      INTEGER,
-    koszt                      INTEGER,
+    koszt                      DECIMAL(8,2),
     zamowienie_id_zamowienie   INTEGER,
     produkt_id_produkt         INTEGER
 );
