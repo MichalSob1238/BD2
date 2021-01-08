@@ -1,10 +1,7 @@
 package controller;
 
 import com.github.javafaker.Faker;
-import model.Faktura;
-import model.Pracownik;
-import model.Stanowisko;
-import model.Transakcja;
+import model.*;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,6 +12,8 @@ public class DataGeneratorController {
         final double EMAILONLY = 0.6;
         final double PHONENUMBERONLY = 0.3;
         final double NOTPAYED = 0.9;
+        final double MINIMUMDELIVERYCOST = 1500;
+        final double MAXIMUMDELIVERYCOST = 20000;
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
@@ -105,5 +104,19 @@ public class DataGeneratorController {
                     faker.company().name(), faker.address().fullAddress(), Faktura.generateNIP(), transaction.getId());
         }
     }
+
+    public void generatorDostawa(int deliveriesNum){
+        DatabaseController db = new DatabaseController();
+        Faker faker = new Faker(new Locale("pl"));
+        List<Pracownik> employees= db.selectAllFromPracownik();
+        List<Hurtownia> warehouses = db.selectAllFromHurtownia();
+        for(int i=0; i< deliveriesNum; i++){
+            db.insertIntoDostawa(faker.date().past(1000, TimeUnit.DAYS),
+                    ThreadLocalRandom.current().nextDouble(MINIMUMDELIVERYCOST,MAXIMUMDELIVERYCOST),
+                    warehouses.get(ThreadLocalRandom.current().nextInt(0, warehouses.size())).getId(),
+                    employees.get(ThreadLocalRandom.current().nextInt(0, employees.size())).getId());
+        }
+    }
+
 }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import model.Hurtownia;
 import model.Pracownik;
 import model.Stanowisko;
 import model.Transakcja;
@@ -137,6 +138,20 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoDostawa( Date dueDate, double value, int warehouseId, int employeeId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO dostawa VALUES(default,?,?,?,?)");
+            insert.setDate(1,new java.sql.Date(dueDate.getTime()));
+            insert.setDouble(2, value);
+            insert.setInt(3, warehouseId);
+            insert.setInt(4, employeeId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -209,4 +224,23 @@ public class DatabaseController {
         }
         return transactions;
     }
+
+    List<Hurtownia> selectAllFromHurtownia(){
+        List<Hurtownia> warehouses = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from hurtownia");
+
+            while (rs.next()) {
+                warehouses.add(new Hurtownia(rs.getInt("id_hurtownia"), rs.getString("nazwa"),
+                        rs.getString("kontakt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return warehouses;
+    }
+
 }

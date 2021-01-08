@@ -21,7 +21,8 @@ public class SklepZoologiczny {
                     //gen.generateTransport(500);
                     //gen.generateTransakcja(1000);
                     //gen.generateHurtownia(17);
-                    gen.generateFaktura();
+                    //gen.generateFaktura();
+                    //gen.generatorDostawa(350);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
