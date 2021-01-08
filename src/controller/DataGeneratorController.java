@@ -14,6 +14,8 @@ public class DataGeneratorController {
         final double NOTPAYED = 0.9;
         final double MINIMUMDELIVERYCOST = 1500;
         final double MAXIMUMDELIVERYCOST = 20000;
+        final double ORDERCOMPLETION = 0.8;
+
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
@@ -117,6 +119,23 @@ public class DataGeneratorController {
                     employees.get(ThreadLocalRandom.current().nextInt(0, employees.size())).getId());
         }
     }
-
+    public void generatorZamowienie(int ordersNum){
+        DatabaseController db = new DatabaseController();
+        Faker faker = new Faker(new Locale("pl"));
+        List<DaneKlienta> clients = db.selectAllFromDaneKlienta();
+        List<Transakcja> transactions = db.selectAllFromTransakcja();
+        for (int i =0; i< ordersNum; i++){
+            double random = ThreadLocalRandom.current().nextDouble(0, 1);
+            int transactionRandom = ThreadLocalRandom.current().nextInt(0, transactions.size());
+            boolean ifCompleted;
+            if(random < ORDERCOMPLETION)
+                ifCompleted = true;
+            else
+                ifCompleted = false;
+            db.insertIntoZamowienie(ifCompleted, transactions.get(transactionRandom).getDate(),
+                    faker.date().between(transactions.get(transactionRandom).getDate(), new Date()),
+                    clients.get( ThreadLocalRandom.current().nextInt(0, clients.size())).getId());
+        }
+    }
 }
 

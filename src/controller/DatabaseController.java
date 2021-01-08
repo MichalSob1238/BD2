@@ -1,9 +1,6 @@
 package controller;
 
-import model.Hurtownia;
-import model.Pracownik;
-import model.Stanowisko;
-import model.Transakcja;
+import model.*;
 
 import java.sql.*;
 import java.io.IOException;
@@ -152,6 +149,20 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoZamowienie(boolean ifCompleted, Date orderDate, Date realisationDate, int clientId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO zamowienie VALUES(default,?,?,?,?)");
+            insert.setBoolean(1,ifCompleted);
+            insert.setDate(2, new java.sql.Date(orderDate.getTime()));
+            insert.setDate(3, new java.sql.Date(realisationDate.getTime()));
+            insert.setInt(4, clientId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -241,6 +252,24 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return warehouses;
+    }
+
+    List<DaneKlienta> selectAllFromDaneKlienta(){
+        List<DaneKlienta> clients = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from dane_klienta");
+
+            while (rs.next()) {
+                clients.add(new DaneKlienta(rs.getInt("id_klient"), rs.getString("imie"),
+                        rs.getString("nazwisko"),String.valueOf(rs.getInt("telefon_kontaktowy"))));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return clients;
     }
 
 }
