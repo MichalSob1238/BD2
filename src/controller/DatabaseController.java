@@ -174,6 +174,19 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoProdukt(String name,double cost, int categoryId){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO produkt VALUES(default,?,?,?)");
+            insert.setString(1, name);
+            insert.setDouble(2, cost);
+            insert.setInt(3, categoryId);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -281,6 +294,24 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return clients;
+    }
+
+    List<Kategoria> selectAllFromKategoria(){
+        List<Kategoria> categories = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from kategoria");
+
+            while (rs.next()) {
+                categories.add(new Kategoria(rs.getInt("id_kategoria"),
+                        Kategoria.category.valueOf(rs.getString("nazwa"))));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return categories;
     }
 
 }

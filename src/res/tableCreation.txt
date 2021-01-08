@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS pracownik (
 
 DROP TABLE IF EXISTS produkt ; CREATE TABLE IF NOT EXISTS produkt (
     id_produkt              INTEGER  NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nazwa                   VARCHAR(40),
+    nazwa                   VARCHAR(100),
     koszt                   DECIMAL(8,2),
     kategoria_id_kategoria  INTEGER
 );

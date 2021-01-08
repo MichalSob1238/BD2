@@ -11,11 +11,20 @@ public class Kategoria {
         AKCESORIA,
         ZABAWKI,
         HIGIENA,
-        INNE
+        INNE;
+
     }
 
     int id;
     category name;
+
+    public category getName() {
+        return name;
+    }
+
+    public void setName(category name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -25,13 +34,6 @@ public class Kategoria {
         this.id = id;
     }
 
-    public category getName() {
-        return name;
-    }
-
-    public void setName(category name) {
-        this.name = name;
-    }
 
     public Kategoria(int id, category name) {
         this.id = id;

@@ -6,6 +6,7 @@ import model.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class DataGeneratorController {
         final double MAXIMUMTRANSACTIONCOST = 1500;
@@ -15,6 +16,9 @@ public class DataGeneratorController {
         final double MINIMUMDELIVERYCOST = 1500;
         final double MAXIMUMDELIVERYCOST = 20000;
         final double ORDERCOMPLETION = 0.8;
+        final double MINIMUMPRODUCTCOST = 10;
+        final double MAXIMUMPRODUCTCOST = 500;
+        final int MAXIMUMQUANTITY = 10;
 
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
@@ -143,6 +147,31 @@ public class DataGeneratorController {
         List<Kategoria.category> categories = Kategoria.getCategory();
         for (Kategoria.category category : categories) {
             db.insertIntoKategoria(category.toString());
+        }
+    }
+
+    public void generatorProdukt(){
+        DatabaseController db = new DatabaseController();
+        List<Produkt.animal> animals = Produkt.getAnimals();
+        List<Produkt.productType> products = Produkt.getProductTypes();
+        Map<Produkt.productType, Kategoria.category> mappedProducts = Produkt.getMappedProductTypes();
+        List<Kategoria> categories = db.selectAllFromKategoria();
+        for (Produkt.productType product : products) {
+            Kategoria.category cat = mappedProducts.get(product);
+            int categoryId = categories.stream()
+                    .filter(item -> item.getName().toString().equals(cat.toString()))
+                    .findAny()
+                    .orElse(null).getId();
+            for(Produkt.animal animal : animals){
+                int quantity = ThreadLocalRandom.current().nextInt(3, MAXIMUMQUANTITY);
+                for(int i =1; i < quantity+1; i++){
+                    String name = String.valueOf(product).replaceAll("_", " ") + " "
+                            + String.valueOf(animal).replaceAll("_", " ") + " " + i;
+                    db.insertIntoProdukt(name,
+                            ThreadLocalRandom.current().nextDouble(MINIMUMPRODUCTCOST,MAXIMUMPRODUCTCOST),
+                            categoryId);
+                }
+            }
         }
     }
 
