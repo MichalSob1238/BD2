@@ -5,3 +5,5 @@ okna:
 -okno startowe pracownika (zrobione)
 -okno startowe menadżera (zrobione)
 -okno lista: produktów, zamówień, dostaw, faktur (zrobione)
+-okno zakupu (prace trwają)
+-okno zwrotu (prace trwają)
