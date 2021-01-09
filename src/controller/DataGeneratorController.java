@@ -2,6 +2,7 @@ package controller;
 
 import com.github.javafaker.Faker;
 import model.*;
+import org.apache.commons.lang3.Pair;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class DataGeneratorController {
-        final double MAXIMUMTRANSACTIONCOST = 1500;
+        final int MAXIMUMTRANSACTION = 15;
+        final int MAXIMUMDETAILQUANTITY = 3;
+        //
         final double EMAILONLY = 0.6;
         final double PHONENUMBERONLY = 0.3;
         final double NOTPAYED = 0.9;
@@ -28,6 +31,7 @@ public class DataGeneratorController {
         //
         final int MAXIMUMQUANTITY = 10;
         final int MAXIMUMPRODUCTSTOREHOUSE = 50;
+        //
         final int ALLEYSNUMBER = 8;
         final int SHELVESNUMBER = 20;
 
@@ -85,12 +89,29 @@ public class DataGeneratorController {
     public void generateTransakcja(int transactionNum){
         DatabaseController db = new DatabaseController();
         List<Pracownik> employees = db.selectAllFromPracownik();
+        List<Produkt> products = db.selectAllFromProdukt();
         Faker faker = new Faker(new Locale("pl"));
         for(int i = 0; i < transactionNum; i++){
+            double sum =0;
+            int quantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMTRANSACTION);
+            Map<Integer, Pair<Integer,Double>> productIds = new TreeMap<>();
+            for(int j =0; j < quantity; j++){
+                int productQuantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMDETAILQUANTITY);
+                Produkt product = products.get(ThreadLocalRandom.current().nextInt(1, products.size()));
+                sum += productQuantity * product.getCost();
+                productIds.put(product.getId(), new Pair<>(productQuantity, product.getCost()));
+            }
             Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
-            double cost = Double.parseDouble(faker.commerce().price(0, MAXIMUMTRANSACTIONCOST).replaceAll(",","."));
-            db.insertIntoTransakcja(faker.date().past(1000, TimeUnit.DAYS), cost,
-                    employee.getId(), Transakcja.randomTransactionType());
+            Transakcja.transactionType type = Transakcja.randomTransactionType();
+            Date transactionDate = faker.date().past(1000, TimeUnit.DAYS);
+            int transactionId = db.insertIntoTransakcja(transactionDate, sum, employee.getId(), type);
+            System.out.println(transactionId);
+            for(Integer product: productIds.keySet()){
+                db.insertIntoPozycjaParagon(productIds.get(product).left, productIds.get(product).right, transactionId, product);
+            }
+            if(type == Transakcja.transactionType.FAKTURA){
+                generateFaktura(transactionId, transactionDate);
+            }
         }
     }
 
@@ -110,23 +131,21 @@ public class DataGeneratorController {
         }
     }
 
-    public void generateFaktura(){
+    public void generateFaktura(int transactionId, Date transactionDate){
         DatabaseController db = new DatabaseController();
         Faker faker = new Faker(new Locale("pl"));
         List<Transakcja> transactions = db.selectFakturaOnlyFromTransakcja();
         Calendar calendar = Calendar.getInstance();
-        for (Transakcja transaction : transactions) {
-            calendar.setTime(transaction.getDate());
+            calendar.setTime(transactionDate);
             double random = ThreadLocalRandom.current().nextDouble(0, 1);
             boolean ifPayed;
             if(random >= NOTPAYED)
                 ifPayed = false;
             else
                 ifPayed = true;
-            String invoiceNr = transaction.getId() + "/" + (calendar.get(Calendar.MONTH)+1) + calendar.get(Calendar.YEAR);
-            db.insertIntoFaktura(invoiceNr, faker.date().between(transaction.getDate(), new Date()), ifPayed,
-                    faker.company().name(), faker.address().fullAddress(), Faktura.generateNIP(), transaction.getId());
-        }
+            String invoiceNr = transactionId + "/" + (calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR);
+            db.insertIntoFaktura(invoiceNr, faker.date().between(transactionDate, new Date()), ifPayed,
+                    faker.company().name(), faker.address().fullAddress(), Faktura.generateNIP(), transactionId);
     }
 
     public void generateDostawa(int deliveriesNum) throws SQLException {

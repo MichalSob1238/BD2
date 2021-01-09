@@ -97,18 +97,23 @@ public class DatabaseController {
         return -1;
     }
 
-    void insertIntoTransakcja(Date date, double value, int employeeId, Transakcja.transactionType type){
+    int insertIntoTransakcja(Date date, double value, int employeeId, Transakcja.transactionType type){
         try{
             Connection conn = getConnection();
-            PreparedStatement insert = conn.prepareStatement("INSERT INTO transakcja VALUES(default,?,?,?,?)");
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO transakcja VALUES(default,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             insert.setDate(1, new java.sql.Date(date.getTime()));
             insert.setDouble(2, value);
             insert.setInt(3, employeeId);
             insert.setString(4, type.name());
             insert.execute();
+            ResultSet keys = insert.getGeneratedKeys();
+            if (keys.next()) {
+                return keys.getInt(1);
+            }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return -1;
     }
 
     void insertIntoHurtownia(String name, String contact){
