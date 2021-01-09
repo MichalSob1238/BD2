@@ -33,7 +33,7 @@ public class oknoStartowe extends JPanel implements ActionListener {
 		pom = new GridBagConstraints();
 		setLayout(layout);
 		
-		name = new JLabel("Nazwisko Imie");
+		name = new JLabel();
 		przyciski = new JPanel();
 		przyciski.setLayout(new GridLayout( 6, 2, 5, 5));
 		
@@ -77,7 +77,8 @@ public class oknoStartowe extends JPanel implements ActionListener {
 			
 	}
 	
-	public void show(boolean manager) {
+	public void show(boolean manager, String nameUser) {
+		name.setText(nameUser);
 		if(manager) {
 			przyciski.add(hurtownie);
 			przyciski.add(dostawy);
