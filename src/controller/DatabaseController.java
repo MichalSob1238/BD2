@@ -164,18 +164,23 @@ public class DatabaseController {
         return -1;
     }
 
-    void insertIntoZamowienie(boolean ifCompleted, Date orderDate, Date realisationDate, int clientId){
+    int  insertIntoZamowienie(boolean ifCompleted, Date orderDate, Date realisationDate, int clientId){
         try{
             Connection conn = getConnection();
-            PreparedStatement insert = conn.prepareStatement("INSERT INTO zamowienie VALUES(default,?,?,?,?)");
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO zamowienie VALUES(default,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             insert.setBoolean(1,ifCompleted);
             insert.setDate(2, new java.sql.Date(orderDate.getTime()));
             insert.setDate(3, new java.sql.Date(realisationDate.getTime()));
             insert.setInt(4, clientId);
             insert.execute();
+            ResultSet keys = insert.getGeneratedKeys();
+            if (keys.next()) {
+                return keys.getInt(1);
+            }
         }catch (SQLException ex){
             ex.printStackTrace();
         }
+        return -1;
     }
 
     void insertIntoKategoria(String category){

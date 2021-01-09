@@ -19,11 +19,11 @@ public class SklepZoologiczny {
                     //gen.generateStanowisko();
                     //gen.generatePracownik(40);
                     //gen.generateTransport(67);
-                    gen.generateTransakcja(1000);
+                    //gen.generateTransakcja(1000);
                     //gen.generateHurtownia(17);
                     //gen.generateFaktura();
                     //gen.generateDostawa(100);
-                    //gen.generateZamowienie(370);
+                    gen.generateZamowienie(370);
                     //gen.generateKategoria();
                     //gen.generateProdukt();
                     //gen.generateProduktHurtownia();

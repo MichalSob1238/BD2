@@ -2,22 +2,22 @@ package model;
 
 public class Pozycja_dostawa {
 
-    int amound;
+    int amount;
     int dostawa_id;
     int product_id;
 
-    public Pozycja_dostawa(int amound, int dostawa_id, int product_id) {
-        this.amound = amound;
+    public Pozycja_dostawa(int amount, int dostawa_id, int product_id) {
+        this.amount = amount;
         this.dostawa_id = dostawa_id;
         this.product_id = product_id;
     }
 
-    public int getAmound() {
-        return amound;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setAmound(int amound) {
-        this.amound = amound;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public int getDostawa_id() {
