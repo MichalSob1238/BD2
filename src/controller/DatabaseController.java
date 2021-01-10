@@ -442,6 +442,7 @@ public class DatabaseController {
         }
         return categories;
     }
+
     List<Produkt> selectAllFromProdukt(){
         List<Produkt> products = new ArrayList<>();
         try {
@@ -460,5 +461,243 @@ public class DatabaseController {
         }
         return products;
     }
+
+    List<Dostawa> selectAllFromDostawa(){
+        List<Dostawa> deliveries = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from dostawa");
+
+            while (rs.next()) {
+                deliveries.add(new Dostawa(rs.getInt("id_dostawa"),
+                        rs.getDate("data_dostawy"), rs.getFloat("koszt"),
+                        rs.getInt("hurtownia_id_hurtownia"),rs.getInt("pracownik_id_odbierajacego")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return deliveries;
+    }
+
+//    List<Faktura> selectAllFromFaktura(){
+//        List<Faktura> invoices = new ArrayList<>();
+//        try {
+//            Connection conn = getConnection();
+//            Statement st = conn.createStatement();
+//            ResultSet rs = st.executeQuery("SELECT * from faktura");
+//
+//            while (rs.next()) {
+//                invoices.add(new Faktura(rs.getInt("id_faktura"),
+//                        rs.getString("nr_faktury"), rs.getDate("termin_platnosci"),
+//                        rs.getInt("czy_oplacono"),rs.getString("nazwa"),
+//                        rs.getString("adres"), rs.getString("nip"),
+//                        rs.getInt("transakcja_id_transakcja")));
+//            }
+//            st.close();
+//        } catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
+//        return invoices;
+//    }
+
+    List<Magazyn> selectAllFromMagazyn(){
+        List<Magazyn> warehouses = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from magazyn");
+
+            while (rs.next()) {
+                warehouses.add(new Magazyn(rs.getInt("ilosc"),
+                        rs.getInt("nr_polki"), rs.getInt("nr_alejki"),
+                        rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return warehouses;
+    }
+
+    List<Pozycja_dostawa> selectAllFromPozycjaDostawa(){
+        List<Pozycja_dostawa> positions_deliveries = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from pozycja_dostawa");
+
+            while (rs.next()) {
+                positions_deliveries.add(new Pozycja_dostawa(rs.getInt("ilosc_produktu"),
+                        rs.getInt("dostawa_id_dostawa"), rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return positions_deliveries;
+    }
+
+    List<Pozycja_paragon> selectAllFromPozycjaParagon(){
+        List<Pozycja_paragon> positions_receipts = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from pozycja_paragon");
+
+            while (rs.next()) {
+                positions_receipts.add(new Pozycja_paragon(rs.getInt("ilosc"),
+                        rs.getFloat("cena_jednostkowa"), rs.getInt("transakcja_id_transakcja"),
+                        rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return positions_receipts;
+    }
+
+    List<Pozycja_transport> selectAllFromPozycjaTransport(){
+        List<Pozycja_transport> positions_transports = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from pozycja_transport");
+
+            while (rs.next()) {
+                positions_transports.add(new Pozycja_transport(rs.getInt("ilosc"),
+                        rs.getInt("transport_id_transport"),
+                        rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return positions_transports;
+    }
+
+    List<Pozycja_zamowienie> selectAllFromPozycjaZamowienie(){
+        List<Pozycja_zamowienie> positions_orders = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from pozycja_zamowienie");
+
+            while (rs.next()) {
+                positions_orders.add(new Pozycja_zamowienie(rs.getInt("ilosc"),
+                        rs.getFloat("koszt"),
+                        rs.getInt("zamowienie_id_zamowienie"),
+                        rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return positions_orders;
+    }
+
+    List<Produkt_hurtownia> selectAllFromProduktHurtownia(){
+        List<Produkt_hurtownia> products_warehouses = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from produkt_hurtownia");
+
+            while (rs.next()) {
+                products_warehouses.add(new Produkt_hurtownia(rs.getInt("produkt_id_produkt"),
+                        rs.getInt("hurtownia_id_hurtownia")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return products_warehouses;
+    }
+
+    List<Sklep> selectAllFromSklep(){
+        List<Sklep> shops = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from sklep");
+
+            while (rs.next()) {
+                shops.add(new Sklep(rs.getInt("ilosc"),
+                        rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return shops;
+    }
+
+    List<Szczegolowe_informacje> selectAllFromSzczegoloweInformacje(){
+        List<Szczegolowe_informacje> detail_informations = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from szczegolowe_informacje");
+
+            while (rs.next()) {
+                detail_informations.add(new Szczegolowe_informacje(rs.getString("kolor"),
+                        rs.getInt("waga"),
+                        rs.getString("dodatkowe_informacje"),
+                        rs.getString("alergeny"),
+                        rs.getString("wymiary"),
+                        rs.getInt("produkt_id_produkt")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return detail_informations;
+    }
+
+    List<Transport> selectAllFromTransport(){
+        List<Transport> transports = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from transport");
+
+            while (rs.next()) {
+                transports.add(new Transport(rs.getInt("id_transport"),
+                        rs.getDate("data"),
+                        rs.getInt("pracownik_id_pracownik")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return transports;
+    }
+
+    List<Zamowienie> selectAllFromZamowienie(){
+        List<Zamowienie> orders = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from zamowienie");
+
+            while (rs.next()) {
+                orders.add(new Zamowienie(rs.getInt("id_zamowienie"),
+                        rs.getString("czy_zrealizowano"),
+                        rs.getDate("termin_zlozenia"),
+                        rs.getDate("przewidywany_termin_realizacji"),
+                        rs.getInt("dane_klienta_id_klient")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return orders;
+    }
+
+
+
+
+
 
 }
