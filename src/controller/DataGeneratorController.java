@@ -34,6 +34,9 @@ public class DataGeneratorController {
         //
         final int ALLEYSNUMBER = 8;
         final int SHELVESNUMBER = 20;
+        //
+        final int MINIMUMWEIGHT = 0;
+        final int MAXIMUMWEIGHT = 10;
 
     public void generateDaneKlienta(int clientNum){
         DatabaseController db = new DatabaseController();
@@ -216,6 +219,7 @@ public class DataGeneratorController {
         List<Produkt.productType> products = Produkt.getProductTypes();
         Map<Produkt.productType, Kategoria.category> mappedProducts = Produkt.getMappedProductTypes();
         List<Kategoria> categories = db.selectAllFromKategoria();
+
         for (Produkt.productType product : products) {
             Kategoria.category cat = mappedProducts.get(product);
             int categoryId = categories.stream()
@@ -232,6 +236,23 @@ public class DataGeneratorController {
                             categoryId);
                 }
             }
+        }
+    }
+
+    public void generateSzczegoloweInformacje(){
+        Faker faker = new Faker(new Locale("pl"));
+        DatabaseController db = new DatabaseController();
+        List<Produkt>  products = db.selectAllFromProdukt();
+        for(Produkt product : products){
+            String color = faker.color().name();
+            int weight = ThreadLocalRandom.current().nextInt(MINIMUMWEIGHT, MAXIMUMWEIGHT);
+            String allergens = faker.medical().diseaseName();
+            String additional_info = "blah";
+            Integer dim1 = ThreadLocalRandom.current().nextInt(0,100);
+            Integer dim2 = ThreadLocalRandom.current().nextInt(0,100);
+            Integer dim3 = ThreadLocalRandom.current().nextInt(0,100);
+            String dimensions = dim1.toString() + "x" + dim2.toString() + "x" + dim3.toString();
+            db.insertIntoSzczegoloweInformacje(color, weight, additional_info, allergens, dimensions, product.getId());
         }
     }
 

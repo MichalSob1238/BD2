@@ -3,13 +3,13 @@ package model;
 public class Szczegolowe_informacje {
 
     String color;
-    float weight;
+    int weight;
     String additional_informations;
     String allergens;
     String dimensions;
     int product_id;
 
-    public Szczegolowe_informacje(String color, float weight, String additional_informations, String allergens, String dimensions, int product_id) {
+    public Szczegolowe_informacje(String color, int weight, String additional_informations, String allergens, String dimensions, int product_id) {
         this.color = color;
         this.weight = weight;
         this.additional_informations = additional_informations;
@@ -26,11 +26,11 @@ public class Szczegolowe_informacje {
         this.color = color;
     }
 
-    public float getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

@@ -299,6 +299,23 @@ public class DatabaseController {
         }
     }
 
+    void insertIntoSzczegoloweInformacje(String color, int weight, String additional_informations, String allergens, String dimensions, int product_id){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO szczegolowe_informacje VALUES(?,?,?,?,?,?)");
+            insert.setString(1, color);
+            insert.setInt(2, weight);
+            insert.setString(3, additional_informations);
+            insert.setString(4, allergens);
+            insert.setString(5, dimensions);
+            insert.setInt(6, product_id);
+            insert.execute();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
     List<Stanowisko> selectAllFromStanowisko(){
         List<Stanowisko> positions = new ArrayList<>();
         try {
@@ -443,4 +460,5 @@ public class DatabaseController {
         }
         return products;
     }
+
 }
