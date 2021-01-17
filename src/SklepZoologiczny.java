@@ -11,8 +11,9 @@ public class SklepZoologiczny {
             @Override
             public void run() {
                 Model model = new Model();
-                View viev = new View();
-                //Controller controller = new Controller();
+                View view = new View();
+                Controller controller = new Controller(model, view);
+                controller.start();
             }
         });
 
