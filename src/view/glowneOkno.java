@@ -14,6 +14,7 @@ public class glowneOkno extends JFrame{
 	private oknoListaOfert listaOferta;
 	private oknoListaRezerwacji listaRezerwacje;
 	private oknoListaFaktur listaFaktur;
+	private oknoListaDostaw listaDostaw;
 	private oknoZwrotu zwrot;
 	
 
@@ -30,6 +31,7 @@ public class glowneOkno extends JFrame{
 		listaOferta = new oknoListaOfert(view);
 		listaRezerwacje = new oknoListaRezerwacji(view);
 		listaFaktur = new oknoListaFaktur(view);
+		listaDostaw = new oknoListaDostaw(view);
 		zwrot = new oknoZwrotu(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
@@ -38,6 +40,7 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		logowanie.show(badMsg);
 		add(logowanie);
@@ -48,6 +51,7 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		start.show(manager, name);
 		add(start);
@@ -58,6 +62,7 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		add(zwrot);
 	}
@@ -76,6 +81,7 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		listaOferta.show(name, tab);
 		add(listaOferta);
@@ -86,6 +92,7 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		listaOferta.show(name, tab);
 		add(listaRezerwacje);
@@ -97,6 +104,7 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		
 	}
@@ -106,9 +114,21 @@ public class glowneOkno extends JFrame{
 		remove(listaOferta);
 		remove(listaRezerwacje);
 		remove(listaFaktur);
+		remove(listaDostaw);
 		remove(zwrot);
 		listaFaktur.show(name, tab);
 		add(listaFaktur);
 		
+	}
+	public void oknoListaDostaw(String[] tab) {
+		remove(logowanie);
+		remove(start);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
+		remove(listaDostaw);
+		remove(zwrot);
+		listaDostaw.show(name, tab);
+		add(listaDostaw);
 	}
 }
