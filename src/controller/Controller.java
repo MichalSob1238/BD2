@@ -12,7 +12,7 @@ public class Controller {
     {
         this.model = model; this.view = view;
         view.setControllerAndModel(this, model);
-        //przekazaæ do modelu view i this
+        //przekazaï¿½ do modelu view i this
         start();
     }
 
@@ -28,6 +28,10 @@ public class Controller {
     }
     
     private boolean checkIfEmployeeExists(String name, String surname){
+        name = name.toLowerCase();
+        name = name.substring(0,1).toUpperCase() + name.substring(1);
+        surname = surname.toLowerCase();
+        surname = surname.substring(0,1).toUpperCase() + surname.substring(1);
         DatabaseController db = new DatabaseController();
         Pracownik employee = db.selectPracownik(name, surname);
         if(employee != null)

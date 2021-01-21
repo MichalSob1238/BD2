@@ -1,7 +1,9 @@
 package model;
 
 public class Stanowisko {
-
+    public static enum positions{
+        Menadżer,Pracownik, Pracownik_Magazynier
+    }
     int id;
     String name;
 
