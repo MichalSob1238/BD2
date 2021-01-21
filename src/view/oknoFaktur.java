@@ -72,6 +72,8 @@ private View view;
 			view.oknoStartowe();
 		} else if(button == lista) {
 			view.wybranoPrzegladFaktur();
+		} else if(button == create) {
+			view.utworzFakture();
 		}
 		
 	}

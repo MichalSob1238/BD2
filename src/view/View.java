@@ -85,5 +85,9 @@ public class View {
 	public void wybranoPrzegladFaktur() {
 		controller.wyswietlenieFaktur();		
 	}
+	
+	public void utworzFakture() {
+		
+	}
 }
 
