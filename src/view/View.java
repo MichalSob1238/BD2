@@ -16,6 +16,11 @@ public class View {
         wsk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         wsk.setVisible(true);
     }
+    
+    public void setUser(String name, String surname, boolean menedzer) {
+    	wsk.setName(surname + " " + name);
+    	wsk.setMenedzer(menedzer);
+    }
 
 	public void setControllerAndModel(Controller controller, Model model) {
 		this.controller = controller;
@@ -23,6 +28,8 @@ public class View {
 	}
 
 	public void oknoLogowania() {
+		wsk.setName("");
+		wsk.setMenedzer(false);
 		wsk.oknoLogowania(false);
 		wsk.repaint();
 	}
@@ -63,6 +70,11 @@ public class View {
 		wsk.oknoLista("Rezrwacje", rezerwacje, "szczegó³y");
 		wsk.repaint();
 		
+	}
+
+	public void oknoStartowe() {
+		wsk.oknoStartowe(wsk.getMenedzer());
+		wsk.repaint();
 	}
 }
 

@@ -7,6 +7,7 @@ public class glowneOkno extends JFrame{
 	private View view;
 	
 	private String name;
+	private boolean menedzer;
 	
 	private oknoLogowania logowanie;
 	private oknoStartowe start;
@@ -50,8 +51,14 @@ public class glowneOkno extends JFrame{
 		remove(zwrot);
 		add(zwrot);
 	}
-	public void setName(String nameUser) {
-		name = nameUser;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setMenedzer(boolean menedzer) {
+		this.menedzer = menedzer;
+	}
+	public boolean getMenedzer() {
+		return menedzer;
 	}
 	public void oknoLista(String tytul, String tab[], String buttonText) {
 		remove(logowanie);

@@ -200,6 +200,8 @@ public class oknoLista extends JPanel implements ActionListener {
 			wybierz1.setVisible(true);
 			wybierz2.setVisible(true);
 			wybierz3.setVisible(true);
+		} else if(button == cofnij) {
+			view.oknoStartowe();
 		}
 	}
 }

@@ -103,6 +103,8 @@ public class oknoStartowe extends JPanel implements ActionListener {
 			view.wybranoOferte();
 		} else if(button == rezerwacje) {
 			view.wybranoRezerwacje();
+		} else if(button == cofnij) {
+			view.oknoLogowania();
 		}
 		
 	}
