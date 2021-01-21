@@ -4,7 +4,7 @@ import model.Model;
 import model.Pracownik;
 import view.View;
 
-public class Controller {
+public  class Controller {
     private Model model;
     private View view;
     
@@ -41,8 +41,9 @@ public class Controller {
     }
 
     public void wyswietlenieOfertySklepu() {
-    	int a = 3; //dla sprawdzenia, gdzie jest b³¹d
-    	String oferta[] = startoweController.getProductNames().toArray(new String[0]);
+		System.out.println("went"); //dla sprawdzenia, gdzie jest b³¹d
+		startoweController  = new  OknoStartoweController();
+		String oferta[] = startoweController.getProductNames().toArray(new String[0]);
     	view.oferta(oferta);
     }
 
