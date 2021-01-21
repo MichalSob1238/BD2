@@ -1,0 +1,28 @@
+okna:
+
+-okno logowania (zrobione)
+-okno logowania po błędnej próbie (zrobione)
+-okno startowe pracownika (zrobione)
+-okno startowe menadżera (zrobione)
+-okno lista: produktów, zamówień, dostaw, faktur (zrobione)
+-okno zakupu (<- do zrobienia, wolne)
+-okno zwrotu (zrobione)
+-okno hurtowni (<- oknoList na razie)
+Do zrobienia:
+-okno szegółów produktu
+-okno szczegółów zamówienia (robię - Ala)
+-okno szczegółów dostawy
+-okno szczegółów faktury (robię - Ala)
+-formularz zamówienia
+-formularz faktury
+
+Dziedziny:
+- logowanie (zrobione)
+- startowe okna (zrobione)
+- zakupy (?)
+- zamówienia (jest lista zamówień, nie ma szczegółow i utworzenie nowego)
+- dostawy (jest lista, nie ma szczegółów, utworzenia nowej, ...)
+- faktury (jest lista, nie ma szczegółów, utworzenia nowej)
+- zwrot (zrobione)
+- hurtownie ?
+- sprawdzenie i zmiana ilości towaru ?
