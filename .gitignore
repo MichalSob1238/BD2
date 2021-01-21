@@ -2,4 +2,8 @@
 /.metadata/
 RemoteSystemsTempFiles/
 SklepZoloogiczny.iml
-
+/.iml
+/.idea
+okna_swing/
+out/
+src/bin/
