@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class glowneOkno extends JFrame{
+	private View view;
+	
 	private String name;
 	
 	private oknoLogowania logowanie;
@@ -13,16 +15,17 @@ public class glowneOkno extends JFrame{
 	
 
 	
-	public glowneOkno() {
+	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
+		this.view = view;
 		setSize(400, 300);
 		setResizable(true);
 		setLocation(450, 200);
 		
-		logowanie = new oknoLogowania();
-		start = new oknoStartowe();
-		lista = new oknoLista();
-		zwrot = new oknoZwrotu();
+		logowanie = new oknoLogowania(view);
+		start = new oknoStartowe(view);
+		lista = new oknoLista(view);
+		zwrot = new oknoZwrotu(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		remove(logowanie);

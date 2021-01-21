@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 public class oknoZwrotu extends JPanel implements ActionListener{
 
+	private View view;
 	private JLabel msg;
 	private JLabel nameLabel;
 	private JTextField nameField;
@@ -26,8 +27,9 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoZwrotu() {
-		
+	public oknoZwrotu(View view) {
+	this.view = view;
+	
 	layout = new GridBagLayout();
 	pom = new GridBagConstraints();
 	

@@ -12,7 +12,7 @@ public class View {
     private glowneOkno wsk;
     
     public View(){
-    	wsk = new glowneOkno();
+    	wsk = new glowneOkno(this);
         wsk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         wsk.setVisible(true);
     }
@@ -40,6 +40,10 @@ public class View {
 	public void oknoStartoweMenadzer() {
 		wsk.oknoStartowe(true);
 		wsk.repaint();
+	}
+	
+	public void probaLogowania(String name, String surname) {
+		controller.probaLogowania(name, surname);
 	}
 }
 
