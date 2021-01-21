@@ -41,6 +41,7 @@ public class Controller {
     }
 
     public void wyswietlenieOfertySklepu() {
+    	int a = 3; //dla sprawdzenia, gdzie jest b³¹d
     	String oferta[] = startoweController.getProductNames().toArray(new String[0]);
     	view.oferta(oferta);
     }

@@ -31,22 +31,18 @@ public class View {
 		wsk.setName("");
 		wsk.setMenedzer(false);
 		wsk.oknoLogowania(false);
-		wsk.repaint();
 	}
 	
 	public void oknoLogowaniePonowne() {
 		wsk.oknoLogowania(true);
-		wsk.repaint();
 	}
 	
 	public void oknoStartoweZwyklegoPracownika() {
 		wsk.oknoStartowe(false);
-		wsk.repaint();
 	}
 	
 	public void oknoStartoweMenadzer() {
 		wsk.oknoStartowe(true);
-		wsk.repaint();
 	}
 	
 	public void probaLogowania(String name, String surname) {
@@ -55,7 +51,6 @@ public class View {
 
 	public void oferta(String[] oferta) {
 		wsk.oknoListaOferta(oferta);
-		wsk.repaint();
 	}
 	
 	public void wybranoOferte() {
@@ -68,23 +63,19 @@ public class View {
 
 	public void rezerwacje(String[] rezerwacje) {
 		wsk.oknoListaRezerwacje(rezerwacje);
-		wsk.repaint();
 		
 	}
 
 	public void oknoStartowe() {
 		wsk.oknoStartowe(wsk.getMenedzer());
-		wsk.repaint();
 	}
 
 	public void faktury(String[] faktury) {
 		wsk.oknoListaFaktur(faktury);
-		wsk.repaint();
 	}
 	
 	public void dostawy(String[] dostawy) {
 		wsk.oknoListaDostaw(dostawy);
-		wsk.repaint();
 	}
 
 	public void wybranoPrzegladFaktur() {
@@ -97,7 +88,6 @@ public class View {
 	
 	public void zwrot() {
 		wsk.oknoZwrotu();
-		wsk.repaint();
 	}
 	
 	public void zwrotPonownie() {

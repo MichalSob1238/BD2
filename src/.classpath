@@ -2,5 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="D:/BD2_projekt/lib/common-lang3.jar"/>
+	<classpathentry kind="lib" path="D:/BD2_projekt/lib/javafaker-1.0.2.jar"/>
+	<classpathentry kind="lib" path="D:/BD2_projekt/lib/mysql-connector-java-8.0.22.jar"/>
+	<classpathentry kind="lib" path="D:/BD2_projekt/lib/snakeyaml-1.23.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

@@ -69,18 +69,18 @@ public class oknoLogowania extends JPanel implements ActionListener{
 	pom.gridwidth = 2;
 	add(loginButton, pom);
 	
+	pom.insets = new Insets(0, 0, 20, 0);
+	pom.gridx = 0;
+	pom.gridy = 0;
+	pom.gridwidth = 2;
+	add(msg, pom);
 	}
 	
 	public void show(boolean badMsg) {
 		if(badMsg) {
-			pom.insets = new Insets(0, 0, 20, 0);
-			pom.gridx = 0;
-			pom.gridy = 0;
-			pom.gridwidth = 2;
-			msg.setVisible(false);
-			add(msg, pom);
+			msg.setVisible(true);
 		} else {
-			remove(msg);
+			msg.setVisible(false);
 		}
 		
 	}
@@ -94,21 +94,6 @@ public class oknoLogowania extends JPanel implements ActionListener{
 		
 		String name = nameField.getText();
 		String surname = surnameField.getText();
-		if (name.equals("login")&&surname.equals("haslo"))
-		{
-			//this.show(true);
-			msg.setForeground(Color.GREEN);
-			msg.setVisible(true);
-			//this.show(true);System.out.println("ok");
-			this.repaint();
-			
-			
-		}else
-		{
-			//this.show(true);
-			msg.setForeground(Color.BLUE);
-			msg.setVisible(true);
-		}
 		view.probaLogowania(name, surname);
 		}
 		//wywo³anie odpowiedniej metody podaj¹c jako argumenty "name" i "surname"
