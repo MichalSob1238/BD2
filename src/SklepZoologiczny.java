@@ -33,6 +33,9 @@ public class SklepZoologiczny {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                View view = new View();
+                Controller controller = new Controller(model, view);
+                controller.start();
             }
         });
 
