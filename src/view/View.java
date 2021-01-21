@@ -89,5 +89,18 @@ public class View {
 	public void utworzFakture() {
 		
 	}
+	
+	public void zwrot() {
+		wsk.oknoZwrotu();
+		wsk.repaint();
+	}
+	
+	public void zwrotPonownie() {
+		
+	}
+	
+	public void zwrotListaProduktow(String produkty[]) {
+		
+	}
 }
 

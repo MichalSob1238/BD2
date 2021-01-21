@@ -28,9 +28,11 @@ public class Controller {
         Pracownik employee = logowanie.checkIfEmployeeExists(name, surname);
     	if(employee != null) {
     		if(logowanie.checkIfEmployeeIsManager(employee)) {
+    			view.setUser(name, surname, true);
     			view.oknoStartoweMenadzer();
     		}
     		else {
+    			view.setUser(name, surname, false);
     			view.oknoStartoweZwyklegoPracownika();
     		}
     	} else {
@@ -54,6 +56,11 @@ public class Controller {
 		String faktury[];
 		//metoda, która wstawi do faktury, coœ po czym rozpoznaje siê faktury
 		view.faktury(faktury);
+	}
+	
+	public void wybranoZwrot(String paragon) {
+		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac liste produktow z paragonu
+		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
     
 }
