@@ -54,7 +54,7 @@ public class View {
 	}
 
 	public void oferta(String[] oferta) {
-		wsk.oknoLista("Oferta", oferta, "szczegï¿½y");
+		wsk.oknoListaOferta(oferta);
 		wsk.repaint();
 	}
 	
@@ -67,7 +67,7 @@ public class View {
 	}
 
 	public void rezerwacje(String[] rezerwacje) {
-		wsk.oknoLista("Rezrwacje", rezerwacje, "szczegï¿½y");
+		wsk.oknoListaRezerwacje(rezerwacje);
 		wsk.repaint();
 		
 	}
@@ -78,7 +78,7 @@ public class View {
 	}
 
 	public void faktury(String[] faktury) {
-		wsk.oknoLista("Faktury", faktury, "szczegó³y");
+		wsk.oknoListaFaktur(faktury);
 		wsk.repaint();
 	}
 
@@ -99,8 +99,7 @@ public class View {
 		
 	}
 	
-	public void zwrotListaProduktow(String produkty[]) {
-		
+	public void zwrotListaProduktow(String paragon, String produkty[]) {
 	}
 }
 

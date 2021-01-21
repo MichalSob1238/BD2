@@ -59,7 +59,7 @@ public class Controller {
 	}
 	
 	public void wybranoZwrot(String paragon) {
-		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac liste produktow z paragonu
+		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
     

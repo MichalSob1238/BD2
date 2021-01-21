@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class oknoLista extends JPanel implements ActionListener {
+public class oknoListaOfert extends JPanel implements ActionListener {
 
 	private View view;
 	private int index;
@@ -29,7 +29,7 @@ public class oknoLista extends JPanel implements ActionListener {
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoLista(View view) {
+	public oknoListaOfert(View view) {
 		this.view = view;
 		index = 1;
 		
@@ -40,13 +40,13 @@ public class oknoLista extends JPanel implements ActionListener {
 		name = new JLabel();
 		cofnij = new JButton("cofnij");
 		
-		tytul = new JLabel();
+		tytul = new JLabel("Oferta:");
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton();
-		wybierz2 = new JButton();
-		wybierz3 = new JButton();
+		wybierz1 = new JButton("szczegó³y");
+		wybierz2 = new JButton("szczegó³y");
+		wybierz3 = new JButton("szczegó³y");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");
@@ -112,9 +112,8 @@ public class oknoLista extends JPanel implements ActionListener {
 		
 	}
 
-	public void show(String nameUser, String tytulArg, String tabArg[], String buttonText) {
+	public void show(String nameUser, String tabArg[]) {
 		name.setText(nameUser);
-		tytul.setText(tytulArg);
 		index = 1;
 		
 		tab = tabArg;
@@ -124,22 +123,16 @@ public class oknoLista extends JPanel implements ActionListener {
 		}
 		if(tabArg.length == 1) {
 			produkt1.setText(tabArg[0]);
-			wybierz1.setText(buttonText);
 			wybierz2.setVisible(false);
 			wybierz3.setVisible(false);
 		}else if(tabArg.length == 2) {
 			produkt1.setText(tabArg[0]);
 			produkt2.setText(tabArg[1]);
-			wybierz1.setText(buttonText);
-			wybierz2.setText(buttonText);
 			wybierz3.setVisible(false);
 		}else if(tabArg.length >= 3) {
 			produkt1.setText(tabArg[0]);
 			produkt2.setText(tabArg[1]);
 			produkt3.setText(tabArg[2]);
-			wybierz1.setText(buttonText);
-			wybierz2.setText(buttonText);
-			wybierz3.setText(buttonText);
 		}
 		strona.setText(index + "/" + iloscStron);
 		prev.setVisible(false);

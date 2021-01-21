@@ -11,7 +11,9 @@ public class glowneOkno extends JFrame{
 	
 	private oknoLogowania logowanie;
 	private oknoStartowe start;
-	private oknoLista lista;
+	private oknoListaOfert listaOferta;
+	private oknoListaRezerwacji listaRezerwacje;
+	private oknoListaFaktur listaFaktur;
 	private oknoZwrotu zwrot;
 	
 
@@ -25,13 +27,17 @@ public class glowneOkno extends JFrame{
 		
 		logowanie = new oknoLogowania(view);
 		start = new oknoStartowe(view);
-		lista = new oknoLista(view);
+		listaOferta = new oknoListaOfert(view);
+		listaRezerwacje = new oknoListaRezerwacji(view);
+		listaFaktur = new oknoListaFaktur(view);
 		zwrot = new oknoZwrotu(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		remove(logowanie);
 		remove(start);
-		remove(lista);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
 		remove(zwrot);
 		logowanie.show(badMsg);
 		add(logowanie);
@@ -39,7 +45,9 @@ public class glowneOkno extends JFrame{
 	public void oknoStartowe(boolean manager) {
 		remove(logowanie);
 		remove(start);
-		remove(lista);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
 		remove(zwrot);
 		start.show(manager, name);
 		add(start);
@@ -47,7 +55,9 @@ public class glowneOkno extends JFrame{
 	public void oknoZwrotu() {
 		remove(logowanie);
 		remove(start);
-		remove(lista);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
 		remove(zwrot);
 		add(zwrot);
 	}
@@ -60,19 +70,45 @@ public class glowneOkno extends JFrame{
 	public boolean getMenedzer() {
 		return menedzer;
 	}
-	public void oknoLista(String tytul, String tab[], String buttonText) {
+	public void oknoListaOferta(String tab[]) {
 		remove(logowanie);
 		remove(start);
-		remove(lista);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
 		remove(zwrot);
-		lista.show(name, tytul, tab, buttonText);
-		add(lista);
+		listaOferta.show(name, tab);
+		add(listaOferta);
 	}
+	public void oknoListaRezerwacje(String tab[]) {
+		remove(logowanie);
+		remove(start);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
+		remove(zwrot);
+		listaOferta.show(name, tab);
+		add(listaRezerwacje);
+	}	
 	public void showZwrot()
 	{
 		remove(logowanie);
 		remove(start);
-		remove(lista);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
 		remove(zwrot);
+		
+	}
+	public void oknoListaFaktur(String[] tab) {
+		remove(logowanie);
+		remove(start);
+		remove(listaOferta);
+		remove(listaRezerwacje);
+		remove(listaFaktur);
+		remove(zwrot);
+		listaFaktur.show(name, tab);
+		add(listaFaktur);
+		
 	}
 }
