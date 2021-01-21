@@ -11,20 +11,20 @@ import static java.util.Map.entry;
 
 public class Produkt {
     public static enum animal{
-        PIES, KOT, KAWIA_DOMOWA, MYSZ, CHOMIK, KRÓLIK, SZYNSZYLA, SZCZUR, FRETKA, KOSZATNICZKA
+        PIES, KOT, KAWIA_DOMOWA, MYSZ, CHOMIK, KROLIK, SZYNSZYLA, SZCZUR, FRETKA, KOSZATNICZKA
     }
     public static enum productType{
-        KARMA_MOKRA, KARMA_SUCHA, PRZYSMAK, MISKA, TRANSPORTER, ŻWIREK, KUWETA, DRAPAK, LEGOWISKO, SZCZOTKA, SZAMPON,
+        KARMA_MOKRA, KARMA_SUCHA, PRZYSMAK, MISKA, TRANSPORTER, ZWIREK, KUWETA, DRAPAK, LEGOWISKO, SZCZOTKA, SZAMPON,
         SZELKI, UBRANKO, KOJEC, ZABAWKA
     }
 
     public static Map<productType, category> mappedProductTypes =  Map.ofEntries(
-            entry(productType.KARMA_MOKRA, category.POŻYWIENIE),
-            entry(productType.KARMA_SUCHA, category.POŻYWIENIE),
-            entry(productType.PRZYSMAK, category.POŻYWIENIE),
+            entry(productType.KARMA_MOKRA, category.POZYWIENIE),
+            entry(productType.KARMA_SUCHA, category.POZYWIENIE),
+            entry(productType.PRZYSMAK, category.POZYWIENIE),
             entry(productType.MISKA, category.AKCESORIA),
             entry(productType.TRANSPORTER, category.AKCESORIA),
-            entry(productType.ŻWIREK, category.HIGIENA),
+            entry(productType.ZWIREK, category.HIGIENA),
             entry(productType.KUWETA, category.HIGIENA),
             entry(productType.DRAPAK, category.AKCESORIA),
             entry(productType.LEGOWISKO, category.AKCESORIA),

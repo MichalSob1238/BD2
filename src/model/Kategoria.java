@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Kategoria {
 
     public enum category{
-        POŻYWIENIE,
+        POZYWIENIE,
         AKCESORIA,
         ZABAWKI,
         HIGIENA,

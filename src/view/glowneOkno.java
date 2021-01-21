@@ -42,8 +42,9 @@ public class glowneOkno extends JFrame{
 		remove(listaFaktur);
 		remove(listaDostaw);
 		remove(zwrot);
-		logowanie.show(badMsg);
 		add(logowanie);
+		logowanie.show(badMsg);
+
 	}
 	public void oknoStartowe(boolean manager) {
 		remove(logowanie);
@@ -53,8 +54,9 @@ public class glowneOkno extends JFrame{
 		remove(listaFaktur);
 		remove(listaDostaw);
 		remove(zwrot);
-		start.show(manager, name);
 		add(start);
+		start.show(manager, name);
+
 	}
 	public void oknoZwrotu() {
 		remove(logowanie);
@@ -83,8 +85,9 @@ public class glowneOkno extends JFrame{
 		remove(listaFaktur);
 		remove(listaDostaw);
 		remove(zwrot);
-		listaOferta.show(name, tab);
 		add(listaOferta);
+		listaOferta.show(name, tab);
+
 	}
 	public void oknoListaRezerwacje(String tab[]) {
 		remove(logowanie);
@@ -94,8 +97,9 @@ public class glowneOkno extends JFrame{
 		remove(listaFaktur);
 		remove(listaDostaw);
 		remove(zwrot);
-		listaOferta.show(name, tab);
 		add(listaRezerwacje);
+		listaOferta.show(name, tab);
+
 	}	
 	public void showZwrot()
 	{
@@ -116,8 +120,9 @@ public class glowneOkno extends JFrame{
 		remove(listaFaktur);
 		remove(listaDostaw);
 		remove(zwrot);
-		listaFaktur.show(name, tab);
 		add(listaFaktur);
+		listaFaktur.show(name, tab);
+
 		
 	}
 	public void oknoListaDostaw(String[] tab) {
@@ -128,7 +133,8 @@ public class glowneOkno extends JFrame{
 		remove(listaFaktur);
 		remove(listaDostaw);
 		remove(zwrot);
-		listaDostaw.show(name, tab);
 		add(listaDostaw);
+		listaDostaw.show(name, tab);
+
 	}
 }
