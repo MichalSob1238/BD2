@@ -5,24 +5,29 @@ okna:
 -okno startowe pracownika (zrobione)
 -okno startowe menadżera (zrobione)
 -okno lista: produktów, zamówień, dostaw, faktur (zrobione)
+-okno menu faktur (wybór przeglądu i utworzenia nowe) (zrobione - w branchu Controller)
 -okno zakupu (<- do zrobienia, wolne)
 -okno zwrotu (zrobione)
 -okno hurtowni (<- oknoList na razie)
 Do zrobienia:
 -okno szegółów produktu
--okno szczegółów zamówienia (robię - Ala)
+-okno szczegółów zamówienia
 -okno szczegółów dostawy
--okno szczegółów faktury (robię - Ala)
+-okno szczegółów faktury
 -formularz zamówienia
 -formularz faktury
+-zamówienie detaliczne (informacje)
+-zamówienie detaliczne (złożenie zamówienia)
+
 
 Dziedziny:
 - logowanie (zrobione)
 - startowe okna (zrobione)
 - zakupy (?)
-- zamówienia (jest lista zamówień, nie ma szczegółow i utworzenie nowego)
+- oferta (jest lista, nie ma szczegółów, i wszystkiego co związane z zamówieniem detalicznym)
+- zamówienia (jest lista zamówień, nie ma szczegółow)
 - dostawy (jest lista, nie ma szczegółów, utworzenia nowej, ...)
-- faktury (jest lista, nie ma szczegółów, utworzenia nowej)
+- faktury (jest lista i menu, nie ma szczegółów, utworzenia nowej)
 - zwrot (zrobione)
 - hurtownie ?
 - sprawdzenie i zmiana ilości towaru ?
