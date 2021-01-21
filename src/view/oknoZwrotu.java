@@ -20,10 +20,11 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	private View view;
 	private JLabel msg;
 	private JLabel nameLabel;
-	private JTextField nameField;
-	private JLabel surnameLabel;
+	private JTextField idField;
+	private JLabel name;
 	
 	private JButton loginButton;
+	private JButton returnButton;
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
@@ -38,23 +39,26 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	
 	nameLabel = new JLabel("Numer Rachunku:");
 	
-	nameField = new JTextField();
-	nameField.setPreferredSize(new Dimension(70, 20));
+	idField = new JTextField();
+	idField.setPreferredSize(new Dimension(70, 20));
 
 	loginButton = new JButton("Dokonaj Zwrotu");
 	loginButton.addActionListener(this);
+
+	returnButton = new JButton("Dokonaj Zwrotu");
+	returnButton.addActionListener(this);
 	
 
 	setLayout(layout);
-	Insets pom2 = new Insets(0, 0, 0, 0);
+
 	
-	pom.insets = pom2;
+	pom.insets = new Insets(0, 0, 0, 0);
 	pom.gridy = 1;
 	pom.gridwidth = 1;
 	add(nameLabel, pom);
 	
 	pom.gridx = 1;
-	add(nameField, pom);
+	add(idField, pom);
 	
 	
 	
@@ -64,14 +68,21 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	pom.gridy = 3;
 	pom.gridwidth = 2;
 	add(loginButton, pom);
-	
+	pom.gridy = 4;
+	add(returnButton,pom);
+
 	}
+
+	public void show(String nameUser) {
+		name.setText(nameUser);
+	}
+	
 	
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		String receipt = nameField.getText();
+		String receipt = idField.getText();
 		//wywo³anie odpowiedniej metody podaj¹c jako argumenty "name" i "surname"
 	}
 	
