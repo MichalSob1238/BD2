@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class oknoListaOfert extends JPanel implements ActionListener {
+public class oknoListaDostaw extends JPanel implements ActionListener {
 
 	private View view;
 	private int index;
@@ -29,7 +29,7 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoListaOfert(View view) {
+	public oknoListaDostaw(View view) {
 		this.view = view;
 		index = 1;
 		
@@ -40,13 +40,13 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 		name = new JLabel();
 		cofnij = new JButton("cofnij");
 		
-		tytul = new JLabel("Oferta:");
+		tytul = new JLabel("Dostawy:");
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton("szczegó³y");
-		wybierz2 = new JButton("szczegó³y");
-		wybierz3 = new JButton("szczegó³y");
+		wybierz1 = new JButton("szczeg?y");
+		wybierz2 = new JButton("szczeg?y");
+		wybierz3 = new JButton("szczeg?y");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");

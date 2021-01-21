@@ -15,33 +15,33 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class oknoLogowania extends JPanel implements ActionListener{
+public class oknoZwrotu extends JPanel implements ActionListener{
+
 	private View view;
-	
 	private JLabel msg;
 	private JLabel nameLabel;
 	private JTextField nameField;
 	private JLabel surnameLabel;
-	private JTextField surnameField;
+	
 	private JButton loginButton;
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoLogowania(View view) {
+	public oknoZwrotu(View view) {
 	this.view = view;
+	
 	layout = new GridBagLayout();
 	pom = new GridBagConstraints();
 	
 	msg = new JLabel("Nie ma takiego pracownika!");
 	msg.setForeground(Color.RED);
 	
-	nameLabel = new JLabel("Imie:");
-	surnameLabel = new JLabel("Nazwisko:");
+	nameLabel = new JLabel("Numer Rachunku:");
+	
 	nameField = new JTextField();
 	nameField.setPreferredSize(new Dimension(70, 20));
-	surnameField = new JTextField();
-	surnameField.setPreferredSize(new Dimension(70, 20));
-	loginButton = new JButton("Zaloguj");
+
+	loginButton = new JButton("Dokonaj Zwrotu");
 	loginButton.addActionListener(this);
 	
 
@@ -56,12 +56,8 @@ public class oknoLogowania extends JPanel implements ActionListener{
 	pom.gridx = 1;
 	add(nameField, pom);
 	
-	pom.gridx = 0;
-	pom.gridy = 2;
-	add(surnameLabel, pom);
 	
-	pom.gridx = 1;
-	add(surnameField, pom);
+	
 	
 	pom.insets = new Insets(20, 0, 0, 0);
 	pom.gridx = 0;
@@ -71,47 +67,12 @@ public class oknoLogowania extends JPanel implements ActionListener{
 	
 	}
 	
-	public void show(boolean badMsg) {
-		if(badMsg) {
-			pom.insets = new Insets(0, 0, 20, 0);
-			pom.gridx = 0;
-			pom.gridy = 0;
-			pom.gridwidth = 2;
-			msg.setVisible(false);
-			add(msg, pom);
-		} else {
-			remove(msg);
-		}
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		JButton button = (JButton) arg0.getSource();
-		if(button == loginButton);
-		{
-		
-		String name = nameField.getText();
-		String surname = surnameField.getText();
-		if (name.equals("login")&&surname.equals("haslo"))
-		{
-			//this.show(true);
-			msg.setForeground(Color.GREEN);
-			msg.setVisible(true);
-			//this.show(true);System.out.println("ok");
-			this.repaint();
-			
-			
-		}else
-		{
-			//this.show(true);
-			msg.setForeground(Color.BLUE);
-			msg.setVisible(true);
-		}
-		view.probaLogowania(name, surname);
-		}
-		//wywo³anie odpowiedniej metody podaj¹c jako argumenty "name" i "surname"
+		String receipt = nameField.getText();
+		//wywo?anie od  powiedniej metody podaj?c jako argumenty "name" i "surname"
 	}
 	
 }

@@ -44,9 +44,9 @@ public class oknoListaFaktur extends JPanel implements ActionListener {
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton("szczegó³y");
-		wybierz2 = new JButton("szczegó³y");
-		wybierz3 = new JButton("szczegó³y");
+		wybierz1 = new JButton("szczeg?y");
+		wybierz2 = new JButton("szczeg?y");
+		wybierz3 = new JButton("szczeg?y");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");

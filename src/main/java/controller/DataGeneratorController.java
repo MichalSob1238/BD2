@@ -2,7 +2,6 @@ package controller;
 
 import com.github.javafaker.Faker;
 import model.*;
-import org.apache.commons.lang3.Pair;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -85,34 +84,34 @@ public class DataGeneratorController {
         }
     }
 
-    public void generateTransakcja(int transactionNum){
-        DatabaseController db = new DatabaseController();
-        List<Pracownik> employees = db.selectAllFromPracownik();
-        List<Produkt> products = db.selectAllFromProdukt();
-        Faker faker = new Faker(new Locale("pl"));
-        for(int i = 0; i < transactionNum; i++){
-            double sum =0;
-            int quantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMTRANSACTION);
-            Map<Integer, Pair<Integer,Double>> productIds = new TreeMap<>();
-            for(int j =0; j < quantity; j++){
-                int productQuantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMDETAILQUANTITY);
-                Produkt product = products.get(ThreadLocalRandom.current().nextInt(1, products.size()));
-                sum += productQuantity * product.getCost();
-                productIds.put(product.getId(), new Pair<>(productQuantity, product.getCost()));
-            }
-            Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
-            Transakcja.transactionType type = Transakcja.randomTransactionType();
-            Date transactionDate = faker.date().past(1000, TimeUnit.DAYS);
-            int transactionId = db.insertIntoTransakcja(transactionDate, sum, employee.getId(), type);
-            System.out.println(transactionId);
-            for(Integer product: productIds.keySet()){
-                db.insertIntoPozycjaParagon(productIds.get(product).left, productIds.get(product).right, transactionId, product);
-            }
-            if(type == Transakcja.transactionType.FAKTURA){
-                generateFaktura(transactionId, transactionDate);
-            }
-        }
-    }
+//    public void generateTransakcja(int transactionNum){
+//        DatabaseController db = new DatabaseController();
+//        List<Pracownik> employees = db.selectAllFromPracownik();
+//        List<Produkt> products = db.selectAllFromProdukt();
+//        Faker faker = new Faker(new Locale("pl"));
+//        for(int i = 0; i < transactionNum; i++){
+//            double sum =0;
+//            int quantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMTRANSACTION);
+//            Map<Integer, Pair<Integer,Double>> productIds = new TreeMap<>();
+//            for(int j =0; j < quantity; j++){
+//                int productQuantity = ThreadLocalRandom.current().nextInt(1, MAXIMUMDETAILQUANTITY);
+//                Produkt product = products.get(ThreadLocalRandom.current().nextInt(1, products.size()));
+//                sum += productQuantity * product.getCost();
+//                productIds.put(product.getId(), new Pair<>(productQuantity, product.getCost()));
+//            }
+//            Pracownik employee = employees.get(ThreadLocalRandom.current().nextInt(0, employees.size()));
+//            Transakcja.transactionType type = Transakcja.randomTransactionType();
+//            Date transactionDate = faker.date().past(1000, TimeUnit.DAYS);
+//            int transactionId = db.insertIntoTransakcja(transactionDate, sum, employee.getId(), type);
+//            System.out.println(transactionId);
+//            for(Integer product: productIds.keySet()){
+//                db.insertIntoPozycjaParagon(productIds.get(product).left, productIds.get(product).right, transactionId, product);
+//            }
+//            if(type == Transakcja.transactionType.FAKTURA){
+//                generateFaktura(transactionId, transactionDate);
+//            }
+//        }
+//    }
 
     public void generateHurtownia(int warehouseNum){
         DatabaseController db = new DatabaseController();
@@ -171,35 +170,35 @@ public class DataGeneratorController {
             }
         }
     }
-    public void generateZamowienie(int ordersNum){
-        DatabaseController db = new DatabaseController();
-        Faker faker = new Faker(new Locale("pl"));
-        List<DaneKlienta> clients = db.selectAllFromDaneKlienta();
-        List<Transakcja> transactions = db.selectAllFromTransakcja();
-        List<Produkt> products = db.selectAllFromProdukt();
-        for (int i =0; i< ordersNum; i++){
-            double random = ThreadLocalRandom.current().nextDouble(0, 1);
-            int quantity = ThreadLocalRandom.current().nextInt(0, products.size());
-            Map<Integer, Pair<Integer, Double>> productIds = new TreeMap<>();
-            for(int j=0; j < quantity; j++){
-                Produkt product = products.get(ThreadLocalRandom.current().nextInt(0, products.size()));
-                int productQuantity =  ThreadLocalRandom.current().nextInt(0, MAXIMUMDETAILQUANTITY);
-                productIds.put(product.getId(),  new Pair<>(productQuantity, product.getCost()));
-            }
-            boolean ifCompleted;
-            if(random < ORDERCOMPLETION)
-                ifCompleted = true;
-            else
-                ifCompleted = false;
-            Date orderDate = faker.date().past(1000, TimeUnit.DAYS);
-            int orderId = db.insertIntoZamowienie(ifCompleted, orderDate ,
-                    faker.date().between(orderDate, new Date()),
-                    clients.get( ThreadLocalRandom.current().nextInt(0, clients.size())).getId());
-            for(Integer productId: productIds.keySet()){
-                db.insertIntoPozycjaZamowienie(productIds.get(productId).left,productIds.get(productId).right, orderId,productId);
-            }
-        }
-    }
+//    public void generateZamowienie(int ordersNum){
+//        DatabaseController db = new DatabaseController();
+//        Faker faker = new Faker(new Locale("pl"));
+//        List<DaneKlienta> clients = db.selectAllFromDaneKlienta();
+//        List<Transakcja> transactions = db.selectAllFromTransakcja();
+//        List<Produkt> products = db.selectAllFromProdukt();
+//        for (int i =0; i< ordersNum; i++){
+//            double random = ThreadLocalRandom.current().nextDouble(0, 1);
+//            int quantity = ThreadLocalRandom.current().nextInt(0, products.size());
+//            Map<Integer, Pair<Integer, Double>> productIds = new TreeMap<>();
+//            for(int j=0; j < quantity; j++){
+//                Produkt product = products.get(ThreadLocalRandom.current().nextInt(0, products.size()));
+//                int productQuantity =  ThreadLocalRandom.current().nextInt(0, MAXIMUMDETAILQUANTITY);
+//                productIds.put(product.getId(),  new Pair<>(productQuantity, product.getCost()));
+//            }
+//            boolean ifCompleted;
+//            if(random < ORDERCOMPLETION)
+//                ifCompleted = true;
+//            else
+//                ifCompleted = false;
+//            Date orderDate = faker.date().past(1000, TimeUnit.DAYS);
+//            int orderId = db.insertIntoZamowienie(ifCompleted, orderDate ,
+//                    faker.date().between(orderDate, new Date()),
+//                    clients.get( ThreadLocalRandom.current().nextInt(0, clients.size())).getId());
+//            for(Integer productId: productIds.keySet()){
+//                db.insertIntoPozycjaZamowienie(productIds.get(productId).left,productIds.get(productId).right, orderId,productId);
+//            }
+//        }
+//    }
 
     public void generateKategoria(){
         DatabaseController db = new DatabaseController();

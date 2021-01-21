@@ -15,7 +15,7 @@ public class Controller {
     {
         this.model = model; this.view = view;
         view.setControllerAndModel(this, model);
-        //przekazaÄ‡ do modelu view i this
+        //przekaza? do modelu view i this
         logowanie = new OknoLogowaniaController();
         start();
     }
@@ -47,25 +47,25 @@ public class Controller {
 
 	public void wyswietlenieRezerwacji() {
 		String rezerwacje[] = new String[0];
-    	//metoda, ktÃ³ra wstawi do rezerwacje coÅ› po czym rozpoznaje siÄ™ rezerwacje (numery?)
+    	//metoda, ktora wstawi do rezerwacje co? po czym rozpoznaje si? rezerwacje (numery?)
 		//view.rezerwacje(rezerwacje);
 
 	}
 	
 	public void wyswietlenieFaktur() {
 		String faktury[];
-		//metoda, która wstawi do faktury, coœ po czym rozpoznaje siê faktury
+		//metoda, kt?ra wstawi do faktury, co? po czym rozpoznaje si? faktury
 		//view.faktury(faktury);
 	}
 	
 	public void wyswietlenieDostaw() {
 		String dostawy[];
-		//metoda, która wstawi do dostawy, coœ po czym rozpoznaje siê dostawy
+		//metoda, kt?ra wstawi do dostawy, co? po czym rozpoznaje si? dostawy
 		//view.dostawy(dostawy);
 	}
 	
 	public void wybranoZwrot(String paragon) {
-		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
+		//sprawdzenie czy jest odpowiedni paragon, je?eli tak wywo?a? view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
     
