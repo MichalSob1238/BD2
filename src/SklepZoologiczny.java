@@ -36,6 +36,12 @@ public class SklepZoologiczny {
                     DatabaseController db = new DatabaseController();
                     Pracownik employee = db.selectPracownik("Magdalena", "Majkowska");
                     System.out.println(employee!= null);
+                    employee = db.selectPracownik("IZABELA", "TKACZYK");
+                    System.out.println(employee!= null);
+                    employee = db.selectPracownik("IzABeLa", "TkACzYk");
+                    System.out.println(employee!= null);
+                    employee = db.selectPracownik("izabela", "tkaczyk");
+                    System.out.println(employee!= null);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
