@@ -32,41 +32,26 @@ public class glowneOkno extends JFrame{
 		listaRezerwacje = new oknoListaRezerwacji(view);
 		listaFaktur = new oknoListaFaktur(view);
 		listaDostaw = new oknoListaDostaw(view);
-		zwrot = new oknoZwrotu(view);
+		zwrot = new oknoZwrotu(view);		
 	}
 	public void oknoLogowania(boolean badMsg) {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
-		add(logowanie);
+		
+		getContentPane().removeAll();
 		logowanie.show(badMsg);
+		add(logowanie);
+		validate();
 
 	}
 	public void oknoStartowe(boolean manager) {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
-		add(start);
+		getContentPane().removeAll();
 		start.show(manager, name);
-
+		add(start);
+		validate();
 	}
 	public void oknoZwrotu() {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
+		getContentPane().removeAll();
 		add(zwrot);
+		validate();
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -78,63 +63,37 @@ public class glowneOkno extends JFrame{
 		return menedzer;
 	}
 	public void oknoListaOferta(String tab[]) {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
-		add(listaOferta);
+		getContentPane().removeAll();
 		listaOferta.show(name, tab);
+		add(listaOferta);
+		validate();
 
 	}
 	public void oknoListaRezerwacje(String tab[]) {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
+		getContentPane().removeAll();
+		listaRezerwacje.show(name, tab);
 		add(listaRezerwacje);
-		listaOferta.show(name, tab);
+		validate();
 
 	}	
 	public void showZwrot()
 	{
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
+		getContentPane().removeAll();
+		//dodaj
+		validate();
 		
 	}
 	public void oknoListaFaktur(String[] tab) {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
-		add(listaFaktur);
+		getContentPane().removeAll();
 		listaFaktur.show(name, tab);
-
-		
+		add(listaFaktur);
+		validate();		
 	}
 	public void oknoListaDostaw(String[] tab) {
-		remove(logowanie);
-		remove(start);
-		remove(listaOferta);
-		remove(listaRezerwacje);
-		remove(listaFaktur);
-		remove(listaDostaw);
-		remove(zwrot);
-		add(listaDostaw);
+		getContentPane().removeAll();
 		listaDostaw.show(name, tab);
+		add(listaDostaw);
+		validate();
 
 	}
 }
