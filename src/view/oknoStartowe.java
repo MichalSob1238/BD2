@@ -98,9 +98,11 @@ public class oknoStartowe extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JButton button =(JButton) arg0.getSource();
-		if (button == zwrot)
+		if (button == oferta)
 		{
-			//TODO: do something
+			view.wybranoOferte();
+		} else if(button == rezerwacje) {
+			view.wybranoRezerwacje();
 		}
 		
 	}

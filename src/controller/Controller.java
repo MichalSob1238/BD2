@@ -43,5 +43,12 @@ public class Controller {
     	//metoda, która wstawi do oferta nazwy produktów
     	view.oferta(oferta);
     }
+
+	public void wyœwietlenieRezerwacji() {
+		String rezerwacje[];
+    	//metoda, która wstawi do rezerwacje coœ po czym rozpoznaje siê rezerwacje (numery?)
+		view.rezerwacje(rezerwacje);
+		
+	}
     
 }

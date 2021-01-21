@@ -54,5 +54,15 @@ public class View {
 	public void wybranoOferte() {
 		controller.wyswietlenieOfertySklepu();
 	}
+	
+	public void wybranoRezerwacje() {
+		controller.wyœwietlenieRezerwacji();
+	}
+
+	public void rezerwacje(String[] rezerwacje) {
+		wsk.oknoLista("Rezrwacje", rezerwacje, "szczegó³y");
+		wsk.repaint();
+		
+	}
 }
 
