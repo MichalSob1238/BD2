@@ -41,7 +41,6 @@ public  class Controller {
     }
 
     public void wyswietlenieOfertySklepu() {
-		System.out.println("went"); //dla sprawdzenia, gdzie jest b³¹d
 		startoweController  = new  OknoStartoweController();
 		String oferta[] = startoweController.getProductNames().toArray(new String[0]);
     	view.oferta(oferta);
