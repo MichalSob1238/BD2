@@ -40,6 +40,7 @@ public class glowneOkno extends JFrame{
 		logowanie.show(badMsg);
 		add(logowanie);
 		validate();
+		repaint();
 
 	}
 	public void oknoStartowe(boolean manager) {
@@ -47,11 +48,13 @@ public class glowneOkno extends JFrame{
 		start.show(manager, name);
 		add(start);
 		validate();
+		repaint();
 	}
 	public void oknoZwrotu() {
 		getContentPane().removeAll();
 		add(zwrot);
 		validate();
+		repaint();
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -67,6 +70,7 @@ public class glowneOkno extends JFrame{
 		listaOferta.show(name, tab);
 		add(listaOferta);
 		validate();
+		repaint();
 
 	}
 	public void oknoListaRezerwacje(String tab[]) {
@@ -74,26 +78,29 @@ public class glowneOkno extends JFrame{
 		listaRezerwacje.show(name, tab);
 		add(listaRezerwacje);
 		validate();
-
+		repaint();
 	}	
 	public void showZwrot()
 	{
 		getContentPane().removeAll();
 		//dodaj
 		validate();
+		repaint();
 		
 	}
 	public void oknoListaFaktur(String[] tab) {
 		getContentPane().removeAll();
 		listaFaktur.show(name, tab);
 		add(listaFaktur);
-		validate();		
+		validate();	
+		repaint();
 	}
 	public void oknoListaDostaw(String[] tab) {
 		getContentPane().removeAll();
 		listaDostaw.show(name, tab);
 		add(listaDostaw);
 		validate();
+		repaint();
 
 	}
 }
