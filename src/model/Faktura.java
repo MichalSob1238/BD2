@@ -8,11 +8,15 @@ public class Faktura {
     int id;
     String invoiceNr;
     Date dueDate;
+    Boolean ifPayed;
     String companyName;
     String companyAddress;
     String NIP;
     int transactionNumber;
 
+    public Boolean getIfPayed() { return ifPayed; }
+    
+    public void setIfPayed(Boolean ifPayed) { this.ifPayed = ifPayed; }
     public int getId() {
         return id;
     }

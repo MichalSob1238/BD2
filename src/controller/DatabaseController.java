@@ -285,7 +285,7 @@ public class DatabaseController {
         }
     }
 
-    void insertIntoPozycjaZamówienie(int quantity, double cost, int orderId, int productId){
+    void insertIntoPozycjaZamowienie(int quantity, double cost, int orderId, int productId){
         try{
             Connection conn = getConnection();
             PreparedStatement insert = conn.prepareStatement("INSERT INTO pozycja_zamowienie VALUES(?,?,?,?)");
@@ -695,8 +695,23 @@ public class DatabaseController {
         return orders;
     }
 
-
-
+    public Pracownik selectPracownik(String name, String surname) {
+        Pracownik employee = null;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement getEmployee = conn.prepareStatement("SELECT * from pracownik WHERE imie = ? AND nazwisko = ? LIMIT 1");
+            getEmployee.setString(1, name);
+            getEmployee.setString(2, surname);
+            ResultSet rs = getEmployee.executeQuery();
+            if (rs.next()) {
+                employee = new Pracownik(rs.getInt(1),rs.getString(2),rs.getString(3),
+                        rs.getInt(4));
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return employee;
+    }
 
 
 

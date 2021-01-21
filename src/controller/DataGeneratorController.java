@@ -3,11 +3,7 @@ package controller;
 import com.github.javafaker.Faker;
 import model.*;
 import org.apache.commons.lang3.Pair;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -200,7 +196,7 @@ public class DataGeneratorController {
                     faker.date().between(orderDate, new Date()),
                     clients.get( ThreadLocalRandom.current().nextInt(0, clients.size())).getId());
             for(Integer productId: productIds.keySet()){
-                db.insertIntoPozycjaZamówienie(productIds.get(productId).left,productIds.get(productId).right, orderId,productId);
+                db.insertIntoPozycjaZamowienie(productIds.get(productId).left,productIds.get(productId).right, orderId,productId);
             }
         }
     }

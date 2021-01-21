@@ -1,6 +1,9 @@
+import controller.Controller;
 import controller.DataGeneratorController;
 import controller.DatabaseController;
 import model.Model;
+import model.Pracownik;
+import view.View;
 
 import java.awt.EventQueue;
 import java.io.IOException;
@@ -30,12 +33,12 @@ public class SklepZoologiczny {
                     //gen.generateMagazyn();
                     //gen.generateSklep();
                     //gen.generateSzczegoloweInformacje();
+                    DatabaseController db = new DatabaseController();
+                    Pracownik employee = db.selectPracownik("Magdalena", "Majkowska");
+                    System.out.println(employee!= null);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                View view = new View();
-                Controller controller = new Controller(model, view);
-                controller.start();
             }
         });
 
