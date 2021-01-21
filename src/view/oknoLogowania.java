@@ -16,7 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class oknoLogowania extends JPanel implements ActionListener{
-
+	private View view;
+	
 	private JLabel msg;
 	private JLabel nameLabel;
 	private JTextField nameField;
@@ -26,8 +27,8 @@ public class oknoLogowania extends JPanel implements ActionListener{
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoLogowania() {
-		
+	public oknoLogowania(View view) {
+	this.view = view;
 	layout = new GridBagLayout();
 	pom = new GridBagConstraints();
 	
@@ -108,6 +109,7 @@ public class oknoLogowania extends JPanel implements ActionListener{
 			msg.setForeground(Color.BLUE);
 			msg.setVisible(true);
 		}
+		view.probaLogowania(name, surname);
 		}
 		//wywo³anie odpowiedniej metody podaj¹c jako argumenty "name" i "surname"
 	}

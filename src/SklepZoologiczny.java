@@ -15,7 +15,7 @@ public class SklepZoologiczny {
             @Override
             public void run() {
                 Model model = new Model();
-                try {
+               /* try {
                     //DatabaseController.initialize();
                     DataGeneratorController gen = new DataGeneratorController();
                     //gen.generateDaneKlienta(100);
@@ -44,7 +44,9 @@ public class SklepZoologiczny {
                     System.out.println(employee!= null);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
+                View view = new View();
+                Controller controller = new Controller(model, view);
             }
         });
 

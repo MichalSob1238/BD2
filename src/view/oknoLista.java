@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 public class oknoLista extends JPanel implements ActionListener {
 
+	private View view;
 	private int index;
 	private String tab[];
 	
@@ -28,7 +29,8 @@ public class oknoLista extends JPanel implements ActionListener {
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoLista() {
+	public oknoLista(View view) {
+		this.view = view;
 		index = 1;
 		
 		layout = new GridBagLayout();

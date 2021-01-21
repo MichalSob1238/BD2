@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class oknoStartowe extends JPanel implements ActionListener {
+	private View view;
 	
 	private JLabel name;
 	private JButton cofnij;
@@ -29,8 +30,8 @@ public class oknoStartowe extends JPanel implements ActionListener {
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoStartowe() {
-		
+	public oknoStartowe(View view) {
+		this.view = view;
 		layout = new GridBagLayout();
 		pom = new GridBagConstraints();
 		setLayout(layout);
