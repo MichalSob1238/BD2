@@ -50,5 +50,9 @@ public class View {
 		wsk.oknoLista("Oferta", oferta, "szczegó³y");
 		wsk.repaint();
 	}
+	
+	public void wybranoOferte() {
+		controller.wyswietlenieOfertySklepu();
+	}
 }
 

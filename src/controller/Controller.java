@@ -43,4 +43,5 @@ public class Controller {
     	//metoda, która wstawi do oferta nazwy produktów
     	view.oferta(oferta);
     }
+    
 }
