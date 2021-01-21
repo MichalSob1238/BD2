@@ -81,6 +81,11 @@ public class View {
 		wsk.oknoListaFaktur(faktury);
 		wsk.repaint();
 	}
+	
+	public void dostawy(String[] dostawy) {
+		wsk.oknoListaDostaw(dostawy);
+		wsk.repaint();
+	}
 
 	public void wybranoPrzegladFaktur() {
 		controller.wyswietlenieFaktur();		

@@ -48,14 +48,20 @@ public class Controller {
 	public void wyswietlenieRezerwacji() {
 		String rezerwacje[] = new String[0];
     	//metoda, ktÃ³ra wstawi do rezerwacje coÅ› po czym rozpoznaje siÄ™ rezerwacje (numery?)
-		view.rezerwacje(rezerwacje);
+		//view.rezerwacje(rezerwacje);
 
 	}
 	
 	public void wyswietlenieFaktur() {
 		String faktury[];
 		//metoda, która wstawi do faktury, coœ po czym rozpoznaje siê faktury
-		view.faktury(faktury);
+		//view.faktury(faktury);
+	}
+	
+	public void wyswietlenieDostaw() {
+		String dostawy[];
+		//metoda, która wstawi do dostawy, coœ po czym rozpoznaje siê dostawy
+		//view.dostawy(dostawy);
 	}
 	
 	public void wybranoZwrot(String paragon) {
