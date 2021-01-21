@@ -9,12 +9,13 @@ public class Controller {
     private View view;
     
     private OknoLogowaniaController logowanie;
+    private OknoStartoweController startoweController;
 
     public Controller (Model model, View view)
     {
         this.model = model; this.view = view;
         view.setControllerAndModel(this, model);
-        //przekazaï¿½ do modelu view i this
+        //przekazaÄ‡ do modelu view i this
         logowanie = new OknoLogowaniaController();
         start();
     }
@@ -24,9 +25,8 @@ public class Controller {
     }
     
     public void probaLogowania(String name, String surname) {
-    	if(logowanie.checkIfEmployeeExists(name, surname)) {
-    		//stwórz pracownika
-    		Pracownik employee /*= */;
+        Pracownik employee = logowanie.checkIfEmployeeExists(name, surname);
+    	if(employee != null) {
     		if(logowanie.checkIfEmployeeIsManager(employee)) {
     			view.oknoStartoweMenadzer();
     		}
@@ -37,18 +37,17 @@ public class Controller {
     	view.oknoLogowaniePonowne();
     	}
     }
-    
+
     public void wyswietlenieOfertySklepu() {
-    	String oferta[];
-    	//metoda, która wstawi do oferta nazwy produktów
+    	String oferta[] = startoweController.getProductNames().toArray(new String[0]);
     	view.oferta(oferta);
     }
 
-	public void wyœwietlenieRezerwacji() {
-		String rezerwacje[];
-    	//metoda, która wstawi do rezerwacje coœ po czym rozpoznaje siê rezerwacje (numery?)
+	public void wyswietlenieRezerwacji() {
+		String rezerwacje[] = new String[0];
+    	//metoda, ktÃ³ra wstawi do rezerwacje coÅ› po czym rozpoznaje siÄ™ rezerwacje (numery?)
 		view.rezerwacje(rezerwacje);
-		
+
 	}
     
 }

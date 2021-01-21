@@ -1,14 +1,12 @@
 import com.mysql.cj.x.protobuf.Mysqlx;
-import controller.Controller;
-import controller.DataGeneratorController;
-import controller.DatabaseController;
-import controller.OknoLogowaniaController;
+import controller.*;
 import model.Model;
 import model.Pracownik;
 import view.View;
 
 import java.awt.EventQueue;
 import java.io.IOException;
+import java.util.List;
 
 public class SklepZoologiczny {
     public static void main(String[] args) {

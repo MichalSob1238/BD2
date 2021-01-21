@@ -54,7 +54,7 @@ public class View {
 	}
 
 	public void oferta(String[] oferta) {
-		wsk.oknoLista("Oferta", oferta, "szczegó³y");
+		wsk.oknoLista("Oferta", oferta, "szczegï¿½y");
 		wsk.repaint();
 	}
 	
@@ -63,11 +63,11 @@ public class View {
 	}
 	
 	public void wybranoRezerwacje() {
-		controller.wyœwietlenieRezerwacji();
+		controller.wyswietlenieRezerwacji();
 	}
 
 	public void rezerwacje(String[] rezerwacje) {
-		wsk.oknoLista("Rezrwacje", rezerwacje, "szczegó³y");
+		wsk.oknoLista("Rezrwacje", rezerwacje, "szczegï¿½y");
 		wsk.repaint();
 		
 	}

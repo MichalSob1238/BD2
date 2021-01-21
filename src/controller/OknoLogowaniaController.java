@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OknoLogowaniaController {
 
-    public boolean checkIfEmployeeExists(String name, String surname){
+    public Pracownik checkIfEmployeeExists(String name, String surname){
         name = name.toLowerCase();
         name = name.substring(0,1).toUpperCase() + name.substring(1);
         surname = surname.toLowerCase();
@@ -16,8 +16,8 @@ public class OknoLogowaniaController {
         DatabaseController db = new DatabaseController();
         Pracownik employee = db.selectPracownik(name, surname);
         if(employee != null)
-            return true;
-        return false;
+            return employee;
+        return null;
     }
 
     public boolean checkIfEmployeeIsManager(Pracownik employee){
