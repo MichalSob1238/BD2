@@ -45,5 +45,10 @@ public class View {
 	public void probaLogowania(String name, String surname) {
 		controller.probaLogowania(name, surname);
 	}
+
+	public void oferta(String[] oferta) {
+		wsk.oknoLista("Oferta", oferta, "szczegó³y");
+		wsk.repaint();
+	}
 }
 

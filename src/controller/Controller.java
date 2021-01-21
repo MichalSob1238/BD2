@@ -37,4 +37,10 @@ public class Controller {
     	view.oknoLogowaniePonowne();
     	}
     }
+    
+    public void wyswietlenieOfertySklepu() {
+    	String oferta[];
+    	//metoda, która wstawi do oferta nazwy produktów
+    	view.oferta(oferta);
+    }
 }
