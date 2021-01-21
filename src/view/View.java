@@ -76,5 +76,14 @@ public class View {
 		wsk.oknoStartowe(wsk.getMenedzer());
 		wsk.repaint();
 	}
+
+	public void faktury(String[] faktury) {
+		wsk.oknoLista("Faktury", faktury, "szczegó³y");
+		wsk.repaint();
+	}
+
+	public void wybranoPrzegladFaktur() {
+		controller.wyswietlenieFaktur();		
+	}
 }
 

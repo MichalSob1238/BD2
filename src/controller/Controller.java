@@ -49,5 +49,11 @@ public class Controller {
 		view.rezerwacje(rezerwacje);
 
 	}
+	
+	public void wyswietlenieFaktur() {
+		String faktury[];
+		//metoda, która wstawi do faktury, coœ po czym rozpoznaje siê faktury
+		view.faktury(faktury);
+	}
     
 }
