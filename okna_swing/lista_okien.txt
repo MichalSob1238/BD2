@@ -6,8 +6,9 @@ okna:
 -okno startowe menadżera (zrobione)
 -okno lista: produktów, zamówień, dostaw, faktur (zrobione)
 -okno menu faktur (wybór przeglądu i utworzenia nowe) (zrobione - w branchu Controller)
+-okno lista prodóktów przy zwrocie (zrobione - w branchu Controller)
 -okno zakupu (<- do zrobienia, wolne)
--okno zwrotu (zrobione)
+-okno zwrotu (zrobione, wprowadzić tekst o nieudanej próbie)
 -okno hurtowni (<- oknoList na razie)
 Do zrobienia:
 -okno szegółów produktu
@@ -28,6 +29,6 @@ Dziedziny:
 - zamówienia (jest lista zamówień, nie ma szczegółow)
 - dostawy (jest lista, nie ma szczegółów, utworzenia nowej, ...)
 - faktury (jest lista i menu, nie ma szczegółów, utworzenia nowej)
-- zwrot (zrobione)
+- zwrot (pozostała akcja po naciśnięciu zwrot -> podać ilość zwracanego towaru -> wyświetlić informację jaką kwotę zwrócić)
 - hurtownie ?
 - sprawdzenie i zmiana ilości towaru ?
