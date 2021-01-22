@@ -7,7 +7,8 @@ okna:
 -okno lista: produktów, zamówień, dostaw, faktur (zrobione)
 -okno menu faktur (wybór przeglądu i utworzenia nowe) (zrobione - w branchu Controller)
 -okno lista prodóktów przy zwrocie (zrobione - w branchu Controller)
-
+-przy zwrocie podanie ilości produktu zwracanego (zrobione)
+-przy zwrocie podanie sposobu oddania kwoty (w trakcie - Ala)
 
 -okno zakupu (<- do zrobienia, wolne)
 -okno zwrotu (zrobione, wprowadzić tekst o nieudanej próbie)
@@ -23,8 +24,6 @@ Do zrobienia:
 -formularz faktury
 -zamówienie detaliczne (informacje)
 -zamówienie detaliczne (złożenie zamówienia)
--przy zwrocie podanie ilości produktu zwracanego (robię - Ala)
--przy zwrocie podać informację o tym jaką kwotę zwrócić (robię - Ala)
 
 
 Dziedziny:
