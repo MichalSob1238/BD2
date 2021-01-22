@@ -713,6 +713,25 @@ public class DatabaseController {
         return employee;
     }
 
+    public Szczegolowe_informacje getDetails(String productName){
+        Szczegolowe_informacje szczegoly=null;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement getDetail = conn.prepareStatement("SELECT * from szczegolowe_informacje JOIN produkt " +
+                    "ON szczegolowe_informacje.produkt_id_produkt = produkt.id_produkt " +
+                    "WHERE produkt.nazwa = ?");
+            getDetail.setString(1, productName);
+            ResultSet rs = getDetail.executeQuery();
+            if(rs.next()){
+                szczegoly =  new Szczegolowe_informacje(rs.getString(1), rs.getInt(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getInt(6));
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return szczegoly;
+    }
 
 
 }

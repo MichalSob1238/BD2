@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import model.Model;
+import model.Szczegolowe_informacje;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,7 +57,11 @@ public class View {
 	public void wybranoOferte() {
 		controller.wyswietlenieOfertySklepu();
 	}
-	
+
+	public void pobierzSzczegoly(String nazwa){ controller.pobierzSzczegoly(nazwa); }
+
+	public void szczegoly(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly);}
+
 	public void wybranoRezerwacje() {
 		controller.wyswietlenieRezerwacji();
 	}
@@ -93,6 +98,8 @@ public class View {
 	public void zwrotPonownie() {
 		
 	}
+
+
 	
 	public void podanoPargonZwrot(String paragon) {
 		controller.wybranoZwrot(paragon);

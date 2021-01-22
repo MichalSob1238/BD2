@@ -2,6 +2,7 @@ package controller;
 
 import model.Model;
 import model.Pracownik;
+import model.Szczegolowe_informacje;
 import view.View;
 
 public  class Controller {
@@ -10,6 +11,7 @@ public  class Controller {
     
     private OknoLogowaniaController logowanie;
     private OknoStartoweController startoweController;
+    private OknoListaOfertController ofertaController;
 
     public Controller (Model model, View view)
     {
@@ -45,6 +47,12 @@ public  class Controller {
 		String oferta[] = startoweController.getProductNames().toArray(new String[0]);
     	view.oferta(oferta);
     }
+
+    public void pobierzSzczegoly(String nazwa){
+    	ofertaController = new OknoListaOfertController();
+    	Szczegolowe_informacje szczegoly = ofertaController.pobierzSzczegoly(nazwa);
+    	view.szczegoly(szczegoly);
+	}
 
 	public void wyswietlenieRezerwacji() {
 		String rezerwacje[] = new String[0];

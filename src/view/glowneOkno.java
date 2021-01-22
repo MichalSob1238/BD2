@@ -1,5 +1,7 @@
 package view;
 
+import model.Szczegolowe_informacje;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -17,7 +19,7 @@ public class glowneOkno extends JFrame{
 	private oknoListaDostaw listaDostaw;
 	private oknoZwrotu zwrot;
 	private oknoZwrotLista zwrotLista;
-	
+	private oknoSzczegoly szczegoly;
 
 	
 	public glowneOkno(View view) {
@@ -35,6 +37,7 @@ public class glowneOkno extends JFrame{
 		listaDostaw = new oknoListaDostaw(view);
 		zwrot = new oknoZwrotu(view);	
 		zwrotLista = new oknoZwrotLista(view);
+		szczegoly = new oknoSzczegoly(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -110,6 +113,14 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		zwrotLista.show(name, tab, paragon);
 		add(zwrotLista);
+		validate();
+		repaint();
+	}
+
+	public void oknoSzczegoly(Szczegolowe_informacje szczegol){
+		getContentPane().removeAll();
+		szczegoly.show(name, szczegol);
+		add(szczegoly);
 		validate();
 		repaint();
 	}

@@ -44,9 +44,9 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton("szczegó³y");
-		wybierz2 = new JButton("szczegó³y");
-		wybierz3 = new JButton("szczegó³y");
+		wybierz1 = new JButton("szczegï¿½y");
+		wybierz2 = new JButton("szczegï¿½y");
+		wybierz3 = new JButton("szczegï¿½y");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");
@@ -195,6 +195,12 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 			wybierz3.setVisible(true);
 		} else if(button == cofnij) {
 			view.oknoStartowe();
+		} else if(button == wybierz1){
+			view.pobierzSzczegoly(tab[index*3]);
+		} else if(button == wybierz2){
+			view.pobierzSzczegoly(tab[index*3+1]);
+		} else if(button == wybierz3){
+			view.pobierzSzczegoly(tab[index*3+2]);
 		}
 	}
 }
