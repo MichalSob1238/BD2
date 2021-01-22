@@ -9,7 +9,7 @@ okna:
 -okno zwrotu (zrobione)
 -okno hurtowni (<- oknoList na razie)
 Do zrobienia:
--okno szegółów produktu
+-okno szegółów produktu (Bartek - robie)
 -okno szczegółów zamówienia (robię - Ala)
 -okno szczegółów dostawy
 -okno szczegółów faktury (robię - Ala)
