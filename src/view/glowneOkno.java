@@ -18,6 +18,7 @@ public class glowneOkno extends JFrame{
 	private oknoZwrotu zwrot;
 	private oknoZwrotLista zwrotLista;
 	private oknoWyboruIlosciProduktuZwrot iloscZwrot;
+	private oknoWyborZwrotuKwota sposobZwrotu;
 	
 
 	
@@ -37,6 +38,7 @@ public class glowneOkno extends JFrame{
 		zwrot = new oknoZwrotu(view);	
 		zwrotLista = new oknoZwrotLista(view);
 		iloscZwrot = new oknoWyboruIlosciProduktuZwrot(view);
+		sposobZwrotu = new oknoWyborZwrotuKwota(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -120,6 +122,14 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		iloscZwrot.show(name, ilosc, paragon, produkt);
 		add(iloscZwrot);
+		validate();
+		repaint();
+	}
+	
+	public void oknoWyboruSposobuOddaniaKwoty(String kwota) {
+		getContentPane().removeAll();
+		sposobZwrotu.show(name, kwota);
+		add(sposobZwrotu);
 		validate();
 		repaint();
 	}

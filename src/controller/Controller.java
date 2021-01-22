@@ -70,14 +70,14 @@ public  class Controller {
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
 	
-	public void wybranoProduktDoZwrotu(String produkt) {
-		//wczesniej trzeba zachowac paragon, ustalic ile produktu jest na danym paragonie
+	public void wybranoProduktDoZwrotu(String paragon, String produkt) {
+		//ustalic ile produktu jest na danym paragonie
 		//wywo³aæ view.ileProduktuZwrot(String ilosc, String paragon, String produkt)
 	}
 	
-	public void zwrotIlosc(int ilosc) {
-		//wczesniej zachowac paragon, produkt, ustalic jak¹ kwotê trzeba zwróciæ, jeszcze nie akceptowaæ zwrotu!
-		//wywo³aæ view.kwotaDoZwrotu(String kwota)
+	public void zwrotIlosc(int ilosc, String paragon, String produkt) {
+		//ustalic jak¹ kwotê trzeba zwróciæ, jeszcze nie akceptowaæ zwrotu!
+		//wywo³aæ view.kwotaDoZwrotu(String kwota, String paragon, String produkt)
 	}
     
 }

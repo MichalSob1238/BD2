@@ -77,11 +77,11 @@ public class oknoWyborZwrotuKwota extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		JButton button = (JButton) e.getSource();
 		if(button == cofnij) {
-			//tu odpowiednie funkcje
+			view.ileProduktuZwrot();
 		}else if(button == wybierzGotowka) {
-			
+			view.wybranoGotowkeZwrot();
 		} else if(button == wybierzPrzelew) {
-			
+			view.oknoPodaniaNrKonta();
 		}
 		
 	}
