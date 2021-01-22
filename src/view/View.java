@@ -101,5 +101,9 @@ public class View {
 	public void zwrotListaProduktow(String paragon, String produkty[]) {
 		wsk.oknoZwrotListaProduktow(produkty, paragon);
 	}
+	
+	public void podanoIloscProduktuZwrot(int ilosc) {
+		
+	}
 }
 
