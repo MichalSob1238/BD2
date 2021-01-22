@@ -16,6 +16,7 @@ public class glowneOkno extends JFrame{
 	private oknoListaFaktur listaFaktur;
 	private oknoListaDostaw listaDostaw;
 	private oknoZwrotu zwrot;
+	private oknoZwrotLista zwrotLista;
 	
 
 	
@@ -32,7 +33,8 @@ public class glowneOkno extends JFrame{
 		listaRezerwacje = new oknoListaRezerwacji(view);
 		listaFaktur = new oknoListaFaktur(view);
 		listaDostaw = new oknoListaDostaw(view);
-		zwrot = new oknoZwrotu(view);		
+		zwrot = new oknoZwrotu(view);	
+		zwrotLista = new oknoZwrotLista(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -102,5 +104,13 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 
+	}
+	
+	public void oknoZwrotListaProduktow(String[] tab, String paragon) {
+		getContentPane().removeAll();
+		zwrotLista.show(name, tab, paragon);
+		add(zwrotLista);
+		validate();
+		repaint();
 	}
 }

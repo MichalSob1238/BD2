@@ -94,7 +94,12 @@ public class View {
 		
 	}
 	
+	public void podanoPargonZwrot(String paragon) {
+		controller.wybranoZwrot(paragon);
+	}
+	
 	public void zwrotListaProduktow(String paragon, String produkty[]) {
+		wsk.oknoZwrotListaProduktow(produkty, paragon);
 	}
 }
 

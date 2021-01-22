@@ -82,8 +82,13 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		String receipt = idField.getText();
-		//wywo³anie odpowiedniej metody podaj¹c jako argumenty "name" i "surname"
+		JButton button = (JButton) arg0.getSource();
+		if(button == returnButton) {
+			view.oknoStartowe();
+		}else if(button == loginButton) {
+			String receipt = idField.getText();
+			view.podanoPargonZwrot(receipt);
+		}
 	}
 	
 }
