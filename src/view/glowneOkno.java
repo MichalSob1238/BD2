@@ -125,6 +125,8 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		szczegoly.show(name, szczegol);
 		add(szczegoly);
+		validate();
+		repaint();
 	}
 
 	public void oknoWyboruIlosciProduktuZwrot(String ilosc, String paragon, String produkt) {

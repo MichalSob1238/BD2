@@ -38,6 +38,7 @@ public class oknoSzczegoly extends JPanel implements ActionListener {
 
         name = new JLabel();
         cofnij = new JButton("cofnij");
+        cofnij.addActionListener(this);
         tytul = new JLabel("Szczegolowe informacje:");
 
         kolor = new JLabel();
