@@ -69,5 +69,15 @@ public  class Controller {
 		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
+	
+	public void wybranoProduktDoZwrotu(String produkt) {
+		//wczesniej trzeba zachowac paragon, ustalic ile produktu jest na danym paragonie
+		//wywo³aæ view.ileProduktuZwrot(String ilosc, String paragon, String produkt)
+	}
+	
+	public void zwrotIlosc(int ilosc) {
+		//wczesniej zachowac paragon, produkt, ustalic jak¹ kwotê trzeba zwróciæ
+		//wywo³aæ view.kwotaDoZwrotu(String kwota)
+	}
     
 }

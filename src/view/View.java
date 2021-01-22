@@ -102,7 +102,19 @@ public class View {
 		wsk.oknoZwrotListaProduktow(produkty, paragon);
 	}
 	
+	public void wybranoProduktDoZwrotu(String produkt) {
+		controller.wybranoProduktDoZwrotu(produkt);
+	}
+	
+	public void ileProduktuZwrot(String ilosc, String paragon, String produkt) {
+		wsk.oknoWyboruIlosciProduktuZwrot(ilosc, paragon, produkt);
+	}
+	
 	public void podanoIloscProduktuZwrot(int ilosc) {
+		controller.zwrotIlosc(ilosc);
+	}
+	
+	public void kwotaDoZwrotu(String kwota) {
 		
 	}
 }
