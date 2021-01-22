@@ -115,7 +115,19 @@ public class View {
 	}
 	
 	public void kwotaDoZwrotu(String kwota) {
-		
+		//wyœwietlenie okna z kwot¹ - wybór gotówki i przelewu
+	}
+	
+	public void wybranoGotowkeZwrot() {
+		//wywo³aæ kontrolera
+	}
+	
+	public void oknoPodaniaNrKonta() {
+		//wyœwietliæ okno do podania numeru konta
+	}
+	
+	public void wybranoPrzelewZwrot(String nrKonta) {
+		//wywo³aæ kontrolera
 	}
 }
 

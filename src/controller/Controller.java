@@ -76,7 +76,7 @@ public  class Controller {
 	}
 	
 	public void zwrotIlosc(int ilosc) {
-		//wczesniej zachowac paragon, produkt, ustalic jak¹ kwotê trzeba zwróciæ
+		//wczesniej zachowac paragon, produkt, ustalic jak¹ kwotê trzeba zwróciæ, jeszcze nie akceptowaæ zwrotu!
 		//wywo³aæ view.kwotaDoZwrotu(String kwota)
 	}
     
