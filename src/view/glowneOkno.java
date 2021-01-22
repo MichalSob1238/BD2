@@ -20,6 +20,8 @@ public class glowneOkno extends JFrame{
 	private oknoZwrotu zwrot;
 	private oknoZwrotLista zwrotLista;
 	private oknoSzczegoly szczegoly;
+	private oknoWyboruIlosciProduktuZwrot iloscZwrot;
+	private oknoWyborZwrotuKwota sposobZwrotu;
 
 	
 	public glowneOkno(View view) {
@@ -38,6 +40,8 @@ public class glowneOkno extends JFrame{
 		zwrot = new oknoZwrotu(view);	
 		zwrotLista = new oknoZwrotLista(view);
 		szczegoly = new oknoSzczegoly(view);
+		iloscZwrot = new oknoWyboruIlosciProduktuZwrot(view);
+		sposobZwrotu = new oknoWyborZwrotuKwota(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -117,10 +121,24 @@ public class glowneOkno extends JFrame{
 		repaint();
 	}
 
-	public void oknoSzczegoly(Szczegolowe_informacje szczegol){
+	public void oknoSzczegoly(Szczegolowe_informacje szczegol) {
 		getContentPane().removeAll();
 		szczegoly.show(name, szczegol);
 		add(szczegoly);
+	}
+
+	public void oknoWyboruIlosciProduktuZwrot(String ilosc, String paragon, String produkt) {
+		getContentPane().removeAll();
+		iloscZwrot.show(name, ilosc, paragon, produkt);
+		add(iloscZwrot);
+		validate();
+		repaint();
+	}
+	
+	public void oknoWyboruSposobuOddaniaKwoty(String kwota) {
+		getContentPane().removeAll();
+		sposobZwrotu.show(name, kwota);
+		add(sposobZwrotu);
 		validate();
 		repaint();
 	}

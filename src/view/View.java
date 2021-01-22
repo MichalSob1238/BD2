@@ -12,6 +12,11 @@ public class View {
 	Model model;
     private glowneOkno wsk;
     
+    private String paragonZwrot;
+    private String produktZwrot;
+    private String kwotaZwrot;
+    private String maxIloscZwrot;
+    
     public View(){
     	wsk = new glowneOkno(this);
         wsk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,7 +111,44 @@ public class View {
 	}
 	
 	public void zwrotListaProduktow(String paragon, String produkty[]) {
+		paragonZwrot = paragon;
 		wsk.oknoZwrotListaProduktow(produkty, paragon);
+	}
+	
+	public void wybranoProduktDoZwrotu(String produkt) {
+		controller.wybranoProduktDoZwrotu(paragonZwrot, produkt);
+	}
+	
+	public void ileProduktuZwrot(String ilosc, String paragon, String produkt) {
+		paragonZwrot = paragon;
+		produktZwrot = produkt;
+		maxIloscZwrot = ilosc;
+		wsk.oknoWyboruIlosciProduktuZwrot(ilosc, paragon, produkt);
+	}
+	
+	public void ileProduktuZwrot() {
+		wsk.oknoWyboruIlosciProduktuZwrot(maxIloscZwrot, paragonZwrot, produktZwrot);
+	}
+	
+	public void podanoIloscProduktuZwrot(int ilosc) {
+		controller.zwrotIlosc(ilosc, paragonZwrot, produktZwrot);
+	}
+	
+	public void kwotaDoZwrotu(String kwota) {
+		kwotaZwrot = kwota;
+		wsk.oknoWyboruSposobuOddaniaKwoty(kwota);
+	}
+	
+	public void wybranoGotowkeZwrot() {
+		//wywo³aæ kontrolera
+	}
+	
+	public void oknoPodaniaNrKonta() {
+		//wyœwietliæ okno do podania numeru konta
+	}
+	
+	public void wybranoPrzelewZwrot(String nrKonta) {
+		//wywo³aæ kontrolera
 	}
 }
 
