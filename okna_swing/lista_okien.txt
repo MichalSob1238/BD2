@@ -23,8 +23,8 @@ Do zrobienia:
 -formularz faktury
 -zamówienie detaliczne (informacje)
 -zamówienie detaliczne (złożenie zamówienia)
--przy zwrocie podanie ilości produktu zwracanego
--przy zwrocie podać informację o tym jaką kwotę zwrócić
+-przy zwrocie podanie ilości produktu zwracanego (robię - Ala)
+-przy zwrocie podać informację o tym jaką kwotę zwrócić (robię - Ala)
 
 
 Dziedziny:
