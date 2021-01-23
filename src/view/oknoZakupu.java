@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class oknoZakupu extends JPanel implements ActionListener {
 
@@ -24,7 +25,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
     private GridBagConstraints pom;
     private JTextField idField;
     private int index;
-    private int currentPage;
+
 
     public oknoZakupu(View view) {
         this.view = view;
@@ -37,7 +38,6 @@ public class oknoZakupu extends JPanel implements ActionListener {
         name = new JLabel("Joanna Takczyk");
         returnButton = new JButton("cofnij");
 
-        currentPage = 1;
         tytul = new JLabel("Koszyk:");
         produkt1 = new JLabel();
         produkt2 = new JLabel();
@@ -48,6 +48,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
         usun1 = new JButton("usun");
         usun2 = new JButton("usun");
         usun3 = new JButton("usun");
+        tab = new String[]{};
 
         next = new JButton("next");
         prev = new JButton("prev");
@@ -56,7 +57,9 @@ public class oknoZakupu extends JPanel implements ActionListener {
         idField = new JTextField();
         idField.setPreferredSize(new Dimension(70, 20));
         addToCartButton = new JButton("Dodaj do koszyka");
+        finaliseTransactionButton = new JButton("Zakoncz i zaplac");
 
+        finaliseTransactionButton.addActionListener(this);
         addToCartButton.addActionListener(this);
         returnButton.addActionListener(this);
         wybierz1.addActionListener(this);
@@ -84,6 +87,8 @@ public class oknoZakupu extends JPanel implements ActionListener {
         pom.gridx = 1;
         pom.gridwidth = 2;
         add(idField,pom);
+        pom.gridx = 3;
+        add(finaliseTransactionButton,pom);
 
         pom.insets = new Insets(60, 0, 0, 0);
         pom.gridy = 1;
@@ -157,11 +162,14 @@ public class oknoZakupu extends JPanel implements ActionListener {
                 produkt3.setText("");
                 wybierz2.setVisible(false);
                 wybierz3.setVisible(false);
+                usun2.setVisible(false);
+                usun3.setVisible(false);
             }else if(len == 2) {
                 produkt1.setText(tab[(index-1)*3]);
                 produkt2.setText(tab[(index-1)*3+1]);
                 produkt3.setText("");
                 wybierz3.setVisible(false);
+                usun3.setVisible(false);
             }else if(len >= 3) {
                 produkt1.setText(tab[(index-1)*3]);
                 produkt2.setText(tab[(index-1)*3+1]);
@@ -185,15 +193,23 @@ public class oknoZakupu extends JPanel implements ActionListener {
             wybierz1.setVisible(true);
             wybierz2.setVisible(true);
             wybierz3.setVisible(true);
-        } else if(button == returnButton) {
+            usun1.setVisible(true);
+            usun2.setVisible(true);
+            usun3.setVisible(true);
+        } else if(button == returnButton)
+        {
             view.oknoStartowe();
-        } else if(button == wybierz1){
+        } else if(button == wybierz1)
+        {
             view.pobierzSzczegoly(tab[index*3]);
-        } else if(button == wybierz2){
+        } else if(button == wybierz2)
+        {
             view.pobierzSzczegoly(tab[index*3+1]);
-        } else if(button == wybierz3){
+        } else if(button == wybierz3)
+        {
             view.pobierzSzczegoly(tab[index*3+2]);
-        }else if(button == usun1){
+        }else if(button == usun1)
+        {
             int toRemove = (index-1)*3;
             // create an array to hold elements after deletion
             String[] copyArray = new String[tab.length - 1];
@@ -202,7 +218,9 @@ public class oknoZakupu extends JPanel implements ActionListener {
             // copy elements from original array from index+1 till end into copyArray
             System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
             tab = copyArray;
-        } else if(button == usun2){
+            reload();
+        } else if(button == usun2)
+        {
             int toRemove = (index-1)*3+1;
             // create an array to hold elements after deletion
             String[] copyArray = new String[tab.length - 1];
@@ -211,8 +229,10 @@ public class oknoZakupu extends JPanel implements ActionListener {
             // copy elements from original array from index+1 till end into copyArray
             System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
             tab = copyArray;
+            reload();
 
-        } else if(button == usun3){
+        } else if(button == usun3)
+        {
             int toRemove = (index-2)*3+2;
             // create an array to hold elements after deletion
             String[] copyArray = new String[tab.length - 1];
@@ -221,11 +241,60 @@ public class oknoZakupu extends JPanel implements ActionListener {
             // copy elements from original array from index+1 till end into copyArray
             System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
             tab = copyArray;
-        }else if (button == addToCartButton){
+            reload();
+        }else if (button == addToCartButton)
+        {
             //TODO: adding to cart
-            //some functions that resolves the adding
             String id = idField.getText();
-            view.addToCart(id);
+            //some functions that resolves the adding
+            //view.addToCart(id);
+
+            tab  = Arrays.copyOf(tab, tab.length + 1); //create new array from old array and allocate one more element
+            tab[tab.length - 1] = view.addToCart(id);
+            int iloscStron = tab.length / 3;
+            if(tab.length % 3 != 0) {
+                iloscStron += 1;
+            }
+            if(tab.length == 1) {
+                produkt1.setText(tab[0]);
+                wybierz1.setVisible(true);
+                usun1.setVisible(true);
+//                wybierz2.setVisible(false);
+//                wybierz3.setVisible(false);
+//                usun2.setVisible(false);
+//                usun3.setVisible(false);
+            }else if(tab.length == 2) {
+                produkt1.setText(tab[0]);
+                produkt2.setText(tab[1]);
+                wybierz1.setVisible(true);
+                usun1.setVisible(true);
+                wybierz2.setVisible(true);
+                usun2.setVisible(true);
+//                wybierz3.setVisible(false);
+//                usun3.setVisible(false);
+            }else if(tab.length >= 3) {
+                produkt1.setText(tab[0]);
+                produkt2.setText(tab[1]);
+                produkt3.setText(tab[2]);
+                wybierz1.setVisible(true);
+                usun1.setVisible(true);
+                wybierz2.setVisible(true);
+                usun2.setVisible(true);
+                wybierz3.setVisible(true);
+                usun3.setVisible(true);
+
+            }
+            strona.setText(index + "/" + iloscStron);
+            prev.setVisible(false);
+            if(iloscStron == 1) {
+                next.setVisible(false);
+            } else {
+                next.setVisible(true);
+                prev.setVisible(true);
+            }
+        }else if (button == finaliseTransactionButton)
+        {
+            //TODO: another window, functions taht would work here
         }
     }
 
@@ -240,6 +309,51 @@ public class oknoZakupu extends JPanel implements ActionListener {
         usun3.setVisible(false);
         prev.setVisible(false);
         next.setVisible(false);
+    }
+    
+    public void reload(){
+
+        int iloscStron = tab.length / 3;
+        if(tab.length % 3 != 0) {
+            iloscStron += 1;
+        }
+        int len = tab.length - (index-1)*3;
+        if(len == 0){
+            strona.setText("");
+            produkt1.setText("");
+            produkt2.setText("");
+            produkt3.setText("");
+            wybierz1.setVisible(false);
+            wybierz2.setVisible(false);
+            wybierz3.setVisible(false);
+            usun1.setVisible(false);
+            usun2.setVisible(false);
+            usun3.setVisible(false);
+        }
+        if(len == 1) {
+            produkt1.setText(tab[(index-1)*3]);
+            produkt2.setText("");
+            produkt3.setText("");
+            wybierz2.setVisible(false);
+            wybierz3.setVisible(false);
+            usun2.setVisible(false);
+            usun3.setVisible(false);
+        }else if(len == 2) {
+            produkt1.setText(tab[(index-1)*3]);
+            produkt2.setText(tab[(index-1)*3+1]);
+            produkt3.setText("");
+            wybierz3.setVisible(false);
+            usun3.setVisible(false);
+        }else if(len >= 3) {
+            produkt1.setText(tab[(index-1)*3]);
+            produkt2.setText(tab[(index-1)*3+1]);
+            produkt3.setText(tab[(index-1)*3+2]);
+        }
+        strona.setText(index + "/" + iloscStron);
+        prev.setVisible(false);
+        if(iloscStron == 1) {
+            next.setVisible(false);
+        }
     }
 
 }

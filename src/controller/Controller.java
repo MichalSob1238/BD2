@@ -11,7 +11,7 @@ import java.util.*;
 public  class Controller {
     private Model model;
     private View view;
-    
+
     private OknoLogowaniaController logowanie;
     private OknoStartoweController startoweController;
     private OknoListaOfertController ofertaController;
@@ -29,7 +29,7 @@ public  class Controller {
         view.oknoLogowania();
 		//view.zwrotPonownie();
     }
-    
+
     public void probaLogowania(String name, String surname) {
         Pracownik employee = logowanie.checkIfEmployeeExists(name, surname);
     	if(employee != null) {
@@ -73,13 +73,13 @@ public  class Controller {
 		System.out.println(faktury);
 		view.faktury(faktury);
 	}
-	
+
 	public void wyswietlenieDostaw() {
 		startoweController  = new  OknoStartoweController();
 		String dostawy[] = startoweController.getDeliveryNames().toArray(new String[0]);
-		//view.dostawy(dostawy);
+		view.dostawy(dostawy);
 	}
-	
+
 	public void wybranoZwrot(String paragon) {
 		startoweController  = new  OknoStartoweController();
 		List<Produkt> products = startoweController.getProductsFromTransaction(paragon);
@@ -100,11 +100,23 @@ public  class Controller {
 		//ustalic ile produktu jest na danym paragonie
 		//wywo�a� view.ileProduktuZwrot(String ilosc, String paragon, String produkt)
 	}
-	
+
 	public void zwrotIlosc(int ilosc, String paragon, String produkt) {
 		//ustalic jak� kwot� trzeba zwr�ci�, jeszcze nie akceptowa� zwrotu!
 		//wywo�a� view.kwotaDoZwrotu(String kwota, String paragon, String produkt)
 	}
 
-    
+
+	public void wyswietlanieHurtownia() {
+		startoweController  = new  OknoStartoweController();
+		//TODO: function that loads the lsit
+		String[] list = new String[]{};
+		view.hurtownie(list);
+	}
+
+//	public void pobierzSzczegolyHurtowni(String s) {
+//		ofertaController = new OknoListaOfertController();
+//		//TODO: pobieranie informacji o hurtowni
+//		view.szczegoly(szczegoly);
+//	}
 }

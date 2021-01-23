@@ -24,7 +24,9 @@ public class OknoLogowaniaController {
         DatabaseController db = new DatabaseController();
         List<Stanowisko> posts = db.selectAllFromStanowisko();
         for (Stanowisko position : posts) {
-            if(position.getId() == employee.getPositionId() && position.getName().equals(Stanowisko.positions.Menadżer.toString())){
+            //TODO: simplified this function as it did not work due to 'ż' in 'Menadżer;
+            //TODO::might be decessary to imrove
+            if(employee.getPositionId() == 1){// && position.getName().equals(Stanowisko.positions.Menadżer.toString())){
                 return true;
             }
         }

@@ -64,6 +64,9 @@ public class View {
 	}
 
 	public void pobierzSzczegoly(String nazwa){ controller.pobierzSzczegoly(nazwa); }
+//	public void pobierzSzczegolyHurtowni(String s) {
+//		controller.pobierzSzczegolyHurtowni(s);
+//	}
 
 	public void szczegoly(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly);}
 
@@ -121,6 +124,10 @@ public class View {
 	public void zakup(){
     	wsk.oknoZakupu();
 	}
+	public void hurtownie(String list[]){
+    	wsk.oknoHurtownia(list);
+
+	}
 	public String addToCart(String id){
     	//TODO: check if id matches any from database
 		return id;
@@ -168,6 +175,13 @@ public class View {
 	
 	public void wybranoPrzelewZwrot(String nrKonta) {
 		//wywo³aæ kontrolera
+	}
+
+	public void wybranoHurtownia() {
+    	controller.wyswietlanieHurtownia();
+	}
+	public void wybranoDostawy() {
+    	controller.wyswietlenieDostaw();
 	}
 }
 

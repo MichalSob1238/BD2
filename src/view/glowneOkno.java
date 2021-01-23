@@ -24,7 +24,7 @@ public class glowneOkno extends JFrame{
 	private oknoWyboruIlosciProduktuZwrot iloscZwrot;
 	private oknoWyborZwrotuKwota sposobZwrotu;
 	private oknoZakupu zakup;
-
+	private oknoHurtownia hurtownia;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -45,6 +45,7 @@ public class glowneOkno extends JFrame{
 		iloscZwrot = new oknoWyboruIlosciProduktuZwrot(view);
 		sposobZwrotu = new oknoWyborZwrotuKwota(view);
 		zakup = new oknoZakupu(view);
+		hurtownia = new oknoHurtownia(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -154,6 +155,14 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		sposobZwrotu.show(name, kwota);
 		add(sposobZwrotu);
+		validate();
+		repaint();
+	}
+
+	public void oknoHurtownia(String[] list) {
+		getContentPane().removeAll();
+		hurtownia.show(name, list);
+		add(hurtownia);
 		validate();
 		repaint();
 	}

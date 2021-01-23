@@ -44,9 +44,9 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton("szczeg�y");
-		wybierz2 = new JButton("szczeg�y");
-		wybierz3 = new JButton("szczeg�y");
+		wybierz1 = new JButton("szczegoly");
+		wybierz2 = new JButton("szczegoly");
+		wybierz3 = new JButton("szczegoly");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");
