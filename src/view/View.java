@@ -97,7 +97,7 @@ public class View {
 	}
 	
 	public void zwrot() {
-		wsk.oknoZwrotu();
+		wsk.oknoZwrotu(false);
 	}
 
 	public void wybranoZwrot()
@@ -115,7 +115,7 @@ public class View {
 	}
 	
 	public void zwrotPonownie() {
-		
+		wsk.oknoZwrotu(true);
 	}
 
 	public void zakup(){

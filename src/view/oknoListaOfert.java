@@ -196,11 +196,11 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 		} else if(button == cofnij) {
 			view.oknoStartowe();
 		} else if(button == wybierz1){
-			view.pobierzSzczegoly(tab[index*3]);
+			view.pobierzSzczegoly(tab[(index-1)*3]);
 		} else if(button == wybierz2){
-			view.pobierzSzczegoly(tab[index*3+1]);
+			view.pobierzSzczegoly(tab[(index)*3+1]);
 		} else if(button == wybierz3){
-			view.pobierzSzczegoly(tab[index*3+2]);
+			view.pobierzSzczegoly(tab[(index-1)*3+2]);
 		}
 	}
 }

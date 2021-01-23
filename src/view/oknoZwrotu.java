@@ -34,7 +34,7 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	layout = new GridBagLayout();
 	pom = new GridBagConstraints();
 	
-	msg = new JLabel("Nie ma takiego pracownika!");
+	msg = new JLabel("Nie ma takiego paragonu!");
 	msg.setForeground(Color.RED);
 
 	name = new JLabel("");
@@ -59,8 +59,12 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 
 	pom.insets = new Insets(0, 0, 0, 0);
 	pom.gridx = 0;
-	pom.gridy = 1;
+
 	pom.gridwidth = 1;
+	pom.gridy = 1;
+	add(msg,pom);
+	msg.setVisible(false);
+	pom.gridy = 2;
 	add(nameLabel, pom);
 	
 	pom.gridx = 1;
@@ -79,8 +83,9 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 
 	}
 
-	public void show(String nameUser) {
+	public void show(String nameUser, Boolean flag) {
 		name.setText(nameUser);
+		msg.setVisible(flag);
 	}
 	
 	

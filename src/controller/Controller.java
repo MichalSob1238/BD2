@@ -6,7 +6,7 @@ import model.Produkt;
 import model.Szczegolowe_informacje;
 import view.View;
 
-import java.util.List;
+import java.util.*;
 
 public  class Controller {
     private Model model;
@@ -26,8 +26,8 @@ public  class Controller {
     }
 
     public void start(){
-        //view.oknoLogowania();
-		view.zakup();
+        view.oknoLogowania();
+		//view.zwrotPonownie();
     }
     
     public void probaLogowania(String name, String surname) {
@@ -81,11 +81,13 @@ public  class Controller {
 	}
 	
 	public void wybranoZwrot(String paragon) {
+		startoweController  = new  OknoStartoweController();
 		List<Produkt> products = startoweController.getProductsFromTransaction(paragon);
-		if(products.size()!= 0){
+    	if(products.size()!= 0){
 			//Tutaj cos się dzieje bo paragon istnieje
 		} else{
 			//Tutaj nie ma nic na liście
+			view.zwrotPonownie();
 		}
 		//sprawdzenie czy jest odpowiedni paragon, je�eli tak wywo�a� view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie

@@ -62,9 +62,9 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
-	public void oknoZwrotu() {
+	public void oknoZwrotu(Boolean flag) {
 		getContentPane().removeAll();
-		zwrot.show(name);
+		zwrot.show(name,flag);
 		add(zwrot);
 		validate();
 		repaint();
