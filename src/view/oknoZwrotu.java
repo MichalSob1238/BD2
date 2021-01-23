@@ -36,7 +36,9 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	
 	msg = new JLabel("Nie ma takiego pracownika!");
 	msg.setForeground(Color.RED);
-	
+
+	name = new JLabel("");
+
 	nameLabel = new JLabel("Numer Rachunku:");
 	
 	idField = new JTextField();
@@ -45,14 +47,18 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	loginButton = new JButton("Dokonaj Zwrotu");
 	loginButton.addActionListener(this);
 
-	returnButton = new JButton("Dokonaj Zwrotu");
+	returnButton = new JButton("cofnij");
 	returnButton.addActionListener(this);
 	
 
 	setLayout(layout);
 
-	
+	pom.insets = new Insets(0, 40, 60, 0);
+	pom.gridx = 1;
+	add(name,pom);
+
 	pom.insets = new Insets(0, 0, 0, 0);
+	pom.gridx = 0;
 	pom.gridy = 1;
 	pom.gridwidth = 1;
 	add(nameLabel, pom);
@@ -83,7 +89,13 @@ public class oknoZwrotu extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		String receipt = idField.getText();
+		JButton button = (JButton) arg0.getSource();
 		//wywo³anie odpowiedniej metody podaj¹c jako argumenty "name" i "surname"
+		if(button == returnButton) {
+			view.oknoStartowe();
+		} else if (button == loginButton) {
+			view.sprawdzZwrot(receipt);
+		}
 	}
 	
 }

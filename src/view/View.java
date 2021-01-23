@@ -89,6 +89,16 @@ public class View {
 	public void zwrot() {
 		wsk.oknoZwrotu();
 	}
+
+	public void wybranoZwrot()
+	{
+		controller.wyswietlenieZwrot();
+	}
+
+	public void sprawdzZwrot(String receipt)
+	{
+		controller.wybranoZwrot(receipt);
+	}
 	
 	public void zwrotPonownie() {
 		

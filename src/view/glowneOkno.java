@@ -52,6 +52,7 @@ public class glowneOkno extends JFrame{
 	}
 	public void oknoZwrotu() {
 		getContentPane().removeAll();
+		zwrot.show(name);
 		add(zwrot);
 		validate();
 		repaint();

@@ -49,7 +49,7 @@ public  class Controller {
 	public void wyswietlenieRezerwacji() {
 		String rezerwacje[] = new String[0];
     	//metoda, ktÃ³ra wstawi do rezerwacje coÅ› po czym rozpoznaje siÄ™ rezerwacje (numery?)
-		//view.rezerwacje(rezerwacje);
+		view.rezerwacje(rezerwacje);
 
 	}
 	
@@ -69,5 +69,9 @@ public  class Controller {
 		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
+
+	public  void wyswietlenieZwrot(){
+        view.zwrot();
+    }
     
 }
