@@ -17,12 +17,14 @@ public class oknoZakupu extends JPanel implements ActionListener {
     private String tab[];
     private JLabel produkt1, produkt2, produkt3;
     private JButton wybierz1, wybierz2, wybierz3;
+    private JButton usun1, usun2, usun3;
     private JButton next, prev;
     private JLabel strona;
     private GridBagLayout layout;
     private GridBagConstraints pom;
     private JTextField idField;
     private int index;
+    private int currentPage;
 
     public oknoZakupu(View view) {
         this.view = view;
@@ -35,6 +37,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
         name = new JLabel("Joanna Takczyk");
         returnButton = new JButton("cofnij");
 
+        currentPage = 1;
         tytul = new JLabel("Koszyk:");
         produkt1 = new JLabel();
         produkt2 = new JLabel();
@@ -42,6 +45,9 @@ public class oknoZakupu extends JPanel implements ActionListener {
         wybierz1 = new JButton("szczegoly");
         wybierz2 = new JButton("szczegoly");
         wybierz3 = new JButton("szczegoly");
+        usun1 = new JButton("usun");
+        usun2 = new JButton("usun");
+        usun3 = new JButton("usun");
 
         next = new JButton("next");
         prev = new JButton("prev");
@@ -56,6 +62,9 @@ public class oknoZakupu extends JPanel implements ActionListener {
         wybierz1.addActionListener(this);
         wybierz2.addActionListener(this);
         wybierz3.addActionListener(this);
+        usun1.addActionListener(this);
+        usun2.addActionListener(this);
+        usun3.addActionListener(this);
         next.addActionListener(this);
         prev.addActionListener(this);
 
@@ -104,6 +113,15 @@ public class oknoZakupu extends JPanel implements ActionListener {
         pom.gridy = 4;
         add(wybierz3, pom);
 
+        pom.gridx = 3;
+        add(usun3,pom);
+
+        pom.gridy = 3;
+        add(usun2,pom);
+
+        pom.gridy = 2;
+        add(usun1,pom);
+
         pom.insets = new Insets(20, 0, 0, 0);
         pom.gridy = 5;
 
@@ -122,7 +140,6 @@ public class oknoZakupu extends JPanel implements ActionListener {
     JButton button = (JButton) arg0.getSource();
         if(button == next) {
             index += 1;
-
             prev.setVisible(true);
             int iloscStron = tab.length / 3;
             if(tab.length % 3 != 0) {
@@ -176,10 +193,53 @@ public class oknoZakupu extends JPanel implements ActionListener {
             view.pobierzSzczegoly(tab[index*3+1]);
         } else if(button == wybierz3){
             view.pobierzSzczegoly(tab[index*3+2]);
+        }else if(button == usun1){
+            int toRemove = (index-1)*3;
+            // create an array to hold elements after deletion
+            String[] copyArray = new String[tab.length - 1];
+            // copy elements from original array from beginning till index into copyArray
+            System.arraycopy(tab, 0, copyArray, 0, toRemove);
+            // copy elements from original array from index+1 till end into copyArray
+            System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
+            tab = copyArray;
+        } else if(button == usun2){
+            int toRemove = (index-1)*3+1;
+            // create an array to hold elements after deletion
+            String[] copyArray = new String[tab.length - 1];
+            // copy elements from original array from beginning till index into copyArray
+            System.arraycopy(tab, 0, copyArray, 0, toRemove);
+            // copy elements from original array from index+1 till end into copyArray
+            System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
+            tab = copyArray;
+
+        } else if(button == usun3){
+            int toRemove = (index-2)*3+2;
+            // create an array to hold elements after deletion
+            String[] copyArray = new String[tab.length - 1];
+            // copy elements from original array from beginning till index into copyArray
+            System.arraycopy(tab, 0, copyArray, 0, toRemove);
+            // copy elements from original array from index+1 till end into copyArray
+            System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
+            tab = copyArray;
+        }else if (button == addToCartButton){
+            //TODO: adding to cart
+            //some functions that resolves the adding
+            String id = idField.getText();
+            view.addToCart(id);
         }
     }
 
     public void show(String name) {
         this.name.setText(name);
+
+        wybierz1.setVisible(false);
+        wybierz2.setVisible(false);
+        wybierz3.setVisible(false);
+        usun1.setVisible(false);
+        usun2.setVisible(false);
+        usun3.setVisible(false);
+        prev.setVisible(false);
+        next.setVisible(false);
     }
+
 }

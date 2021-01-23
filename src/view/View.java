@@ -121,7 +121,10 @@ public class View {
 	public void zakup(){
     	wsk.oknoZakupu();
 	}
-	
+	public String addToCart(String id){
+    	//TODO: check if id matches any from database
+		return id;
+	}
 	public void podanoPargonZwrot(String paragon) {
 		controller.wybranoZwrot(paragon);
 	}
