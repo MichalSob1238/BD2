@@ -370,6 +370,26 @@ public class DatabaseController {
         return transactions;
     }
 
+    public List<Produkt> selectProductFromTransaction(Integer idTransaction){
+        List<Produkt> products = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getEmployee = conn.prepareStatement("SELECT * from produkt WHERE id_produkt IN (Select produkt_id_produkt from pozycja_paragon where transakcja_id_transakcja = ?)")  ;
+            getEmployee.setInt(1, idTransaction);
+            ResultSet rs = getEmployee.executeQuery();
+            while (rs.next()) {
+                products.add(new Produkt(rs.getInt("id_produkt"),
+                        rs.getString("nazwa"), rs.getDouble("koszt"),
+                        rs.getInt("kategoria_id_kategoria")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return products;
+    }
+
     List<Transakcja> selectFakturaOnlyFromTransakcja(){
         List<Transakcja> transactions = new ArrayList<>();
         try {
@@ -462,6 +482,23 @@ public class DatabaseController {
         return products;
     }
 
+    List<String> selectProductNameProdukt(){
+        List<String> products = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT nazwa from produkt");
+
+            while (rs.next()) {
+                products.add(rs.getString(1));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return products;
+    }
+
     List<Dostawa> selectAllFromDostawa(){
         List<Dostawa> deliveries = new ArrayList<>();
         try {
@@ -481,26 +518,23 @@ public class DatabaseController {
         return deliveries;
     }
 
-//    List<Faktura> selectAllFromFaktura(){
-//        List<Faktura> invoices = new ArrayList<>();
-//        try {
-//            Connection conn = getConnection();
-//            Statement st = conn.createStatement();
-//            ResultSet rs = st.executeQuery("SELECT * from faktura");
-//
-//            while (rs.next()) {
-//                invoices.add(new Faktura(rs.getInt("id_faktura"),
-//                        rs.getString("nr_faktury"), rs.getDate("termin_platnosci"),
-//                        rs.getInt("czy_oplacono"),rs.getString("nazwa"),
-//                        rs.getString("adres"), rs.getString("nip"),
-//                        rs.getInt("transakcja_id_transakcja")));
-//            }
-//            st.close();
-//        } catch(SQLException ex){
-//            ex.printStackTrace();
-//        }
-//        return invoices;
-//    }
+    List<String> selectDataFromDostawa(){
+        List<String> deliveries = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(
+                    "SELECT dostawa.data_dostawy, dostawa.koszt, hurtownia.nazwa FROM dostawa INNER JOIN hurtownia ON dostawa.hurtownia_id_hurtownia=hurtownia.id_hurtownia");
+
+            while (rs.next()) {
+                deliveries.add(rs.getDate(1).toString() + " " + rs.getDouble(2) + " " + rs.getString(3));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return deliveries;
+    }
 
     List<Magazyn> selectAllFromMagazyn(){
         List<Magazyn> warehouses = new ArrayList<>();
@@ -631,6 +665,42 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return shops;
+    }
+
+    List<Faktura> selectAllFromFaktura(){
+        List<Faktura> invoices = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * from faktura");
+
+            while (rs.next()) {
+                invoices.add(new Faktura(rs.getInt(1), rs.getString(2),
+                        rs.getDate(3), rs.getBoolean(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getInt(8)));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return invoices;
+    }
+
+    List<String> selectInvoceNumberFromFaktura(){
+        List<String> invoiceNumbers = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT nr_faktury from faktura");
+
+            while (rs.next()) {
+                invoiceNumbers.add(rs.getString(1));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return invoiceNumbers;
     }
 
     List<Szczegolowe_informacje> selectAllFromSzczegoloweInformacje(){

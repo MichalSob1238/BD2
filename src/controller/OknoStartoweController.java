@@ -1,5 +1,6 @@
 package controller;
 
+import model.Faktura;
 import model.Produkt;
 
 import java.util.ArrayList;
@@ -9,11 +10,24 @@ public class OknoStartoweController{
 
     public List<String> getProductNames(){
         DatabaseController db = new DatabaseController();
-        List<Produkt> products = db.selectAllFromProdukt();
-        List<String> names = new ArrayList<>();
-        for (Produkt product: products) {
-            names.add(product.getName());
-        }
+        List<String> names = db.selectProductNameProdukt();
         return names;
+    }
+
+    public List<String> getInvoiceNumbers(){
+        DatabaseController db = new DatabaseController();
+        List<String> invoices = db.selectInvoceNumberFromFaktura();
+        return invoices;
+    }
+
+    public List<String> getDeliveryNames(){
+        DatabaseController db = new DatabaseController();
+        List<String> deliveriesData = db.selectDataFromDostawa();
+        return deliveriesData;
+    }
+    public List<Produkt> getProductsFromTransaction(String transactionId){
+        DatabaseController db = new DatabaseController();
+        List<Produkt> products = db.selectProductFromTransaction(Integer.parseInt(transactionId));
+        return products;
     }
 }

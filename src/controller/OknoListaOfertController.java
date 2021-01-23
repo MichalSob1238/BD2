@@ -9,4 +9,5 @@ public class OknoListaOfertController {
         Szczegolowe_informacje szczegoly = db.getDetails(nazwa);
         return szczegoly;
     }
+
 }

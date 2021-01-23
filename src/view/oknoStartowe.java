@@ -105,6 +105,8 @@ public class oknoStartowe extends JPanel implements ActionListener {
 			view.wybranoRezerwacje();
 		} else if(button == cofnij) {
 			view.oknoLogowania();
+		}else if(button == faktury){
+
 		}
 		
 	}
