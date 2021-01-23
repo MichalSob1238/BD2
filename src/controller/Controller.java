@@ -2,7 +2,11 @@ package controller;
 
 import model.Model;
 import model.Pracownik;
+import model.Produkt;
+import model.Szczegolowe_informacje;
 import view.View;
+
+import java.util.List;
 
 public  class Controller {
     private Model model;
@@ -10,6 +14,7 @@ public  class Controller {
     
     private OknoLogowaniaController logowanie;
     private OknoStartoweController startoweController;
+    private OknoListaOfertController ofertaController;
 
     public Controller (Model model, View view)
     {
@@ -46,6 +51,12 @@ public  class Controller {
     	view.oferta(oferta);
     }
 
+    public void pobierzSzczegoly(String nazwa){
+    	ofertaController = new OknoListaOfertController();
+    	Szczegolowe_informacje szczegoly = ofertaController.pobierzSzczegoly(nazwa);
+    	view.szczegoly(szczegoly);
+	}
+
 	public void wyswietlenieRezerwacji() {
 		String rezerwacje[] = new String[0];
     	//metoda, ktÃ³ra wstawi do rezerwacje coÅ› po czym rozpoznaje siÄ™ rezerwacje (numery?)
@@ -54,24 +65,38 @@ public  class Controller {
 	}
 	
 	public void wyswietlenieFaktur() {
-		String faktury[];
-		//metoda, która wstawi do faktury, coœ po czym rozpoznaje siê faktury
-		//view.faktury(faktury);
+		startoweController  = new  OknoStartoweController();
+		String faktury[] = startoweController.getInvoiceNumbers().toArray(new String[0]);
+		System.out.println(faktury);
+		view.faktury(faktury);
 	}
 	
 	public void wyswietlenieDostaw() {
-		String dostawy[];
-		//metoda, która wstawi do dostawy, coœ po czym rozpoznaje siê dostawy
+		startoweController  = new  OknoStartoweController();
+		String dostawy[] = startoweController.getDeliveryNames().toArray(new String[0]);
 		//view.dostawy(dostawy);
 	}
 	
 	public void wybranoZwrot(String paragon) {
-		//sprawdzenie czy jest odpowiedni paragon, je¿eli tak wywo³aæ view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
+		List<Produkt> products = startoweController.getProductsFromTransaction(paragon);
+		if(products.size()!= 0){
+			//Tutaj cos siÄ™ dzieje bo paragon istnieje
+		} else{
+			//Tutaj nie ma nic na liÅ›cie
+		}
+		//sprawdzenie czy jest odpowiedni paragon, jeï¿½eli tak wywoï¿½aï¿½ view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
+	
+	public void wybranoProduktDoZwrotu(String paragon, String produkt) {
+		//ustalic ile produktu jest na danym paragonie
+		//wywoï¿½aï¿½ view.ileProduktuZwrot(String ilosc, String paragon, String produkt)
+	}
+	
+	public void zwrotIlosc(int ilosc, String paragon, String produkt) {
+		//ustalic jakï¿½ kwotï¿½ trzeba zwrï¿½ciï¿½, jeszcze nie akceptowaï¿½ zwrotu!
+		//wywoï¿½aï¿½ view.kwotaDoZwrotu(String kwota, String paragon, String produkt)
+	}
 
-	public  void wyswietlenieZwrot(){
-        view.zwrot();
-    }
     
 }

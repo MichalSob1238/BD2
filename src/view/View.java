@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import model.Model;
+import model.Szczegolowe_informacje;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,11 @@ public class View {
 	Controller controller;
 	Model model;
     private glowneOkno wsk;
+    
+    private String paragonZwrot;
+    private String produktZwrot;
+    private String kwotaZwrot;
+    private String maxIloscZwrot;
     
     public View(){
     	wsk = new glowneOkno(this);
@@ -56,7 +62,11 @@ public class View {
 	public void wybranoOferte() {
 		controller.wyswietlenieOfertySklepu();
 	}
-	
+
+	public void pobierzSzczegoly(String nazwa){ controller.pobierzSzczegoly(nazwa); }
+
+	public void szczegoly(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly);}
+
 	public void wybranoRezerwacje() {
 		controller.wyswietlenieRezerwacji();
 	}
@@ -103,8 +113,52 @@ public class View {
 	public void zwrotPonownie() {
 		
 	}
+
+
+	
+	public void podanoPargonZwrot(String paragon) {
+		controller.wybranoZwrot(paragon);
+	}
 	
 	public void zwrotListaProduktow(String paragon, String produkty[]) {
+		paragonZwrot = paragon;
+		wsk.oknoZwrotListaProduktow(produkty, paragon);
+	}
+	
+	public void wybranoProduktDoZwrotu(String produkt) {
+		controller.wybranoProduktDoZwrotu(paragonZwrot, produkt);
+	}
+	
+	public void ileProduktuZwrot(String ilosc, String paragon, String produkt) {
+		paragonZwrot = paragon;
+		produktZwrot = produkt;
+		maxIloscZwrot = ilosc;
+		wsk.oknoWyboruIlosciProduktuZwrot(ilosc, paragon, produkt);
+	}
+	
+	public void ileProduktuZwrot() {
+		wsk.oknoWyboruIlosciProduktuZwrot(maxIloscZwrot, paragonZwrot, produktZwrot);
+	}
+	
+	public void podanoIloscProduktuZwrot(int ilosc) {
+		controller.zwrotIlosc(ilosc, paragonZwrot, produktZwrot);
+	}
+	
+	public void kwotaDoZwrotu(String kwota) {
+		kwotaZwrot = kwota;
+		wsk.oknoWyboruSposobuOddaniaKwoty(kwota);
+	}
+	
+	public void wybranoGotowkeZwrot() {
+		//wywo³aæ kontrolera
+	}
+	
+	public void oknoPodaniaNrKonta() {
+		//wyœwietliæ okno do podania numeru konta
+	}
+	
+	public void wybranoPrzelewZwrot(String nrKonta) {
+		//wywo³aæ kontrolera
 	}
 }
 

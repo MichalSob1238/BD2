@@ -46,11 +46,9 @@ public class oknoLogowania extends JPanel implements ActionListener{
 	
 
 	setLayout(layout);
-	Insets pom2 = new Insets(0, 0, 0, 0);
 	
-	pom.insets = pom2;
+	pom.gridx = 0;
 	pom.gridy = 1;
-	pom.gridwidth = 1;
 	add(nameLabel, pom);
 	
 	pom.gridx = 1;

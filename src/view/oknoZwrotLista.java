@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class oknoListaOfert extends JPanel implements ActionListener {
+public class oknoZwrotLista extends JPanel implements ActionListener {
 
 	private View view;
 	private int index;
@@ -29,7 +29,7 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 	private GridBagLayout layout;
 	private GridBagConstraints pom;
 	
-	public oknoListaOfert(View view) {
+	public oknoZwrotLista(View view) {
 		this.view = view;
 		index = 1;
 		
@@ -40,13 +40,13 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 		name = new JLabel();
 		cofnij = new JButton("cofnij");
 		
-		tytul = new JLabel("Oferta:");
+		tytul = new JLabel("Paragon");
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton("szczegï¿½y");
-		wybierz2 = new JButton("szczegï¿½y");
-		wybierz3 = new JButton("szczegï¿½y");
+		wybierz1 = new JButton("zwróæ");
+		wybierz2 = new JButton("zwróæ");
+		wybierz3 = new JButton("zwróæ");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");
@@ -112,9 +112,10 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 		
 	}
 
-	public void show(String nameUser, String tabArg[]) {
+	public void show(String nameUser, String tabArg[], String paragon) {
 		name.setText(nameUser);
 		index = 1;
+		tytul.setText("Paragon nr " + paragon);
 		
 		tab = tabArg;
 		int iloscStron = tabArg.length / 3;
@@ -195,12 +196,6 @@ public class oknoListaOfert extends JPanel implements ActionListener {
 			wybierz3.setVisible(true);
 		} else if(button == cofnij) {
 			view.oknoStartowe();
-		} else if(button == wybierz1){
-			view.pobierzSzczegoly(tab[index*3]);
-		} else if(button == wybierz2){
-			view.pobierzSzczegoly(tab[index*3+1]);
-		} else if(button == wybierz3){
-			view.pobierzSzczegoly(tab[index*3+2]);
 		}
 	}
 }

@@ -73,15 +73,17 @@ public class Faktura {
         this.transactionNumber = transactionNumber;
     }
 
-    public Faktura(int id, String invoiceNr, Date dueDate, String companyName, String companyAddress, String NIP, int transactionNumber) {
+    public Faktura(int id, String invoiceNr, Date dueDate, Boolean ifPayed, String companyName, String companyAddress, String NIP, int transactionNumber) {
         this.id = id;
         this.invoiceNr = invoiceNr;
         this.dueDate = dueDate;
+        this.ifPayed = ifPayed;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.NIP = NIP;
         this.transactionNumber = transactionNumber;
     }
+
     private static String generateRandom9Digits(){
         final int minNIPRandom = 100000;
         final int maxNIPRandom = 999999;

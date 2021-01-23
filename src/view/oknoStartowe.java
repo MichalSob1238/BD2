@@ -108,6 +108,8 @@ public class oknoStartowe extends JPanel implements ActionListener {
 		} else if(button == zwrot)
 		{
 			view.wybranoZwrot();
+		}else if(button == faktury){
+
 		}
 		
 	}
