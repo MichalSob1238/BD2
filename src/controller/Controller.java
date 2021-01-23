@@ -26,7 +26,8 @@ public  class Controller {
     }
 
     public void start(){
-        view.oknoLogowania();
+        //view.oknoLogowania();
+		view.zakup();
     }
     
     public void probaLogowania(String name, String surname) {
@@ -63,7 +64,9 @@ public  class Controller {
 		view.rezerwacje(rezerwacje);
 
 	}
-	
+	public void oknoZakupu(){
+    	view.zakup();
+	}
 	public void wyswietlenieFaktur() {
 		startoweController  = new  OknoStartoweController();
 		String faktury[] = startoweController.getInvoiceNumbers().toArray(new String[0]);
@@ -87,7 +90,10 @@ public  class Controller {
 		//sprawdzenie czy jest odpowiedni paragon, je�eli tak wywo�a� view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
 		//jezeli nie ma, to wywolac view.zwrotPonownie
 	}
-	
+
+	public void wyswietlenieZwrot(){
+    	view.zwrot();
+	}
 	public void wybranoProduktDoZwrotu(String paragon, String produkt) {
 		//ustalic ile produktu jest na danym paragonie
 		//wywo�a� view.ileProduktuZwrot(String ilosc, String paragon, String produkt)

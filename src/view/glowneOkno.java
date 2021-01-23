@@ -3,6 +3,7 @@ package view;
 import model.Szczegolowe_informacje;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class glowneOkno extends JFrame{
@@ -22,6 +23,7 @@ public class glowneOkno extends JFrame{
 	private oknoSzczegoly szczegoly;
 	private oknoWyboruIlosciProduktuZwrot iloscZwrot;
 	private oknoWyborZwrotuKwota sposobZwrotu;
+	private oknoZakupu zakup;
 
 	
 	public glowneOkno(View view) {
@@ -42,6 +44,7 @@ public class glowneOkno extends JFrame{
 		szczegoly = new oknoSzczegoly(view);
 		iloscZwrot = new oknoWyboruIlosciProduktuZwrot(view);
 		sposobZwrotu = new oknoWyborZwrotuKwota(view);
+		zakup = new oknoZakupu(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -66,6 +69,15 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
+
+	public void oknoZakupu() {
+		getContentPane().removeAll();
+		zakup.show(name);
+		add(zakup);
+		validate();
+		repaint();
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

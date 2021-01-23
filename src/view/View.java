@@ -105,6 +105,10 @@ public class View {
 		controller.wyswietlenieZwrot();
 	}
 
+	public void wybranoZakup(){
+    	controller.oknoZakupu();
+	}
+
 	public void sprawdzZwrot(String receipt)
 	{
 		controller.wybranoZwrot(receipt);
@@ -114,7 +118,9 @@ public class View {
 		
 	}
 
-
+	public void zakup(){
+    	wsk.oknoZakupu();
+	}
 	
 	public void podanoPargonZwrot(String paragon) {
 		controller.wybranoZwrot(paragon);
