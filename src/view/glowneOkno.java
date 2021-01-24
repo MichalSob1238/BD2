@@ -85,7 +85,8 @@ public class glowneOkno extends JFrame{
 	}
 	public void oknoFinaliseTransaction(Integer cena){
 		getContentPane().removeAll();
-		finaliseTransaction.show(name,cena);
+		Integer cenna = cena;
+		finaliseTransaction.show(name,cenna);
 		add(finaliseTransaction);
 		validate();
 		repaint();

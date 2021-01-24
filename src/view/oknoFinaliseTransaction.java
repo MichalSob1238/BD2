@@ -81,6 +81,7 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         name.setText(nameUser);
         msg.setVisible(true);
         this.cena = cena;
+        msg.setText("Ostateczna kwota to: " + cena);
     }
 
 

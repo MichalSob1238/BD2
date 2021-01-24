@@ -176,7 +176,8 @@ public class oknoZakupu extends JPanel implements ActionListener {
                 produkt3.setText(tab[(index-1)*3+2]);
             }
 
-        } else if(button == prev) {
+        } else if(button == prev)
+        {
             index -= 1;
             next.setVisible(true);
             if(index == 1) {
@@ -248,11 +249,8 @@ public class oknoZakupu extends JPanel implements ActionListener {
             reload();
         }else if (button == addToCartButton)
         {
-            //TODO: adding to cart
             String id = idField.getText();
-            //some functions that resolves the adding
             id = view.addToCart(id);
-
             tab  = Arrays.copyOf(tab, tab.length + 1); //create new array from old array and allocate one more element
             tab[tab.length - 1] = id;
             int iloscStron = tab.length / 3;

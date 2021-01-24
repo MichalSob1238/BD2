@@ -207,7 +207,7 @@ public class View {
 	}
 	public void transactionConfirmation(Integer price) {
     	Integer kwota = price;
-		wsk.oknoFinaliseTransaction(price);
+		wsk.oknoFinaliseTransaction(kwota);
 	}
 }
 
