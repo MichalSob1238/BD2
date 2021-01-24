@@ -14,7 +14,7 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 
 	private View view;
 	private int index;
-	private String tab[];
+	private Integer tab[];
 	
 	private JLabel name;
 	private JButton cofnij;
@@ -112,7 +112,7 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 		
 	}
 
-	public void show(String nameUser, String tabArg[]) {
+	public void show(String nameUser, Integer tabArg[]) {
 		name.setText(nameUser);
 		index = 1;
 		
@@ -122,17 +122,17 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 			iloscStron += 1;
 		}
 		if(tabArg.length == 1) {
-			produkt1.setText(tabArg[0]);
+			produkt1.setText(Integer.toString(tabArg[0]));
 			wybierz2.setVisible(false);
 			wybierz3.setVisible(false);
 		}else if(tabArg.length == 2) {
-			produkt1.setText(tabArg[0]);
-			produkt2.setText(tabArg[1]);
+			produkt1.setText(Integer.toString(tabArg[0]));
+			produkt2.setText(Integer.toString(tabArg[1]));
 			wybierz3.setVisible(false);
 		}else if(tabArg.length >= 3) {
-			produkt1.setText(tabArg[0]);
-			produkt2.setText(tabArg[1]);
-			produkt3.setText(tabArg[2]);
+			produkt1.setText(Integer.toString(tabArg[0]));
+			produkt2.setText(Integer.toString(tabArg[1]));
+			produkt3.setText(Integer.toString(tabArg[2]));
 		}
 		strona.setText(index + "/" + iloscStron);
 		prev.setVisible(false);
@@ -160,20 +160,20 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 			strona.setText(index + "/" + iloscStron);
 			int len = tab.length - (index-1)*3;
 			if(len == 1) {
-				produkt1.setText(tab[(index-1)*3]);
+				produkt1.setText(Integer.toString(tab[(index-1)*3]));
 				produkt2.setText("");
 				produkt3.setText("");
 				wybierz2.setVisible(false);
 				wybierz3.setVisible(false);
 			}else if(len == 2) {
-				produkt1.setText(tab[(index-1)*3]);
-				produkt2.setText(tab[(index-1)*3+1]);
+				produkt1.setText(Integer.toString(tab[(index-1)*3]));
+				produkt2.setText(Integer.toString(tab[(index-1)*3+1]));
 				produkt3.setText("");
 				wybierz3.setVisible(false);
 			}else if(len >= 3) {
-				produkt1.setText(tab[(index-1)*3]);
-				produkt2.setText(tab[(index-1)*3+1]);
-				produkt3.setText(tab[(index-1)*3+2]);
+				produkt1.setText(Integer.toString(tab[(index-1)*3]));
+				produkt2.setText(Integer.toString(tab[(index-1)*3+1]));
+				produkt3.setText(Integer.toString(tab[(index-1)*3+2]));
 			}
 			
 		} else if(button == prev) {
@@ -187,16 +187,16 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 				iloscStron += 1;
 			}
 			strona.setText(index + "/" + iloscStron);
-			produkt1.setText(tab[(index-1)*3]);
-			produkt2.setText(tab[(index-1)*3+1]);
-			produkt3.setText(tab[(index-1)*3+2]);
+			produkt1.setText(Integer.toString(tab[(index-1)*3]));
+			produkt2.setText(Integer.toString(tab[(index-1)*3+1]));
+			produkt3.setText(Integer.toString(tab[(index-1)*3+2]));
 			wybierz1.setVisible(true);
 			wybierz2.setVisible(true);
 			wybierz3.setVisible(true);
 		} else if(button == cofnij) {
 			view.oknoStartowe();
 		} else if(button == wybierz1) {
-			view.pobierzSzczegolyFaktura(tab[index*3]);
+			view.pobierzSzczegolyZamowienie(tab[(index-1)*3]);
 		}
 	}
 }

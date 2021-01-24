@@ -3,10 +3,12 @@ package view;
 import model.Faktura;
 import model.Szczegolowe_informacje;
 import model.SzczegolyFaktura;
+import model.SzczegolyZamowienie;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class glowneOkno extends JFrame{
 	private View view;
@@ -28,6 +30,7 @@ public class glowneOkno extends JFrame{
 	private oknoZakupu zakup;
 	private oknoHurtownia hurtownia;
 	private oknoSzczegolyFaktura szczegolyFaktura;
+	private oknoSzczegolyZamowienie szczegolyZamowienie;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -50,6 +53,7 @@ public class glowneOkno extends JFrame{
 		zakup = new oknoZakupu(view);
 		hurtownia = new oknoHurtownia(view);
 		szczegolyFaktura = new oknoSzczegolyFaktura(view);
+		szczegolyZamowienie = new oknoSzczegolyZamowienie(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -100,7 +104,7 @@ public class glowneOkno extends JFrame{
 		repaint();
 
 	}
-	public void oknoListaRezerwacje(String tab[]) {
+	public void oknoListaRezerwacje(Integer tab[]) {
 		getContentPane().removeAll();
 		listaRezerwacje.show(name, tab);
 		add(listaRezerwacje);
@@ -175,6 +179,14 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		szczegolyFaktura.show(name, szczegoly);
 		add(szczegolyFaktura);
+		validate();
+		repaint();
+	}
+
+	public void oknoSzczegolyZamowienie(SzczegolyZamowienie[] szczegoly){
+		getContentPane().removeAll();
+		szczegolyZamowienie.show(name, szczegoly);
+		add(szczegolyZamowienie);
 		validate();
 		repaint();
 	}

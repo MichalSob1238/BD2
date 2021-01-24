@@ -36,4 +36,10 @@ public class OknoStartoweController{
         List<String> warehouses = db.selectWarehousesNames();
         return warehouses;
     }
+
+    public  List<Integer> getOrderNames(){
+        DatabaseController db = new DatabaseController();
+        List<Integer> orderNames = db.selectOrderNames();
+        return orderNames;
+    }
 }

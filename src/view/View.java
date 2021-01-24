@@ -5,9 +5,11 @@ import model.Model;
 import model.Szczegolowe_informacje;
 import model.Faktura;
 import model.SzczegolyFaktura;
+import model.SzczegolyZamowienie;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class View {
 	Controller controller;
@@ -76,11 +78,14 @@ public class View {
 
 	public void szczegolyFaktura(SzczegolyFaktura szczegolyFaktura){wsk.oknoSzczegolyFaktura(szczegolyFaktura);}
 
+	public void pobierzSzczegolyZamowienie(Integer nrZamowienie){controller.pobierzSzczegolyZamowienie(nrZamowienie);}
+	public void szczegolyZamowienie(SzczegolyZamowienie[] szczegoly){wsk.oknoSzczegolyZamowienie(szczegoly);}
+
 	public void wybranoRezerwacje() {
 		controller.wyswietlenieRezerwacji();
 	}
 
-	public void rezerwacje(String[] rezerwacje) {
+	public void rezerwacje(Integer[] rezerwacje) {
 		wsk.oknoListaRezerwacje(rezerwacje);
 		
 	}

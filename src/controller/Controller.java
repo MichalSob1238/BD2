@@ -13,6 +13,7 @@ public  class Controller {
     private OknoStartoweController startoweController;
     private OknoListaOfertController ofertaController;
     private OknoListaFakturController fakturaController;
+    private OknoListaZamowienController zamowienieController;
 
     public Controller (Model model, View view)
     {
@@ -57,8 +58,8 @@ public  class Controller {
 	}
 
 	public void wyswietlenieRezerwacji() {
-		String rezerwacje[] = new String[0];
-    	//metoda, która wstawi do rezerwacje coś po czym rozpoznaje się rezerwacje (numery?)
+		startoweController  = new  OknoStartoweController();
+		Integer rezerwacje[] = startoweController.getOrderNames().toArray(new Integer[0]);
 		view.rezerwacje(rezerwacje);
 
 	}
@@ -123,5 +124,11 @@ public  class Controller {
 		fakturaController = new OknoListaFakturController();
 		SzczegolyFaktura szczegolyFaktura = fakturaController.pobierzSzczegolyFaktura(nrFaktura);
 		view.szczegolyFaktura(szczegolyFaktura);
+	}
+
+	public void pobierzSzczegolyZamowienie(Integer nrZamowienie){
+		zamowienieController = new OknoListaZamowienController();
+		SzczegolyZamowienie[] szczegolyZamowienie = zamowienieController.pobierzSzczegolyZamowienie(nrZamowienie).toArray(new SzczegolyZamowienie[0]);
+		view.szczegolyZamowienie(szczegolyZamowienie);
 	}
 }

@@ -860,4 +860,45 @@ public class DatabaseController {
         return szczegoly;
     }
 
+    List<Integer> selectOrderNames(){
+        List<Integer> orderNames = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT id_zamowienie from zamowienie order by id_zamowienie");
+
+            while (rs.next()) {
+                orderNames.add(rs.getInt(1));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return orderNames;
+    }
+
+    List<SzczegolyZamowienie> selectOrderDetails(Integer nrFaktura){
+        List<SzczegolyZamowienie> orderDetails = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            PreparedStatement getOrderDetails = conn.prepareStatement("select * from zamowienie join pozycja_zamowienie " +
+                    "on zamowienie.id_zamowienie = pozycja_zamowienie.zamowienie_id_zamowienie join produkt " +
+                    "on produkt.id_produkt = pozycja_zamowienie.produkt_id_produkt join dane_klienta " +
+                    "on dane_klienta.id_klient = zamowienie.dane_klienta_id_klient " +
+                    "where zamowienie.id_zamowienie = ?");
+            getOrderDetails.setInt(1,nrFaktura);
+            ResultSet rs = getOrderDetails.executeQuery();
+
+            while (rs.next()) {
+                orderDetails.add(new SzczegolyZamowienie(rs.getInt(1), rs.getBoolean(2),
+                        rs.getDate(3), rs.getDate(4), rs.getInt(6), rs.getDouble(7),
+                        rs.getString(11), rs.getString(15), rs.getString(16)));
+            }
+            rs.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return orderDetails;
+    }
+
 }
