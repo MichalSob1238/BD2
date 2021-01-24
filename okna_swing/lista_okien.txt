@@ -16,10 +16,10 @@ okna:
 
 
 Do zrobienia:
--okno szegółów produktu
+-okno szegółów produktu (zrobione - Bartek)
 -okno szczegółów zamówienia
 -okno szczegółów dostawy
--okno szczegółów faktury
+-okno szczegółów faktury (zrobione - Bartek)
 -formularz zamówienia
 -formularz faktury
 -zamówienie detaliczne (informacje)
