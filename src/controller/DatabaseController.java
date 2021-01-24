@@ -539,7 +539,7 @@ public class DatabaseController {
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
-            PreparedStatement getProductName = conn.prepareStatement("SELECT nazwa from hurtownia WHERE id_produkt = ? LIMIT 1");
+            PreparedStatement getProductName = conn.prepareStatement("SELECT nazwa from produkt WHERE id_produkt = ? LIMIT 1");
             getProductName.setInt(1, id);
             ResultSet rs = getProductName.executeQuery();
             if(rs.next()) {

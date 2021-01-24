@@ -31,6 +31,7 @@ public class glowneOkno extends JFrame{
 	private oknoHurtownia hurtownia;
 	private oknoSzczegolyFaktura szczegolyFaktura;
 	private oknoSzczegolyZamowienie szczegolyZamowienie;
+	private oknoSzczegolyProduktZakup szczegolyZakup;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -54,6 +55,7 @@ public class glowneOkno extends JFrame{
 		hurtownia = new oknoHurtownia(view);
 		szczegolyFaktura = new oknoSzczegolyFaktura(view);
 		szczegolyZamowienie = new oknoSzczegolyZamowienie(view);
+		szczegolyZakup = new oknoSzczegolyProduktZakup(view);
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -144,9 +146,20 @@ public class glowneOkno extends JFrame{
 	}
 
 	public void oknoSzczegoly(Szczegolowe_informacje szczegol) {
+		oknoSzczegoly(szczegol, true);
+	}
+
+
+	public void oknoSzczegoly(Szczegolowe_informacje szczegol, Boolean flag) {
 		getContentPane().removeAll();
-		szczegoly.show(name, szczegol);
-		add(szczegoly);
+		if (flag) {
+			szczegoly.show(name, szczegol);
+			add(szczegoly);
+		} else {
+			szczegolyZakup.show(name,szczegol);
+			add(szczegolyZakup);
+		}
+
 		validate();
 		repaint();
 	}

@@ -58,6 +58,12 @@ public  class Controller {
     	view.szczegoly(szczegoly);
 	}
 
+	public void pobierzSzczegolyZakup(String nazwa){
+		ofertaController = new OknoListaOfertController();
+		Szczegolowe_informacje szczegoly = ofertaController.pobierzSzczegoly(nazwa);
+		view.szczegolyZakup(szczegoly);
+	}
+
 	public void wyswietlenieRezerwacji() {
 		startoweController  = new  OknoStartoweController();
 		Integer rezerwacje[] = startoweController.getOrderNames().toArray(new Integer[0]);
@@ -138,5 +144,11 @@ public  class Controller {
 		zamowienieController = new OknoListaZamowienController();
 		SzczegolyZamowienie[] szczegolyZamowienie = zamowienieController.pobierzSzczegolyZamowienie(nrZamowienie).toArray(new SzczegolyZamowienie[0]);
 		view.szczegolyZamowienie(szczegolyZamowienie);
+	}
+
+	public String getProductByID(String id) {
+		ofertaController = new OknoListaOfertController();
+		String prodByID = ofertaController.getProductById(id);
+		return prodByID;
 	}
 }

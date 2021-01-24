@@ -68,11 +68,15 @@ public class View {
 	}
 
 	public void pobierzSzczegoly(String nazwa){ controller.pobierzSzczegoly(nazwa); }
+	public void pobierzSzczegolyZakup(String nazwa){ controller.pobierzSzczegolyZakup(nazwa); }
 //	public void pobierzSzczegolyHurtowni(String s) {
 //		controller.pobierzSzczegolyHurtowni(s);
 //	}
 
 	public void szczegoly(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly);}
+
+	public void szczegolyZakup(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly,false);}
+
 
 	public void pobierzSzczegolyFaktura(String nrFaktura){controller.pobierzSzczegolyFaktura(nrFaktura);}
 
@@ -140,8 +144,10 @@ public class View {
 
 	}
 	public String addToCart(String id){
-    	//TODO: check if id matches any from database
-		return id;
+
+		String byID = controller.getProductByID(id);
+		return byID;
+
 	}
 	public void podanoPargonZwrot(String paragon) {
 		controller.wybranoZwrot(paragon);

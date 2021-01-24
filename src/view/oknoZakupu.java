@@ -201,13 +201,13 @@ public class oknoZakupu extends JPanel implements ActionListener {
             view.oknoStartowe();
         } else if(button == wybierz1)
         {
-            view.pobierzSzczegoly(tab[index*3]);
+            view.pobierzSzczegolyZakup(tab[(index-1)*3]);
         } else if(button == wybierz2)
         {
-            view.pobierzSzczegoly(tab[index*3+1]);
+            view.pobierzSzczegolyZakup(tab[(index-1)*3+1]);
         } else if(button == wybierz3)
         {
-            view.pobierzSzczegoly(tab[index*3+2]);
+            view.pobierzSzczegolyZakup(tab[(index-1)*3+2]);
         }else if(button == usun1)
         {
             int toRemove = (index-1)*3;
@@ -218,6 +218,10 @@ public class oknoZakupu extends JPanel implements ActionListener {
             // copy elements from original array from index+1 till end into copyArray
             System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
             tab = copyArray;
+            if(tab.length%3==0)
+            {
+                prev.doClick();
+            }
             reload();
         } else if(button == usun2)
         {
@@ -250,41 +254,37 @@ public class oknoZakupu extends JPanel implements ActionListener {
             id = view.addToCart(id);
 
             tab  = Arrays.copyOf(tab, tab.length + 1); //create new array from old array and allocate one more element
-            tab[tab.length - 1] = view.addToCart(id);
+            tab[tab.length - 1] = id;
             int iloscStron = tab.length / 3;
             if(tab.length % 3 != 0) {
                 iloscStron += 1;
             }
-            if(tab.length == 1) {
-                produkt1.setText(tab[0]);
+            int len = tab.length - (index-1)*3;
+            if(len == 1) {
+                produkt1.setText(tab[(index-1)*3]);
                 wybierz1.setVisible(true);
                 usun1.setVisible(true);
-//                wybierz2.setVisible(false);
-//                wybierz3.setVisible(false);
-//                usun2.setVisible(false);
-//                usun3.setVisible(false);
-            }else if(tab.length == 2) {
-                produkt1.setText(tab[0]);
-                produkt2.setText(tab[1]);
+            }else if(len == 2) {
+                produkt1.setText(tab[(index-1)*3]);
+                produkt2.setText(tab[(index-1)*3+1]);
                 wybierz1.setVisible(true);
                 usun1.setVisible(true);
                 wybierz2.setVisible(true);
                 usun2.setVisible(true);
-//                wybierz3.setVisible(false);
-//                usun3.setVisible(false);
-            }else if(tab.length >= 3) {
-                produkt1.setText(tab[0]);
-                produkt2.setText(tab[1]);
-                produkt3.setText(tab[2]);
+            }else if(len >= 3) {
+                produkt1.setText(tab[(index-1)*3]);
+                produkt2.setText(tab[(index-1)*3+1]);
+                produkt3.setText(tab[(index-1)*3+2]);
                 wybierz1.setVisible(true);
                 usun1.setVisible(true);
                 wybierz2.setVisible(true);
                 usun2.setVisible(true);
                 wybierz3.setVisible(true);
                 usun3.setVisible(true);
-
             }
+
             strona.setText(index + "/" + iloscStron);
+
             prev.setVisible(false);
             if(iloscStron == 1) {
                 next.setVisible(false);
@@ -300,15 +300,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
 
     public void show(String name) {
         this.name.setText(name);
-
-        wybierz1.setVisible(false);
-        wybierz2.setVisible(false);
-        wybierz3.setVisible(false);
-        usun1.setVisible(false);
-        usun2.setVisible(false);
-        usun3.setVisible(false);
-        prev.setVisible(false);
-        next.setVisible(false);
+        this.reload();
     }
     
     public void reload(){
@@ -329,30 +321,57 @@ public class oknoZakupu extends JPanel implements ActionListener {
             usun1.setVisible(false);
             usun2.setVisible(false);
             usun3.setVisible(false);
+            if(iloscStron <= 1)
+            {
+                prev.setVisible(false);
+                next.setVisible(false);
+            }else {
+                prev.setVisible(true);
+            }
+
+            System.out.println("x in okno zakupu");
         }
         if(len == 1) {
             produkt1.setText(tab[(index-1)*3]);
-            produkt2.setText("");
-            produkt3.setText("");
+            produkt2.setText("ga");
+            produkt3.setText("ge");
             wybierz2.setVisible(false);
             wybierz3.setVisible(false);
             usun2.setVisible(false);
             usun3.setVisible(false);
+            System.out.println(index);
+            if(index <= 1)
+            {
+                prev.setVisible(false);
+                next.setVisible(false);
+            }else {
+                prev.setVisible(true);
+            }
         }else if(len == 2) {
             produkt1.setText(tab[(index-1)*3]);
             produkt2.setText(tab[(index-1)*3+1]);
             produkt3.setText("");
             wybierz3.setVisible(false);
             usun3.setVisible(false);
+            if(iloscStron <= 1)
+            {
+                prev.setVisible(false);
+                next.setVisible(false);
+            }else {
+                prev.setVisible(true);
+            }
         }else if(len >= 3) {
             produkt1.setText(tab[(index-1)*3]);
             produkt2.setText(tab[(index-1)*3+1]);
             produkt3.setText(tab[(index-1)*3+2]);
+        }else {
+
         }
         strona.setText(index + "/" + iloscStron);
-        prev.setVisible(false);
+
         if(iloscStron == 1) {
             next.setVisible(false);
+            prev.setVisible(false);
         }
     }
 
