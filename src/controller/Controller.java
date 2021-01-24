@@ -151,4 +151,10 @@ public  class Controller {
 		String prodByID = ofertaController.getProductById(id);
 		return prodByID;
 	}
+
+	public void finaliseTransaction(String[] tab) {
+    	int price = 420;
+    	// price = //TODO: policz cene!
+		view.transactionConfirmation(price);
+	}
 }

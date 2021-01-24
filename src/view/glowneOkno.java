@@ -32,6 +32,7 @@ public class glowneOkno extends JFrame{
 	private oknoSzczegolyFaktura szczegolyFaktura;
 	private oknoSzczegolyZamowienie szczegolyZamowienie;
 	private oknoSzczegolyProduktZakup szczegolyZakup;
+	private oknoFinaliseTransaction finaliseTransaction;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -56,6 +57,8 @@ public class glowneOkno extends JFrame{
 		szczegolyFaktura = new oknoSzczegolyFaktura(view);
 		szczegolyZamowienie = new oknoSzczegolyZamowienie(view);
 		szczegolyZakup = new oknoSzczegolyProduktZakup(view);
+		finaliseTransaction = new oknoFinaliseTransaction(view,0);
+
 	}
 	public void oknoLogowania(boolean badMsg) {
 		
@@ -80,7 +83,13 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
-
+	public void oknoFinaliseTransaction(Integer cena){
+		getContentPane().removeAll();
+		finaliseTransaction.show(name,cena);
+		add(finaliseTransaction);
+		validate();
+		repaint();
+	}
 	public void oknoZakupu() {
 		getContentPane().removeAll();
 		zakup.show(name);

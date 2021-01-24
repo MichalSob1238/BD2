@@ -201,5 +201,13 @@ public class View {
 	public void wybranoDostawy() {
     	controller.wyswietlenieDostaw();
 	}
+
+	public void finaliseTransaction(String[] tab) {
+    	controller.finaliseTransaction(tab);
+	}
+	public void transactionConfirmation(Integer price) {
+    	Integer kwota = price;
+		wsk.oknoFinaliseTransaction(price);
+	}
 }
 

@@ -218,7 +218,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
             // copy elements from original array from index+1 till end into copyArray
             System.arraycopy(tab, toRemove + 1, copyArray, toRemove, tab.length - toRemove - 1);
             tab = copyArray;
-            if(tab.length%3==0)
+            if(tab.length%3==0&&tab.length!=0)
             {
                 prev.doClick();
             }
@@ -294,7 +294,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
             }
         }else if (button == finaliseTransactionButton)
         {
-            //TODO: another window, functions taht would work here
+            view.finaliseTransaction(tab);
         }
     }
 
@@ -328,18 +328,15 @@ public class oknoZakupu extends JPanel implements ActionListener {
             }else {
                 prev.setVisible(true);
             }
-
-            System.out.println("x in okno zakupu");
         }
         if(len == 1) {
             produkt1.setText(tab[(index-1)*3]);
-            produkt2.setText("ga");
-            produkt3.setText("ge");
+            produkt2.setText("");
+            produkt3.setText("");
             wybierz2.setVisible(false);
             wybierz3.setVisible(false);
             usun2.setVisible(false);
             usun3.setVisible(false);
-            System.out.println(index);
             if(index <= 1)
             {
                 prev.setVisible(false);
@@ -364,10 +361,10 @@ public class oknoZakupu extends JPanel implements ActionListener {
             produkt1.setText(tab[(index-1)*3]);
             produkt2.setText(tab[(index-1)*3+1]);
             produkt3.setText(tab[(index-1)*3+2]);
-        }else {
-
         }
-        strona.setText(index + "/" + iloscStron);
+        if (!(iloscStron == 0)){
+            strona.setText(index + "/" + iloscStron);
+        }
 
         if(iloscStron == 1) {
             next.setVisible(false);
