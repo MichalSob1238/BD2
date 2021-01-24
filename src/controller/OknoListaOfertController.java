@@ -15,4 +15,10 @@ public class OknoListaOfertController {
         Hurtownia warehouse = db.selectWarehouseByName(name);
         return warehouse;
     }
+
+    public String getProductById(String id){
+        DatabaseController db = new DatabaseController();
+        String productName = db.selectProductById(Integer.parseInt(id));
+        return productName;
+    }
 }

@@ -534,6 +534,23 @@ public class DatabaseController {
         }
         return products;
     }
+    String selectProductById(Integer id){
+        String product = null;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getProductName = conn.prepareStatement("SELECT nazwa from hurtownia WHERE id_produkt = ? LIMIT 1");
+            getProductName.setInt(1, id);
+            ResultSet rs = getProductName.executeQuery();
+            if(rs.next()) {
+                product = rs.getString(1);
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return product;
+    }
 
     List<Dostawa> selectAllFromDostawa(){
         List<Dostawa> deliveries = new ArrayList<>();
