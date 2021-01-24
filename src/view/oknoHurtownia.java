@@ -92,7 +92,7 @@ public class oknoHurtownia extends JPanel implements ActionListener {
         pom.gridx = 1;
         add(strona, pom);
 
-        pom.gridx = 2;
+        pom.gridx = 3;
         add(next, pom);
 
 

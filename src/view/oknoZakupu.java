@@ -247,7 +247,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
             //TODO: adding to cart
             String id = idField.getText();
             //some functions that resolves the adding
-            //view.addToCart(id);
+            id = view.addToCart(id);
 
             tab  = Arrays.copyOf(tab, tab.length + 1); //create new array from old array and allocate one more element
             tab[tab.length - 1] = view.addToCart(id);

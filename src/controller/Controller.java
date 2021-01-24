@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import view.View;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public  class Controller {
@@ -81,8 +82,15 @@ public  class Controller {
 	public void wybranoZwrot(String paragon) {
 		startoweController  = new  OknoStartoweController();
 		List<Produkt> products = startoweController.getProductsFromTransaction(paragon);
+		ArrayList<String> nazwyProd = new ArrayList<String>();
+		for (Produkt prod : products)
+		{
+			nazwyProd.add(prod.getName());
+		}
+		String productsString[] = nazwyProd.toArray(new String[0]);
     	if(products.size()!= 0){
 			//Tutaj cos się dzieje bo paragon istnieje
+			view.zwrotListaProduktow(paragon,productsString);
 		} else{
 			//Tutaj nie ma nic na liście
 			view.zwrotPonownie();

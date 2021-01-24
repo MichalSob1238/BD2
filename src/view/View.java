@@ -144,6 +144,7 @@ public class View {
 	
 	public void zwrotListaProduktow(String paragon, String produkty[]) {
 		paragonZwrot = paragon;
+
 		wsk.oknoZwrotListaProduktow(produkty, paragon);
 	}
 	
