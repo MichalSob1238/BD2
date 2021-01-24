@@ -20,7 +20,7 @@ public class glowneOkno extends JFrame{
 	private oknoListaDostaw listaDostaw;
 	private oknoZwrotu zwrot;
 	private oknoZwrotLista zwrotLista;
-	private oknoSzczegoly szczegoly;
+	private oknoSzczegolyProdukt szczegoly;
 	private oknoWyboruIlosciProduktuZwrot iloscZwrot;
 	private oknoWyborZwrotuKwota sposobZwrotu;
 	private oknoZakupu zakup;
@@ -41,7 +41,7 @@ public class glowneOkno extends JFrame{
 		listaDostaw = new oknoListaDostaw(view);
 		zwrot = new oknoZwrotu(view);	
 		zwrotLista = new oknoZwrotLista(view);
-		szczegoly = new oknoSzczegoly(view);
+		szczegoly = new oknoSzczegolyProdukt(view);
 		iloscZwrot = new oknoWyboruIlosciProduktuZwrot(view);
 		sposobZwrotu = new oknoWyborZwrotuKwota(view);
 		zakup = new oknoZakupu(view);
