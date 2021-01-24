@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import view.View;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public  class Controller {
@@ -12,6 +13,7 @@ public  class Controller {
     private OknoLogowaniaController logowanie;
     private OknoStartoweController startoweController;
     private OknoListaOfertController ofertaController;
+    private OknoListaFakturController fakturaController;
 
     public Controller (Model model, View view)
     {
@@ -80,8 +82,15 @@ public  class Controller {
 	public void wybranoZwrot(String paragon) {
 		startoweController  = new  OknoStartoweController();
 		List<Produkt> products = startoweController.getProductsFromTransaction(paragon);
+		ArrayList<String> nazwyProd = new ArrayList<String>();
+		for (Produkt prod : products)
+		{
+			nazwyProd.add(prod.getName());
+		}
+		String productsString[] = nazwyProd.toArray(new String[0]);
     	if(products.size()!= 0){
 			//Tutaj cos się dzieje bo paragon istnieje
+			view.zwrotListaProduktow(paragon,productsString);
 		} else{
 			//Tutaj nie ma nic na liście
 			view.zwrotPonownie();
@@ -116,5 +125,11 @@ public  class Controller {
 		//Tutaj trzeba użyć czegoś innego bo inne są szczegóły na temat hurtowni a inne na temat produktu
 		// W sensie musi być metoda która po prostu bierze Hurtownię
 //		view.szczegoly(szczegoly);
+	}
+
+	public void pobierzSzczegolyFaktura(String nrFaktura){
+		fakturaController = new OknoListaFakturController();
+		SzczegolyFaktura szczegolyFaktura = fakturaController.pobierzSzczegolyFaktura(nrFaktura);
+		view.szczegolyFaktura(szczegolyFaktura);
 	}
 }

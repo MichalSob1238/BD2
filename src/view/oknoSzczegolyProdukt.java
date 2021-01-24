@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class oknoSzczegoly extends JPanel implements ActionListener {
+public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
 
     private View view;
 
@@ -29,7 +29,7 @@ public class oknoSzczegoly extends JPanel implements ActionListener {
     private GridBagLayout layout;
     private GridBagConstraints pom;
 
-    public oknoSzczegoly(View view) {
+    public oknoSzczegolyProdukt(View view) {
 
         this.view = view;
         layout = new GridBagLayout();

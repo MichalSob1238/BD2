@@ -14,6 +14,7 @@ public class Faktura {
     String NIP;
     int transactionNumber;
 
+
     public Boolean getIfPayed() { return ifPayed; }
     
     public void setIfPayed(Boolean ifPayed) { this.ifPayed = ifPayed; }

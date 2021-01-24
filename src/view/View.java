@@ -3,6 +3,8 @@ package view;
 import controller.Controller;
 import model.Model;
 import model.Szczegolowe_informacje;
+import model.Faktura;
+import model.SzczegolyFaktura;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,6 +71,10 @@ public class View {
 //	}
 
 	public void szczegoly(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly);}
+
+	public void pobierzSzczegolyFaktura(String nrFaktura){controller.pobierzSzczegolyFaktura(nrFaktura);}
+
+	public void szczegolyFaktura(SzczegolyFaktura szczegolyFaktura){wsk.oknoSzczegolyFaktura(szczegolyFaktura);}
 
 	public void wybranoRezerwacje() {
 		controller.wyswietlenieRezerwacji();
@@ -138,6 +144,7 @@ public class View {
 	
 	public void zwrotListaProduktow(String paragon, String produkty[]) {
 		paragonZwrot = paragon;
+
 		wsk.oknoZwrotListaProduktow(produkty, paragon);
 	}
 	
@@ -166,15 +173,15 @@ public class View {
 	}
 	
 	public void wybranoGotowkeZwrot() {
-		//wywo³aæ kontrolera
+		//wywoï¿½aï¿½ kontrolera
 	}
 	
 	public void oknoPodaniaNrKonta() {
-		//wyœwietliæ okno do podania numeru konta
+		//wyï¿½wietliï¿½ okno do podania numeru konta
 	}
 	
 	public void wybranoPrzelewZwrot(String nrKonta) {
-		//wywo³aæ kontrolera
+		//wywoï¿½aï¿½ kontrolera
 	}
 
 	public void wybranoHurtownia() {
