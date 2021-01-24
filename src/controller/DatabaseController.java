@@ -427,6 +427,42 @@ public class DatabaseController {
         return warehouses;
     }
 
+    List<String> selectWarehousesNames(){
+        List<String> warehouses = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT nazwa from hurtownia");
+
+            while (rs.next()) {
+                warehouses.add(rs.getString(1));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return warehouses;
+    }
+
+    Hurtownia selectWarehouseByName(String name){
+        Hurtownia warehouse = null;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getWarehouse = conn.prepareStatement("SELECT * from hurtownia WHERE nazwa = ? LIMIT 1");
+            getWarehouse.setString(1, name);
+            ResultSet rs = getWarehouse.executeQuery();
+
+            while (rs.next()) {
+                warehouse = new Hurtownia(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return warehouse;
+    }
+
     List<DaneKlienta> selectAllFromDaneKlienta(){
         List<DaneKlienta> clients = new ArrayList<>();
         try {

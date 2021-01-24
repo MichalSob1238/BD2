@@ -1,9 +1,6 @@
 package controller;
 
-import model.Model;
-import model.Pracownik;
-import model.Produkt;
-import model.Szczegolowe_informacje;
+import model.*;
 import view.View;
 
 import java.util.*;
@@ -109,14 +106,15 @@ public  class Controller {
 
 	public void wyswietlanieHurtownia() {
 		startoweController  = new  OknoStartoweController();
-		//TODO: function that loads the lsit
-		String[] list = new String[]{};
+		String[] list = startoweController.getWarehousesNames().toArray(new String[0]);
 		view.hurtownie(list);
 	}
 
-//	public void pobierzSzczegolyHurtowni(String s) {
-//		ofertaController = new OknoListaOfertController();
-//		//TODO: pobieranie informacji o hurtowni
+	public void pobierzSzczegolyHurtowni(String name) {
+		ofertaController = new OknoListaOfertController();
+		Hurtownia warehouse = ofertaController.getWarehousesDetails(name);
+		//Tutaj trzeba użyć czegoś innego bo inne są szczegóły na temat hurtowni a inne na temat produktu
+		// W sensie musi być metoda która po prostu bierze Hurtownię
 //		view.szczegoly(szczegoly);
-//	}
+	}
 }

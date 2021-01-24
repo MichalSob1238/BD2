@@ -30,4 +30,10 @@ public class OknoStartoweController{
         List<Produkt> products = db.selectProductFromTransaction(Integer.parseInt(transactionId));
         return products;
     }
+
+    public List<String> getWarehousesNames(){
+        DatabaseController db = new DatabaseController();
+        List<String> warehouses = db.selectWarehousesNames();
+        return warehouses;
+    }
 }
