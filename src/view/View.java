@@ -114,6 +114,10 @@ public class View {
 		
 	}
 	
+	public void wybranoFaktury() {
+		wsk.oknoFaktur();
+	}
+	
 	public void zwrot() {
 		wsk.oknoZwrotu(false);
 	}

@@ -34,7 +34,7 @@ private View view;
 		przyciski = new JPanel();
 		przyciski.setLayout(new GridLayout( 6, 2, 5, 5));
 		
-		cofnij = new JButton("wyloguj");
+		cofnij = new JButton("cofnij");
 		przyciski.add(create = new JButton("nowa faktura"));
 		przyciski.add(lista = new JButton("lista faktur"));
 		

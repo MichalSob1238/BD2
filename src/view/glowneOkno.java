@@ -20,6 +20,7 @@ public class glowneOkno extends JFrame{
 	private oknoStartowe start;
 	private oknoListaOfert listaOferta;
 	private oknoListaRezerwacji listaRezerwacje;
+	private oknoFaktur faktury;
 	private oknoListaFaktur listaFaktur;
 	private oknoListaDostaw listaDostaw;
 	private oknoZwrotu zwrot;
@@ -58,6 +59,7 @@ public class glowneOkno extends JFrame{
 		szczegolyZamowienie = new oknoSzczegolyZamowienie(view);
 		szczegolyZakup = new oknoSzczegolyProduktZakup(view);
 		finaliseTransaction = new oknoFinaliseTransaction(view,0);
+		faktury = new oknoFaktur(view);
 
 	}
 	public void oknoLogowania(boolean badMsg) {
@@ -210,6 +212,14 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		szczegolyZamowienie.show(name, szczegoly);
 		add(szczegolyZamowienie);
+		validate();
+		repaint();
+	}
+	
+	public void oknoFaktur() {
+		getContentPane().removeAll();
+		faktury.show(name);
+		add(faktury);
 		validate();
 		repaint();
 	}

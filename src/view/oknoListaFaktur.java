@@ -194,7 +194,7 @@ public class oknoListaFaktur extends JPanel implements ActionListener {
 			wybierz2.setVisible(true);
 			wybierz3.setVisible(true);
 		} else if(button == cofnij) {
-			view.oknoStartowe();
+			view.wybranoFaktury();
 		} else if (button == wybierz1){
 			view.pobierzSzczegolyFaktura(tab[(index-1)*3]);
 		} else if (button == wybierz2){
