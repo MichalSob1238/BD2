@@ -839,17 +839,19 @@ public class DatabaseController {
         return szczegoly;
     }
 
-    public Faktura getInvoiceDetails(String nrFaktura){
-        Faktura szczegoly=null;
+    public SzczegolyFaktura getInvoiceDetails(String nrFaktura){
+        SzczegolyFaktura szczegoly=null;
         try{
             Connection conn = getConnection();
-            PreparedStatement getDetail = conn.prepareStatement("SELECT * from faktura where nr_faktury = ?");
+            PreparedStatement getDetail = conn.prepareStatement("select * from faktura join transakcja " +
+                    "on faktura.transakcja_id_transakcja = transakcja.id_transakcja " +
+                    "where faktura.nr_faktury = ?");
             getDetail.setString(1, nrFaktura);
             ResultSet rs = getDetail.executeQuery();
             if(rs.next()){
-                szczegoly =  new Faktura(rs.getInt(1), rs.getString(2), rs.getDate(3),
+                szczegoly =  new SzczegolyFaktura(rs.getInt(1), rs.getString(2), rs.getDate(3),
                         rs.getBoolean(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                        rs.getInt(8));
+                        rs.getInt(8), rs.getDate(10), rs.getDouble(11), rs.getInt(12));
             }
         }
         catch(SQLException ex){

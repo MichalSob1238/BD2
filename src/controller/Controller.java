@@ -121,7 +121,7 @@ public  class Controller {
 
 	public void pobierzSzczegolyFaktura(String nrFaktura){
 		fakturaController = new OknoListaFakturController();
-		Faktura szczegolyFaktura = fakturaController.pobierzSzczegolyFaktura(nrFaktura);
+		SzczegolyFaktura szczegolyFaktura = fakturaController.pobierzSzczegolyFaktura(nrFaktura);
 		view.szczegolyFaktura(szczegolyFaktura);
 	}
 }

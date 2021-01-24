@@ -1,6 +1,8 @@
 package view;
 
 import model.Faktura;
+import model.SzczegolyFaktura;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
@@ -30,6 +32,10 @@ public class oknoSzczegolyFaktura extends JPanel implements ActionListener{
     private JLabel nazwa;
     private JLabel adres;
     private JLabel nip;
+    private JLabel id_transakcji;
+    private JLabel data;
+    private JLabel cena;
+    private JLabel id_pracownika;
 
     private GridBagLayout layout;
     private GridBagConstraints pom;
@@ -52,6 +58,10 @@ public class oknoSzczegolyFaktura extends JPanel implements ActionListener{
         nazwa = new JLabel();
         adres = new JLabel();
         nip = new JLabel();
+        id_transakcji = new JLabel();
+        data = new JLabel();
+        cena = new JLabel();
+        id_pracownika = new JLabel();
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -90,12 +100,25 @@ public class oknoSzczegolyFaktura extends JPanel implements ActionListener{
 
         pom.gridy = 8;
         add(nip, pom);
+
+        pom.gridy = 9;
+        add(id_transakcji, pom);
+
+        pom.gridy = 10;
+        add(data, pom);
+
+        pom.gridy = 11;
+        add(cena, pom);
+
+        pom.gridy = 12;
+        add(id_pracownika, pom);
+
     }
 
-    public void show(String nameUser, Faktura szczegolyFaktura){
+    public void show(String nameUser, SzczegolyFaktura szczegolyFaktura){
         name.setText(nameUser);
 
-        id_faktura.setText("id_faktura: " + szczegolyFaktura.getId());
+        id_faktura.setText("id_faktura: " + szczegolyFaktura.getInvoiceId());
         nr_faktury.setText("nr_faktury: " + szczegolyFaktura.getInvoiceNr());
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         termin_platnosci.setText("termin platnosci: " + dateFormat.format(szczegolyFaktura.getDueDate()));
@@ -103,7 +126,10 @@ public class oknoSzczegolyFaktura extends JPanel implements ActionListener{
         nazwa.setText("nazwa firmy: " + szczegolyFaktura.getCompanyName());
         adres.setText("adres firmy: " + szczegolyFaktura.getCompanyAddress());
         nip.setText("NIP: " + szczegolyFaktura.getNIP());
-
+        id_transakcji.setText("ID transakcji: " + szczegolyFaktura.getTransactionId());
+        data.setText("Data zlecenia: " + dateFormat.format(szczegolyFaktura.getDate()));
+        cena.setText("Cena: " + szczegolyFaktura.getPrice());
+        id_pracownika.setText("Id pracownika: " + szczegolyFaktura.getEmployeeId());
     }
 
     @Override

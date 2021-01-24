@@ -2,6 +2,7 @@ package view;
 
 import model.Faktura;
 import model.Szczegolowe_informacje;
+import model.SzczegolyFaktura;
 
 import javax.swing.*;
 import java.awt.*;
@@ -170,7 +171,7 @@ public class glowneOkno extends JFrame{
 		repaint();
 	}
 
-	public void oknoSzczegolyFaktura(Faktura szczegoly){
+	public void oknoSzczegolyFaktura(SzczegolyFaktura szczegoly){
 		getContentPane().removeAll();
 		szczegolyFaktura.show(name, szczegoly);
 		add(szczegolyFaktura);

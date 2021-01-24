@@ -4,6 +4,7 @@ import controller.Controller;
 import model.Model;
 import model.Szczegolowe_informacje;
 import model.Faktura;
+import model.SzczegolyFaktura;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +74,7 @@ public class View {
 
 	public void pobierzSzczegolyFaktura(String nrFaktura){controller.pobierzSzczegolyFaktura(nrFaktura);}
 
-	public void szczegolyFaktura(Faktura szczegolyFaktura){wsk.oknoSzczegolyFaktura(szczegolyFaktura);}
+	public void szczegolyFaktura(SzczegolyFaktura szczegolyFaktura){wsk.oknoSzczegolyFaktura(szczegolyFaktura);}
 
 	public void wybranoRezerwacje() {
 		controller.wyswietlenieRezerwacji();

@@ -1,12 +1,12 @@
 package controller;
 
-import model.Faktura;
+import model.SzczegolyFaktura;
 
 public class OknoListaFakturController {
 
-    public Faktura pobierzSzczegolyFaktura(String nrFaktura){
+    public SzczegolyFaktura pobierzSzczegolyFaktura(String nrFaktura){
         DatabaseController db = new DatabaseController();
-        Faktura szczegolyFaktura = db.getInvoiceDetails(nrFaktura);
-        return szczegolyFaktura;
+        SzczegolyFaktura szczegoly = db.getInvoiceDetails(nrFaktura);
+        return szczegoly;
     }
 }
