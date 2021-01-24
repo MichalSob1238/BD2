@@ -12,6 +12,7 @@ public  class Controller {
     private OknoLogowaniaController logowanie;
     private OknoStartoweController startoweController;
     private OknoListaOfertController ofertaController;
+    private OknoListaFakturController fakturaController;
 
     public Controller (Model model, View view)
     {
@@ -116,5 +117,11 @@ public  class Controller {
 		//Tutaj trzeba użyć czegoś innego bo inne są szczegóły na temat hurtowni a inne na temat produktu
 		// W sensie musi być metoda która po prostu bierze Hurtownię
 //		view.szczegoly(szczegoly);
+	}
+
+	public void pobierzSzczegolyFaktura(String nrFaktura){
+		fakturaController = new OknoListaFakturController();
+		Faktura szczegolyFaktura = fakturaController.pobierzSzczegolyFaktura(nrFaktura);
+		view.szczegolyFaktura(szczegolyFaktura);
 	}
 }

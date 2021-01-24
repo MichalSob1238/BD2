@@ -839,5 +839,23 @@ public class DatabaseController {
         return szczegoly;
     }
 
+    public Faktura getInvoiceDetails(String nrFaktura){
+        Faktura szczegoly=null;
+        try{
+            Connection conn = getConnection();
+            PreparedStatement getDetail = conn.prepareStatement("SELECT * from faktura where nr_faktury = ?");
+            getDetail.setString(1, nrFaktura);
+            ResultSet rs = getDetail.executeQuery();
+            if(rs.next()){
+                szczegoly =  new Faktura(rs.getInt(1), rs.getString(2), rs.getDate(3),
+                        rs.getBoolean(4), rs.getString(5), rs.getString(6), rs.getString(7),
+                        rs.getInt(8));
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return szczegoly;
+    }
 
 }

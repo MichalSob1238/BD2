@@ -40,13 +40,13 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 		name = new JLabel();
 		cofnij = new JButton("cofnij");
 		
-		tytul = new JLabel("Zamówienia:");
+		tytul = new JLabel("Zamï¿½wienia:");
 		produkt1 = new JLabel();
 		produkt2 = new JLabel();
 		produkt3 = new JLabel();
-		wybierz1 = new JButton("szczegó³y");
-		wybierz2 = new JButton("szczegó³y");
-		wybierz3 = new JButton("szczegó³y");
+		wybierz1 = new JButton("szczegï¿½y");
+		wybierz2 = new JButton("szczegï¿½y");
+		wybierz3 = new JButton("szczegï¿½y");
 		
 		next = new JButton("next");
 		prev = new JButton("prev");
@@ -195,6 +195,8 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 			wybierz3.setVisible(true);
 		} else if(button == cofnij) {
 			view.oknoStartowe();
+		} else if(button == wybierz1) {
+			view.pobierzSzczegolyFaktura(tab[index*3]);
 		}
 	}
 }
