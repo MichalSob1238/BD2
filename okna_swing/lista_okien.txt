@@ -19,7 +19,7 @@ Do zrobienia:
 -okno szegółów produktu (zrobione - Bartek)
 -okno szczegółów zamówienia
 -okno szczegółów dostawy
--okno szczegółów faktury (zrobione - Bartek)
+-okno szczegółów faktury (zrobione - Bartek [ewentualnie poprawic pozniej aby wyswietlalo wiecej danych])
 -formularz zamówienia
 -formularz faktury
 -zamówienie detaliczne (informacje)
