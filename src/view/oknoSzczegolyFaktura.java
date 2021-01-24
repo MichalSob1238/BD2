@@ -97,8 +97,8 @@ public class oknoSzczegolyFaktura extends JPanel implements ActionListener{
 
         id_faktura.setText("id_faktura: " + szczegolyFaktura.getId());
         nr_faktury.setText("nr_faktury: " + szczegolyFaktura.getInvoiceNr());
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        //termin_platnosci.getText("termin platnosci: " + dateFormat.format(szczegolyFaktura.getDueDate()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        termin_platnosci.setText("termin platnosci: " + dateFormat.format(szczegolyFaktura.getDueDate()));
         czy_oplacono.setText("czy oplacono: " + szczegolyFaktura.getIfPayed());
         nazwa.setText("nazwa firmy: " + szczegolyFaktura.getCompanyName());
         adres.setText("adres firmy: " + szczegolyFaktura.getCompanyAddress());
