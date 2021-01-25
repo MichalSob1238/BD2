@@ -1,46 +1,40 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-public class oknoFinaliseTransaction extends JPanel implements ActionListener{
+public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
 
     private View view;
     private JLabel msg;
+    private JLabel nameLabel;
+    private JTextField idField;
     private JLabel name;
 
     private JButton loginButton;
     private JButton returnButton;
     private GridBagLayout layout;
     private GridBagConstraints pom;
-    private BigDecimal cena;
 
-    public oknoFinaliseTransaction(View view, BigDecimal cena) {
+    public oknoZmienIloscRemanent(View view) {
         this.view = view;
-        this.cena = cena;
+
         layout = new GridBagLayout();
         pom = new GridBagConstraints();
 
-        msg = new JLabel("Ostateczna kwota to: " + cena);
-        msg.setForeground(Color.BLACK);
+        msg = new JLabel("Nie ma takiego paragonu!");
+        msg.setForeground(Color.RED);
 
         name = new JLabel("");
 
+        nameLabel = new JLabel("Numer Rachunku:");
 
-        loginButton = new JButton("Op³aæ");
+        idField = new JTextField();
+        idField.setPreferredSize(new Dimension(70, 20));
+
+        loginButton = new JButton("Dokonaj Zwrotu");
         loginButton.addActionListener(this);
 
         returnButton = new JButton("cofnij");
@@ -61,9 +55,10 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         add(msg,pom);
         msg.setVisible(false);
         pom.gridy = 2;
+        add(nameLabel, pom);
 
         pom.gridx = 1;
-
+        add(idField, pom);
 
 
 
@@ -78,11 +73,9 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
 
     }
 
-    public void show(String nameUser, BigDecimal cena) {
+    public void show(String nameUser, Boolean flag) {
         name.setText(nameUser);
-        msg.setVisible(true);
-        this.cena = cena;
-        msg.setText("Ostateczna kwota to: " + cena);
+        msg.setVisible(flag);
     }
 
 
@@ -92,9 +85,11 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         // TODO Auto-generated method stub
         JButton button = (JButton) arg0.getSource();
         if(button == returnButton) {
-            view.zakup();
+            view.oknoStartowe();
         }else if(button == loginButton) {
-            //TODO: op³aæ
+            String receipt = idField.getText();
+            view.podanoPargonZwrot(receipt);
+
         }
     }
 

@@ -29,6 +29,8 @@ public  class Controller {
 
     public void start(){
         view.oknoLogowania();
+
+//		view.remanent();
 		//view.zwrotPonownie();
     }
 
@@ -154,7 +156,11 @@ public  class Controller {
 
 	public void finaliseTransaction(String[] tab) {
     	BigDecimal price = ofertaController.getCostOfProducts(tab);
-		//view.transactionConfirmation(price);
+		view.transactionConfirmation(price);
+	}
+
+	public void wyswietlenieRemanentu() {
+    	view.remanent();
 	}
 
 	public void zmienStatusZamowienia(Integer nrZamowienia){

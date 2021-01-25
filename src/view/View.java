@@ -9,6 +9,7 @@ import model.SzczegolyZamowienie;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class View {
@@ -104,6 +105,10 @@ public class View {
 	
 	public void dostawy(String[] dostawy) {
 		wsk.oknoListaDostaw(dostawy);
+	}
+
+	public void remanent() {
+		wsk.oknoRemanent(true);
 	}
 
 	public void wybranoPrzegladFaktur() {
@@ -209,12 +214,17 @@ public class View {
 	public void finaliseTransaction(String[] tab) {
     	controller.finaliseTransaction(tab);
 	}
-	public void transactionConfirmation(Integer price) {
-    	Integer kwota = price;
+	public void transactionConfirmation(BigDecimal price) {
+		BigDecimal kwota = price;
 		wsk.oknoFinaliseTransaction(kwota);
 	}
 
+
 	public void zmienStatusZamowienia(Integer nrZamowienia){controller.zmienStatusZamowienia(nrZamowienia);}
+
+	public void wybranyRemanent() {
+    	controller.wyswietlenieRemanentu();
+	}
 
 }
 

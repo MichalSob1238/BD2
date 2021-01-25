@@ -3,6 +3,7 @@ package controller;
 import model.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -554,7 +555,7 @@ public class DatabaseController {
     }
 
     BigDecimal sumProducts(String[] products){
-        BigDecimal sum = new BigDecimal("0.0");
+        BigDecimal sum = new BigDecimal(0.0);
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
@@ -563,7 +564,7 @@ public class DatabaseController {
                 getProductCost.setString(1, product);
                 ResultSet rs = getProductCost.executeQuery();
                 if(rs.next()) {
-                    sum.add(new BigDecimal(rs.getDouble(1)));
+                    sum = sum.add(new BigDecimal(rs.getDouble(1)));
                 }
             }
 
@@ -571,6 +572,7 @@ public class DatabaseController {
         } catch(SQLException ex){
             ex.printStackTrace();
         }
+        sum = sum.setScale(2, RoundingMode.HALF_UP);
         return sum;
     }
 
