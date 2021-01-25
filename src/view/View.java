@@ -213,5 +213,8 @@ public class View {
     	Integer kwota = price;
 		wsk.oknoFinaliseTransaction(kwota);
 	}
+
+	public void zmienStatusZamowienia(Integer nrZamowienia){controller.zmienStatusZamowienia(nrZamowienia);}
+
 }
 

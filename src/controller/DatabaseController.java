@@ -940,4 +940,29 @@ public class DatabaseController {
         return orderDetails;
     }
 
+    public void changeOrderStatus(Integer OrderId){
+        Boolean isDone = false;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement getStatus = conn.prepareStatement("select czy_zrealizowano from zamowienie where id_zamowienie = ?");
+            getStatus.setInt(1,OrderId);
+            ResultSet rs = getStatus.executeQuery();
+            if(rs.next()){
+                isDone = rs.getBoolean(1);
+            }
+            PreparedStatement changeStatus0 = conn.prepareStatement("update zamowienie set czy_zrealizowano = 0 " +
+                    "where id_zamowienie = ?");
+            PreparedStatement changeStatus1 = conn.prepareStatement("update zamowienie set czy_zrealizowano = 1 " +
+                    "where id_zamowienie = ?");
+            changeStatus0.setInt(1,OrderId);
+            changeStatus1.setInt(1,OrderId);
+            if(isDone) changeStatus0.executeUpdate();
+            else changeStatus1.executeUpdate();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
 }
