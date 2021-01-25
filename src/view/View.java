@@ -116,7 +116,7 @@ public class View {
 	}
 	
 	public void utworzFakture() {
-		
+		wsk.oknoFormularzaFaktury();
 	}
 	
 	public void wybranoFaktury() {
@@ -230,5 +230,7 @@ public class View {
     	controller.wyswietlenieRemanentu();
 	}
 
+	
+	
 }
 

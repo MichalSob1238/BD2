@@ -22,6 +22,14 @@ public class fakturaFormularz extends JPanel implements ActionListener{
 	private JLabel tytul;
 	private JButton zatwierdz;
 
+	public fakturaFormularz(View view) {
+		
+	}
+	
+	public void show(String nameUser) {
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
