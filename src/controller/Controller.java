@@ -153,6 +153,6 @@ public  class Controller {
 
 	public void finaliseTransaction(String[] tab) {
     	BigDecimal price = ofertaController.getCostOfProducts(tab);
-		//view.transactionConfirmation(price);
+		view.transactionConfirmation(price);
 	}
 }

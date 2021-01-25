@@ -8,6 +8,7 @@ import model.SzczegolyZamowienie;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class glowneOkno extends JFrame{
@@ -58,7 +59,7 @@ public class glowneOkno extends JFrame{
 		szczegolyFaktura = new oknoSzczegolyFaktura(view);
 		szczegolyZamowienie = new oknoSzczegolyZamowienie(view);
 		szczegolyZakup = new oknoSzczegolyProduktZakup(view);
-		finaliseTransaction = new oknoFinaliseTransaction(view,0);
+		finaliseTransaction = new oknoFinaliseTransaction(view,new BigDecimal(0.0));
 		faktury = new oknoFaktur(view);
 
 	}
@@ -85,9 +86,9 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
-	public void oknoFinaliseTransaction(Integer cena){
+	public void oknoFinaliseTransaction(BigDecimal cena){
 		getContentPane().removeAll();
-		Integer cenna = cena;
+		BigDecimal cenna = cena;
 		finaliseTransaction.show(name,cenna);
 		add(finaliseTransaction);
 		validate();
