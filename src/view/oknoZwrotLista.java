@@ -177,7 +177,8 @@ public class oknoZwrotLista extends JPanel implements ActionListener {
 				produkt3.setText(tab[(index-1)*3+2]);
 			}
 			
-		} else if(button == prev) {
+		} else if(button == prev)
+		{
 			index -= 1;
 			next.setVisible(true);
 			if(index == 1) {
@@ -194,8 +195,18 @@ public class oknoZwrotLista extends JPanel implements ActionListener {
 			wybierz1.setVisible(true);
 			wybierz2.setVisible(true);
 			wybierz3.setVisible(true);
-		} else if(button == cofnij) {
-			view.oknoStartowe();
+		} else if(button == cofnij)
+		{
+			view.zwrot();
+		}else if(button == wybierz1)
+		{
+			view.wybranoProduktDoZwrotu(tab[(index-1)*3]);
+		} else if(button == wybierz2)
+		{
+			view.wybranoProduktDoZwrotu(tab[(index-1)*3+1]);
+		} else if(button == wybierz3)
+		{
+			view.wybranoProduktDoZwrotu(tab[(index-1)*3+2]);
 		}
 	}
 }

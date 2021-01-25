@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,9 +26,9 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
     private JButton returnButton;
     private GridBagLayout layout;
     private GridBagConstraints pom;
-    private Integer cena;
+    private BigDecimal cena;
 
-    public oknoFinaliseTransaction(View view, Integer cena) {
+    public oknoFinaliseTransaction(View view, BigDecimal cena) {
         this.view = view;
         this.cena = cena;
         layout = new GridBagLayout();
@@ -77,7 +78,7 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
 
     }
 
-    public void show(String nameUser, Integer cena) {
+    public void show(String nameUser, BigDecimal cena) {
         name.setText(nameUser);
         msg.setVisible(true);
         this.cena = cena;
