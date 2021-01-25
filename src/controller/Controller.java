@@ -4,6 +4,7 @@ import model.*;
 import view.View;
 
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.util.*;
 
 public  class Controller {
@@ -151,7 +152,7 @@ public  class Controller {
 	}
 
 	public void finaliseTransaction(String[] tab) {
-    	double price = ofertaController.getCostOfProducts(tab);
+    	BigDecimal price = ofertaController.getCostOfProducts(tab);
 		//view.transactionConfirmation(price);
 	}
 }

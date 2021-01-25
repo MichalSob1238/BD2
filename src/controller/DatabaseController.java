@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -552,8 +553,8 @@ public class DatabaseController {
         return product;
     }
 
-    Double sumProducts(String[] products){
-        Double sum = 0.0;
+    BigDecimal sumProducts(String[] products){
+        BigDecimal sum = new BigDecimal("0.0");
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
@@ -562,7 +563,7 @@ public class DatabaseController {
                 getProductCost.setString(1, product);
                 ResultSet rs = getProductCost.executeQuery();
                 if(rs.next()) {
-                    sum += rs.getDouble(1);
+                    sum.add(new BigDecimal(rs.getDouble(1)));
                 }
             }
 
