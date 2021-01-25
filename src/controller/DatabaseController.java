@@ -552,6 +552,27 @@ public class DatabaseController {
         return product;
     }
 
+    Double sumProducts(String[] products){
+        Double sum = 0.0;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            for (String product: products) {
+                PreparedStatement getProductCost = conn.prepareStatement("SELECT koszt from produkt WHERE nazwa = ? LIMIT 1");
+                getProductCost.setString(1, product);
+                ResultSet rs = getProductCost.executeQuery();
+                if(rs.next()) {
+                    sum += rs.getDouble(1);
+                }
+            }
+
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return sum;
+    }
+
     List<Dostawa> selectAllFromDostawa(){
         List<Dostawa> deliveries = new ArrayList<>();
         try {

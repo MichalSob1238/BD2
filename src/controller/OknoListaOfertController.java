@@ -21,4 +21,10 @@ public class OknoListaOfertController {
         String productName = db.selectProductById(Integer.parseInt(id));
         return productName;
     }
+
+    public double getCostOfProducts(String[] products){
+        DatabaseController db = new DatabaseController();
+        double cost = db.sumProducts(products);
+        return cost;
+    }
 }

@@ -96,10 +96,8 @@ public  class Controller {
 		}
 		String productsString[] = nazwyProd.toArray(new String[0]);
     	if(products.size()!= 0){
-			//Tutaj cos się dzieje bo paragon istnieje
 			view.zwrotListaProduktow(paragon,productsString);
 		} else{
-			//Tutaj nie ma nic na liście
 			view.zwrotPonownie();
 		}
 		//sprawdzenie czy jest odpowiedni paragon, je�eli tak wywo�a� view.zwrotListaProduktow podajac jaki paragon i liste produktow z paragonu
@@ -153,8 +151,7 @@ public  class Controller {
 	}
 
 	public void finaliseTransaction(String[] tab) {
-    	int price = 420;
-    	// price = //TODO: policz cene!
-		view.transactionConfirmation(price);
+    	double price = ofertaController.getCostOfProducts(tab);
+		//view.transactionConfirmation(price);
 	}
 }
