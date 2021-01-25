@@ -53,13 +53,13 @@ public class oknoRemanent extends JPanel implements ActionListener {
         produkt[1] = new JLabel();
         produkt[2] = new JLabel();
 
-        alejkaNazwa = new JLabel("Alejka");
+        alejkaNazwa = new JLabel(" Alejka ");
         alejka = new JLabel[3];
         alejka[0] = new JLabel();
         alejka[1] = new JLabel();
         alejka[2] = new JLabel();
 
-        polkaNazwa = new JLabel("Polka");
+        polkaNazwa = new JLabel(" Polka ");
         polka = new JLabel[3];
         polka[0] = new JLabel();
         polka[1] = new JLabel();

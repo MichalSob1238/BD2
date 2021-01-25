@@ -27,13 +27,9 @@ public  class Controller {
     }
 
     public void start(){
-//        view.oknoLogowania();
-		String s[][]  = {
-				{ "p1", "a1", "p1", "i1" },
-				{ "p2", "a2", "p2", "i2" }
-		};
-		String name = "X";
-		view.remanent();
+        view.oknoLogowania();
+
+//		view.remanent();
 		//view.zwrotPonownie();
     }
 
