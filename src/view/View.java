@@ -192,12 +192,16 @@ public class View {
 		wsk.oknoWyboruSposobuOddaniaKwoty(kwota);
 	}
 	
+	public void kwotaDoZwrotu() {
+		wsk.oknoWyboruSposobuOddaniaKwoty(kwotaZwrot);
+	}
+	
 	public void wybranoGotowkeZwrot() {
 		//wywo�a� kontrolera
 	}
 	
 	public void oknoPodaniaNrKonta() {
-		//wy�wietli� okno do podania numeru konta
+		wsk.oknoPodaniaNumeruKontaZwrot();
 	}
 	
 	public void wybranoPrzelewZwrot(String nrKonta) {
