@@ -102,28 +102,63 @@ public class oknoRemanent extends JPanel implements ActionListener {
 
         pom.insets = new Insets(0, 0, 0, 0);
         pom.gridy = 2;
-        pom.gridwidth = 2;
-        add(produkt[0], pom);
+        pom.gridwidth = 1;
+        add(produktNazwa, pom);
 
         pom.gridy = 3;
-        add(produkt[1], pom);
+        add(produkt[0], pom);
 
         pom.gridy = 4;
+        add(produkt[1], pom);
+
+        pom.gridy = 5;
         add(produkt[2], pom);
 
         pom.gridy = 2;
         pom.gridx = 2;
         pom.gridwidth = 1;
-        add(wybierz1, pom);
+        add(alejkaNazwa, pom);
 
         pom.gridy = 3;
-        add(wybierz2, pom);
+        add(alejka[0], pom);
 
         pom.gridy = 4;
-        add(wybierz3, pom);
+        add(alejka[1], pom);
+
+        pom.gridy = 5;
+        add(alejka[2], pom);
+
+        pom.gridy = 2;
+        pom.gridx = 3;
+        pom.gridwidth = 1;
+        add(polkaNazwa, pom);
+
+        pom.gridy = 3;
+        add(polka[0], pom);
+
+        pom.gridy = 4;
+        add(polka[1], pom);
+
+        pom.gridy = 5;
+        add(polka[2], pom);
+
+        pom.gridy = 2;
+        pom.gridx = 4;
+        pom.gridwidth = 2;
+        add(iloscNazwa, pom);
+
+        pom.gridy = 3;
+        add(ilosc[0], pom);
+
+        pom.gridy = 4;
+        add(ilosc[1], pom);
+
+        pom.gridy = 5;
+        add(ilosc[2], pom);
+
 
         pom.insets = new Insets(20, 0, 0, 0);
-        pom.gridy = 5;
+        pom.gridy = 6;
 
         pom.gridx = 0;
         add(prev, pom);
@@ -131,7 +166,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
         pom.gridx = 1;
         add(strona, pom);
 
-        pom.gridx = 2;
+        pom.gridx = 3;
         add(next, pom);
 
 
