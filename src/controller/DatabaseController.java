@@ -563,7 +563,7 @@ public class DatabaseController {
                 getProductCost.setString(1, product);
                 ResultSet rs = getProductCost.executeQuery();
                 if(rs.next()) {
-                    sum.add(new BigDecimal(rs.getDouble(1)));
+                    sum.add(rs.getBigDecimal(1));
                 }
             }
 
