@@ -198,6 +198,15 @@ public class oknoZwrotLista extends JPanel implements ActionListener {
 		} else if(button == cofnij)
 		{
 			view.zwrot();
+		}else if(button == wybierz1)
+		{
+			view.wybranoProduktDoZwrotu(tab[(index-1)*3]);
+		} else if(button == wybierz2)
+		{
+			view.wybranoProduktDoZwrotu(tab[(index-1)*3+1]);
+		} else if(button == wybierz3)
+		{
+			view.wybranoProduktDoZwrotu(tab[(index-1)*3+2]);
 		}
 	}
 }
