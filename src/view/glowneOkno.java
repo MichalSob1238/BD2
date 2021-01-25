@@ -35,6 +35,7 @@ public class glowneOkno extends JFrame{
 	private oknoSzczegolyZamowienie szczegolyZamowienie;
 	private oknoSzczegolyProduktZakup szczegolyZakup;
 	private oknoFinaliseTransaction finaliseTransaction;
+	private oknoRemanent oknoRemanent;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -61,8 +62,20 @@ public class glowneOkno extends JFrame{
 		szczegolyZakup = new oknoSzczegolyProduktZakup(view);
 		finaliseTransaction = new oknoFinaliseTransaction(view,new BigDecimal(0.0));
 		faktury = new oknoFaktur(view);
+		oknoRemanent = new oknoRemanent(view);
 
 	}
+
+	public void oknoRemanent(boolean badMsg) {
+
+		getContentPane().removeAll();
+		oknoRemanent.show(badMsg);
+		add(oknoRemanent);
+		validate();
+		repaint();
+
+	}
+
 	public void oknoLogowania(boolean badMsg) {
 		
 		getContentPane().removeAll();
