@@ -106,6 +106,10 @@ public class View {
 		wsk.oknoListaDostaw(dostawy);
 	}
 
+	public void remanent() {
+		wsk.oknoRemanent(true);
+	}
+
 	public void wybranoPrzegladFaktur() {
 		controller.wyswietlenieFaktur();		
 	}
@@ -212,6 +216,10 @@ public class View {
 	public void transactionConfirmation(Integer price) {
     	Integer kwota = price;
 		wsk.oknoFinaliseTransaction(kwota);
+	}
+
+	public void wybranyRemanent() {
+    	controller.wyswietlenieRemanentu();
 	}
 }
 

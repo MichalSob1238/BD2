@@ -115,6 +115,8 @@ public class oknoStartowe extends JPanel implements ActionListener {
 			view.wybranoHurtownia();
 		}else if (button == dostawy){
 			view.wybranoDostawy();
+		} else if (button == remanent){
+			view.wybranyRemanent();
 		}
 		
 	}
