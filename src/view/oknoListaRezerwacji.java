@@ -197,6 +197,10 @@ public class oknoListaRezerwacji extends JPanel implements ActionListener {
 			view.oknoStartowe();
 		} else if(button == wybierz1) {
 			view.pobierzSzczegolyZamowienie(tab[(index-1)*3]);
+		} else if(button == wybierz2) {
+			view.pobierzSzczegolyZamowienie(tab[(index-1)*3 + 1]);
+		} else if(button == wybierz3) {
+			view.pobierzSzczegolyZamowienie(tab[(index-1)*3 + 1]);
 		}
 	}
 }
