@@ -3,6 +3,8 @@ package controller;
 import model.Hurtownia;
 import model.Szczegolowe_informacje;
 
+import java.math.BigDecimal;
+
 public class OknoListaOfertController {
 
     public Szczegolowe_informacje pobierzSzczegoly(String nazwa){
@@ -20,5 +22,11 @@ public class OknoListaOfertController {
         DatabaseController db = new DatabaseController();
         String productName = db.selectProductById(Integer.parseInt(id));
         return productName;
+    }
+
+    public BigDecimal getCostOfProducts(String[] products){
+        DatabaseController db = new DatabaseController();
+        BigDecimal cost = db.sumProducts(products);
+        return cost;
     }
 }

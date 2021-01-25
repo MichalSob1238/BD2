@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -550,6 +551,27 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return product;
+    }
+
+    BigDecimal sumProducts(String[] products){
+        BigDecimal sum = new BigDecimal("0.0");
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            for (String product: products) {
+                PreparedStatement getProductCost = conn.prepareStatement("SELECT koszt from produkt WHERE nazwa = ? LIMIT 1");
+                getProductCost.setString(1, product);
+                ResultSet rs = getProductCost.executeQuery();
+                if(rs.next()) {
+                    sum.add(rs.getBigDecimal(1));
+                }
+            }
+
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return sum;
     }
 
     List<Dostawa> selectAllFromDostawa(){
