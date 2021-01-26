@@ -111,6 +111,10 @@ public class View {
 		wsk.oknoRemanent(produkty);
 	}
 
+	public void zmienIloscRemanent() {
+		wsk.zmienIloscRemanent(true);
+	}
+
 	public void wybranoPrzegladFaktur() {
 		controller.wyswietlenieFaktur();		
 	}
@@ -229,6 +233,12 @@ public class View {
 	public void wybranyRemanent() {
     	controller.wyswietlenieRemanentu();
 	}
+
+	public void wybranyRemanent(int ilosc, int index) {
+		controller.wyswietlenieRemanentu(ilosc, index);
+	}
+
+
 
 	
 	

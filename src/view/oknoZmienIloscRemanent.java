@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.Integer.parseInt;
+
 public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
 
     private View view;
@@ -13,10 +15,11 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
     private JTextField idField;
     private JLabel name;
 
-    private JButton loginButton;
+    private JButton zatwierdzButton;
     private JButton returnButton;
     private GridBagLayout layout;
     private GridBagConstraints pom;
+    private int index;
 
     public oknoZmienIloscRemanent(View view) {
         this.view = view;
@@ -34,8 +37,8 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         idField = new JTextField();
         idField.setPreferredSize(new Dimension(70, 20));
 
-        loginButton = new JButton("Zatwierdz");
-        loginButton.addActionListener(this);
+        zatwierdzButton = new JButton("Zatwierdz");
+        zatwierdzButton.addActionListener(this);
 
         returnButton = new JButton("cofnij");
         returnButton.addActionListener(this);
@@ -67,15 +70,15 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         pom.gridx = 0;
         pom.gridy = 3;
         pom.gridwidth = 2;
-        add(loginButton, pom);
+        add(zatwierdzButton, pom);
         pom.gridy = 4;
         add(returnButton,pom);
 
     }
 
-    public void show(String nameUser, Boolean flag) {
+    public void show(String nameUser, int index) {
         name.setText(nameUser);
-        msg.setVisible(flag);
+        this.index = index;
     }
 
 
@@ -85,12 +88,11 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         JButton button = (JButton) arg0.getSource();
         if(button == returnButton) {
-//            view.remanent();
-        }else if(button == loginButton) {
-//            int ilosc = idField.getText();
-            //TODO zmien ilosc w bazie danych
-//            view.remanent();
-
+            view.wybranyRemanent();
+        }else if(button == zatwierdzButton) {
+            String text = idField.getText();
+            int ilosc = parseInt(text);
+            view.wybranyRemanent(ilosc, index);
         }
     }
 

@@ -128,6 +128,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
         pom.gridy = 5;
         add(alejka[2], pom);
 
+
         pom.gridy = 2;
         pom.gridx = 3;
         pom.gridwidth = 1;
@@ -141,6 +142,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
 
         pom.gridy = 5;
         add(polka[2], pom);
+
 
         pom.gridy = 2;
         pom.gridx = 4;
@@ -157,6 +159,23 @@ public class oknoRemanent extends JPanel implements ActionListener {
         add(ilosc[2], pom);
 
 
+
+
+        pom.gridy = 3;
+        pom.gridx = 6;
+        pom.gridwidth = 2;
+        add(wybierz1, pom);
+
+        pom.gridy = 4;
+        add(wybierz2, pom);
+
+        pom.gridy = 5;
+        add(wybierz3, pom);
+
+
+
+
+
         pom.insets = new Insets(20, 0, 0, 0);
         pom.gridy = 6;
 
@@ -171,6 +190,12 @@ public class oknoRemanent extends JPanel implements ActionListener {
 
 
 
+
+
+
+
+
+
     }
 
     private void showProdukt(String produktInfo[], int i) {
@@ -182,8 +207,8 @@ public class oknoRemanent extends JPanel implements ActionListener {
 
     //kolejne Atrybuty listy "produkt", "alejka", "polka", "ilosc"
     public void show(String nameUser, String produkty[][]) {
-        System.out.println(nameUser);
-        System.out.println(produkty[0][0]);
+//        System.out.println(nameUser);
+//        System.out.println(produkty[0][0]);
         name.setText(nameUser);
         index = 1;
 
@@ -274,7 +299,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
         } else if(button == cofnij) {
             view.oknoStartowe();
         } else if(button == wybierz1){
-            //TODO wywolaj okno zmien ilosc
+            view.zmienIloscRemanent(name, 1);
         } else if(button == wybierz2){
             //TODO zmien ilosc 2
         } else if(button == wybierz3){

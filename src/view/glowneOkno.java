@@ -38,6 +38,7 @@ public class glowneOkno extends JFrame{
 	private oknoRemanent oknoRemanent;
 	private oknoPodaniaKonta kontoNumerZwrot;
 	private fakturaFormularz formularzFaktura;
+	private oknoZmienIloscRemanent oknoZmienIloscRemanent;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -67,6 +68,7 @@ public class glowneOkno extends JFrame{
 		oknoRemanent = new oknoRemanent(view);
 		kontoNumerZwrot = new oknoPodaniaKonta(view);
 		formularzFaktura = new fakturaFormularz(view);
+		oknoZmienIloscRemanent = new oknoZmienIloscRemanent(view);
 
 	}
 
@@ -75,6 +77,16 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		oknoRemanent.show(name, produkty);
 		add(oknoRemanent);
+		validate();
+		repaint();
+
+	}
+
+	public void zmienIloscRemanent(boolean badMsg) {
+
+		getContentPane().removeAll();
+		oknoZmienIloscRemanent.show(true);
+		add(oknoZmienIloscRemanent);
 		validate();
 		repaint();
 

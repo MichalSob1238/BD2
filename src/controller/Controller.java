@@ -28,8 +28,14 @@ public  class Controller {
     }
 
     public void start(){
-        view.oknoLogowania();
-//		view.remanent();
+		String produkty[][] = {
+				{"p1","a1","p1","i1"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"}
+		};
+//        view.oknoLogowania();
+		view.remanent(produkty);
 		//view.zwrotPonownie();
     }
 
@@ -166,6 +172,17 @@ public  class Controller {
 				{"p2","a2","p2","i2"}
 		};
     	view.remanent(produkty);
+	}
+
+	public void wyswietlenieRemanentu(int ilosc, int index) {
+		String produkty[][] = {
+				{"p1","a1","p1","i1"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"}
+		};
+//		zmienProdukty() TODO zmienic zawartosc bazy i przekazać zmieniony
+		view.remanent(produkty);
 	}
 
 	public void zmienStatusZamowienia(Integer nrZamowienia){
