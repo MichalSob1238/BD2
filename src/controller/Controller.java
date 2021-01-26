@@ -28,18 +28,8 @@ public  class Controller {
     }
 
     public void start(){
-		String produkty[][] = {
-				{"p1","a1","p1","i1"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"}
-		};
-//        view.oknoLogowania();
-		view.remanent(produkty);
+        view.oknoLogowania();
+//		view.remanent(produkty);
 		//view.zwrotPonownie();
     }
 

@@ -5,8 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-//import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -88,13 +86,6 @@ public class oknoRemanent extends JPanel implements ActionListener {
     }
 
     private void showButtons(){
-//        cofnij.addActionListener(this);
-//        wybierz1.addActionListener(this);
-//        wybierz2.addActionListener(this);
-//        wybierz3.addActionListener(this);
-//        next.addActionListener(this);
-//        prev.addActionListener(this);
-
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
         pom.gridy = 0;
