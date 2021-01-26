@@ -256,6 +256,10 @@ public class View {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void wybranoZamowienieDetaliczne() {
+		
+	}
 
 	
 	

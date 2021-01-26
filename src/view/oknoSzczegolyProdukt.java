@@ -25,6 +25,7 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
     private JLabel dodatkowe_informacje;
     private JLabel alergeny;
     private JLabel wymiary;
+    private JButton zamowienie;
 
     private GridBagLayout layout;
     private GridBagConstraints pom;
@@ -46,6 +47,8 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
         dodatkowe_informacje = new JLabel();
         alergeny = new JLabel();
         wymiary = new JLabel();
+        zamowienie = new JButton("Zamów");
+        zamowienie.addActionListener(this);
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -78,6 +81,11 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
 
         pom.gridy = 6;
         add(wymiary, pom);
+        
+        pom.gridx = 2;
+        pom.gridy = 5;
+        add(zamowienie, pom);
+        
     }
 
     public void show(String nameUser, Szczegolowe_informacje szczegol) {
@@ -96,6 +104,8 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
         JButton button = (JButton) arg0.getSource();
         if (button == cofnij) {
             view.wybranoOferte();
+        }else if(button == zamowienie) {
+        	view.wybranoZamowienieDetaliczne();
         }
     }
 }
