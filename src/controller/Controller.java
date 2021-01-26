@@ -199,4 +199,9 @@ public  class Controller {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void zamowienieDetaliczne(int iloscProduktu) {
+		// TODO Auto-generated method stub
+		
+	}
 }

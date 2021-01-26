@@ -243,6 +243,15 @@ public class View {
 		
 	}
 
+	public void zamowienieDetalicznePodanieIlosci(int iloscProduktu) {
+		// TODO Auto-generated method stub
+		controller.zamowienieDetaliczne(iloscProduktu);
+	}
+	
+	public void zamowienieDetaliczne(String kwota, String produkt) {
+		wsk.zamowienieDetaliczne(kwota, produkt);
+	}
+
 
 
 	
