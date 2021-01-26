@@ -17,6 +17,7 @@ public  class Controller {
     private OknoListaFakturController fakturaController;
     private OknoListaZamowienController zamowienieController;
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
+    private OknoZwrotController zwrotController;
 
     public Controller (Model model, View view)
     {
@@ -111,10 +112,13 @@ public  class Controller {
 	}
 	public void wybranoProduktDoZwrotu(String paragon, String produkt) {
 		//ustalic ile produktu jest na danym paragonie
-		//wywo�a� view.ileProduktuZwrot(String ilosc, String paragon, String produkt)
+		zwrotController = new OknoZwrotController();
+		String ilosc = zwrotController.ileNaParagonie(paragon,produkt);
+		view.ileProduktuZwrot( ilosc,  paragon,  produkt);
 	}
 
 	public void zwrotIlosc(int ilosc, String paragon, String produkt) {
+    	//TODO:
 		//ustalic jak� kwot� trzeba zwr�ci�, jeszcze nie akceptowa� zwrotu!
 		//wywo�a� view.kwotaDoZwrotu(String kwota, String paragon, String produkt)
 	}

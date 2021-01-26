@@ -967,4 +967,42 @@ public class DatabaseController {
 
     }
 
+    public String ileProduktuNaParagonie(String paragon, int id) {
+        String amount = "";
+        try {
+            Connection conn = getConnection();
+            PreparedStatement getStatus = conn.prepareStatement(
+                    "select ilosc from pozycja_paragon where produkt_id_produkt = ? " +
+                            "and transakcja_id_transakcja = ? LIMIT 1");
+            getStatus.setInt(1,id);
+            getStatus.setInt(2,Integer.parseInt(paragon));
+            ResultSet rs = getStatus.executeQuery();
+            if(rs.next()) {
+                amount = rs.getString(1);
+            }
+            getStatus.close();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return amount;
+    }
+
+    int selectProductByName(String name){
+        int product = 0;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getProductName = conn.prepareStatement("SELECT id_produkt from produkt WHERE nazwa = ? LIMIT 1");
+            getProductName.setString(1,name);
+            ResultSet rs = getProductName.executeQuery();
+            if(rs.next()) {
+                product = rs.getInt(1);
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return product;
+    }
 }
