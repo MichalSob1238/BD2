@@ -177,11 +177,13 @@ public class oknoRemanent extends JPanel implements ActionListener {
         produkt[i].setText(produktInfo[0]);
         alejka[i].setText(produktInfo[1]);
         polka[i].setText(produktInfo[2]);
-        ilosc[i].setText(produktInfo[4]);
+        ilosc[i].setText(produktInfo[3]);
     }
 
     //kolejne Atrybuty listy "produkt", "alejka", "polka", "ilosc"
     public void show(String nameUser, String produkty[][]) {
+        System.out.println(nameUser);
+        System.out.println(produkty[0][0]);
         name.setText(nameUser);
         index = 1;
 

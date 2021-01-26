@@ -70,10 +70,10 @@ public class glowneOkno extends JFrame{
 
 	}
 
-	public void oknoRemanent(boolean badMsg) {
+	public void oknoRemanent(String produkty[][]) {
 
 		getContentPane().removeAll();
-		oknoRemanent.show(badMsg);
+		oknoRemanent.show(name, produkty);
 		add(oknoRemanent);
 		validate();
 		repaint();

@@ -85,11 +85,11 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         JButton button = (JButton) arg0.getSource();
         if(button == returnButton) {
-            view.remanent();
+//            view.remanent();
         }else if(button == loginButton) {
 //            int ilosc = idField.getText();
             //TODO zmien ilosc w bazie danych
-            view.remanent();
+//            view.remanent();
 
         }
     }

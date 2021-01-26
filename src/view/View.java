@@ -107,8 +107,8 @@ public class View {
 		wsk.oknoListaDostaw(dostawy);
 	}
 
-	public void remanent() {
-		wsk.oknoRemanent(true);
+	public void remanent(String produkty[][]) {
+		wsk.oknoRemanent(produkty);
 	}
 
 	public void wybranoPrzegladFaktur() {
