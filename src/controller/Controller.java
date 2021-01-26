@@ -29,8 +29,7 @@ public  class Controller {
 
     public void start(){
         view.oknoLogowania();
-//		view.remanent(produkty);
-		//view.zwrotPonownie();
+		//view.transactionConfirmation(new BigDecimal("304.25"));
     }
 
     public void probaLogowania(String name, String surname) {
@@ -200,6 +199,17 @@ public  class Controller {
 	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void wystawParagon(String tresc[]) {
+    	// TODO: wystawnienie paragonu
+
+	}
+
+	public void noweZamowienie(String produkt, String iloscProduktu,
+							   String imieZamawiajacego, String nazwiskoZamawiajacego)
+	{
+		//TODO: wprowadzenie do bazy danych zamówienia
 	}
 
 }

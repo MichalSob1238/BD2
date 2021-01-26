@@ -253,15 +253,17 @@ public class View {
 
 	public void noweZamowienie(String produkt, String iloscProduktu, String imieZamawiajacego,
 			String nazwiskoZamawiajacego) {
-		// TODO Auto-generated method stub
+		controller.noweZamowienie(produkt, iloscProduktu, imieZamawiajacego, nazwiskoZamawiajacego);
 		
 	}
-	
+
 	public void wybranoZamowienieDetaliczne() {
 		
 	}
 
-	
-	
+
+	public void wystawParagon() {
+    	controller.wystawParagon(wsk.trescParagonu());
+	}
 }
 

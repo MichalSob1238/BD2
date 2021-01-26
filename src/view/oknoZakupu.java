@@ -370,4 +370,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
         }
     }
 
+    public String[] trescParagonu(){
+        return tab;
+    }
 }

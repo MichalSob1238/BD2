@@ -22,8 +22,9 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
     private JLabel msg;
     private JLabel name;
 
-    private JButton loginButton;
+    private JButton oplacGotowkaButton;
     private JButton returnButton;
+    private JButton oplacKartaButon;
     private GridBagLayout layout;
     private GridBagConstraints pom;
     private BigDecimal cena;
@@ -40,8 +41,12 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         name = new JLabel("");
 
 
-        loginButton = new JButton("Op³aæ");
-        loginButton.addActionListener(this);
+        oplacGotowkaButton = new JButton("Op³aæ Gotowka");
+        oplacGotowkaButton.addActionListener(this);
+
+        oplacKartaButon = new JButton("Op³aæ Karta");
+        oplacKartaButon.addActionListener(this);
+
 
         returnButton = new JButton("cofnij");
         returnButton.addActionListener(this);
@@ -54,9 +59,9 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         add(name,pom);
 
         pom.insets = new Insets(0, 0, 0, 0);
-        pom.gridx = 0;
+        pom.gridx = 1;
 
-        pom.gridwidth = 1;
+        pom.gridwidth = 2;
         pom.gridy = 1;
         add(msg,pom);
         msg.setVisible(false);
@@ -72,7 +77,10 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         pom.gridx = 0;
         pom.gridy = 3;
         pom.gridwidth = 2;
-        add(loginButton, pom);
+        add(oplacGotowkaButton, pom);
+        pom.gridx = 2;
+        add(oplacKartaButon,pom);
+        pom.gridx = 1;
         pom.gridy = 4;
         add(returnButton,pom);
 
@@ -93,8 +101,8 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         JButton button = (JButton) arg0.getSource();
         if(button == returnButton) {
             view.zakup();
-        }else if(button == loginButton) {
-            //TODO: op³aæ
+        }else if(button == oplacGotowkaButton || button == oplacKartaButon) {
+            view.wystawParagon();
         }
     }
 

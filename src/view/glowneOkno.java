@@ -289,4 +289,8 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
+
+	public String[] trescParagonu( ) {
+		return zakup.trescParagonu();
+	}
 }
