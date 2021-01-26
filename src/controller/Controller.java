@@ -181,7 +181,8 @@ public  class Controller {
 				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"}
 		};
-//		zmienProdukty() TODO zmienic zawartosc bazy i przekazać zmieniony
+		produkty[index][3] = String.valueOf(ilosc);
+//		 TODO zmienic zawartosc bazy i przekazać zmieniony
 		view.remanent(produkty);
 	}
 
