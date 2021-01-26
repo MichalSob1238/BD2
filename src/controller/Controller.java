@@ -118,9 +118,10 @@ public  class Controller {
 	}
 
 	public void zwrotIlosc(int ilosc, String paragon, String produkt) {
-    	//TODO:
+    	zwrotController = new OknoZwrotController();
+    	String kwota = zwrotController.kwotaDoZwrotu(ilosc, paragon, produkt);
 		//ustalic jak� kwot� trzeba zwr�ci�, jeszcze nie akceptowa� zwrotu!
-		//wywo�a� view.kwotaDoZwrotu(String kwota, String paragon, String produkt)
+		view.kwotaDoZwrotu(kwota);
 	}
 
 

@@ -105,9 +105,9 @@ public class oknoWyboruIlosciProduktuZwrot extends JPanel implements ActionListe
 			String podanaIlosc = ilosc.getText();
 			int podanaIloscInt = Integer.parseInt(podanaIlosc);
 			if(podanaIloscInt <= iloscMaksymalna) {
-				ilosc.setText("");
-			} else {
 				view.podanoIloscProduktuZwrot(podanaIloscInt);
+			} else {
+				ilosc.setText("");
 			}
 		}
 		

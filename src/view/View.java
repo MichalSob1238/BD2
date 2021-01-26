@@ -21,6 +21,7 @@ public class View {
     private String produktZwrot;
     private String kwotaZwrot;
     private String maxIloscZwrot;
+    private String wybranaIloscZwrotu;
     
     public View(){
     	wsk = new glowneOkno(this);
@@ -188,6 +189,7 @@ public class View {
 	}
 	
 	public void podanoIloscProduktuZwrot(int ilosc) {
+		wybranaIloscZwrotu = String.valueOf(ilosc);
 		controller.zwrotIlosc(ilosc, paragonZwrot, produktZwrot);
 	}
 	
@@ -201,7 +203,7 @@ public class View {
 	}
 	
 	public void wybranoGotowkeZwrot() {
-		//wywo�a� kontrolera
+		//TODO: faktyczny zwrot
 	}
 	
 	public void oknoPodaniaNrKonta() {
@@ -209,7 +211,7 @@ public class View {
 	}
 	
 	public void wybranoPrzelewZwrot(String nrKonta) {
-		//wywo�a� kontrolera
+		//TODO: faktyczny zwrot, usunięcie z bazy
 	}
 
 	public void wybranoHurtownia() {
