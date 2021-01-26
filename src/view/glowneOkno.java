@@ -82,10 +82,10 @@ public class glowneOkno extends JFrame{
 
 	}
 
-	public void zmienIloscRemanent(boolean badMsg) {
+	public void zmienIloscRemanent(String name, int index) {
 
 		getContentPane().removeAll();
-		oknoZmienIloscRemanent.show(true);
+		oknoZmienIloscRemanent.show(name, index);
 		add(oknoZmienIloscRemanent);
 		validate();
 		repaint();

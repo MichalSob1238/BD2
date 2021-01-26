@@ -19,6 +19,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
     private String produkty[][];
 
     private JLabel name;
+    private  String userName;
     private JButton cofnij;
 
     private JLabel produktNazwa, alejkaNazwa, polkaNazwa, iloscNazwa;
@@ -210,6 +211,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
 //        System.out.println(nameUser);
 //        System.out.println(produkty[0][0]);
         name.setText(nameUser);
+        this.userName = userName;
         index = 1;
 
         this.produkty = produkty;
@@ -299,7 +301,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
         } else if(button == cofnij) {
             view.oknoStartowe();
         } else if(button == wybierz1){
-            view.zmienIloscRemanent(name, 1);
+            view.zmienIloscRemanent(this.userName, 1);
         } else if(button == wybierz2){
             //TODO zmien ilosc 2
         } else if(button == wybierz3){

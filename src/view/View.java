@@ -111,8 +111,8 @@ public class View {
 		wsk.oknoRemanent(produkty);
 	}
 
-	public void zmienIloscRemanent() {
-		wsk.zmienIloscRemanent(true);
+	public void zmienIloscRemanent(String name, int index) {
+		wsk.zmienIloscRemanent(name,  index);
 	}
 
 	public void wybranoPrzegladFaktur() {

@@ -189,4 +189,8 @@ public  class Controller {
 		szczegolyZamowienieController = new OknoSzczegolyZamowieniaController();
     	szczegolyZamowienieController.zmienStatusZamowienia(nrZamowienia);
     }
+
+	public void wyswietleniezmienIloscRemanent(String name, int index) {
+    	view.zmienIloscRemanent(name, index);
+	}
 }
