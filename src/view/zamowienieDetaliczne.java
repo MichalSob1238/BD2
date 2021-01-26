@@ -19,6 +19,7 @@ public class zamowienieDetaliczne extends JPanel implements ActionListener {
 	private GridBagConstraints pom;
 	
 	private String nazwaProduktu;
+	private String kwota;
 	
 	private JLabel name;
 	private JButton cofnij;
@@ -84,6 +85,7 @@ public class zamowienieDetaliczne extends JPanel implements ActionListener {
 		tytul.setText("Produkt: "+produkt);
 		tekst.setText("Cena jednostkowa: "+cena);
 		nazwaProduktu = produkt;
+		kwota = cena;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -92,8 +94,8 @@ public class zamowienieDetaliczne extends JPanel implements ActionListener {
 		if(button == cofnij) {
 			view.pobierzSzczegoly(nazwaProduktu);
 		}else if(button == zamow) {
-			int iloscProduktu = Integer.parseInt(ilosc.getText());
-			view.zamowienieDetalicznePodanieIlosci(iloscProduktu);
+			String iloscProduktu = ilosc.getText();
+			view.formularzZamowienia(nazwaProduktu, iloscProduktu, kwota);
 		}
 	}
 

@@ -242,17 +242,20 @@ public class View {
 		controller.wypelnionoFormularzFaktury(daneNazwa, daneAdres, daneNIP, daneParagon);
 		
 	}
-
-	public void zamowienieDetalicznePodanieIlosci(int iloscProduktu) {
-		// TODO Auto-generated method stub
-		controller.zamowienieDetaliczne(iloscProduktu);
-	}
 	
 	public void zamowienieDetaliczne(String kwota, String produkt) {
 		wsk.zamowienieDetaliczne(kwota, produkt);
 	}
 
+	public void formularzZamowienia(String produkt, String ilosc, String kwota) {
+		wsk.formularzZamowienia(produkt, ilosc, kwota);
+	}
 
+	public void noweZamowienie(String produkt, String iloscProduktu, String imieZamawiajacego,
+			String nazwiskoZamawiajacego) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	

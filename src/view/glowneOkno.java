@@ -40,6 +40,7 @@ public class glowneOkno extends JFrame{
 	private fakturaFormularz formularzFaktura;
 	private oknoZmienIloscRemanent oknoZmienIloscRemanent;
 	private zamowienieDetaliczne zamowienieDetaliczne;
+	private formularzZamowienia formularzZamowienia;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -71,6 +72,7 @@ public class glowneOkno extends JFrame{
 		formularzFaktura = new fakturaFormularz(view);
 		oknoZmienIloscRemanent = new oknoZmienIloscRemanent(view);
 		zamowienieDetaliczne = new zamowienieDetaliczne(view);
+		formularzZamowienia = new formularzZamowienia(view);
 
 	}
 
@@ -276,6 +278,14 @@ public class glowneOkno extends JFrame{
 		getContentPane().removeAll();
 		zamowienieDetaliczne.show(name, kwota, produkt);
 		add(zamowienieDetaliczne);
+		validate();
+		repaint();
+	}
+
+	public void formularzZamowienia(String produkt, String ilosc, String kwota) {
+		getContentPane().removeAll();
+		formularzZamowienia.show(name, produkt, ilosc, kwota);
+		add(formularzZamowienia);
 		validate();
 		repaint();
 	}
