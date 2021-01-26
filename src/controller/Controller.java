@@ -16,6 +16,7 @@ public  class Controller {
     private OknoListaOfertController ofertaController;
     private OknoListaFakturController fakturaController;
     private OknoListaZamowienController zamowienieController;
+    private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
 
     public Controller (Model model, View view)
     {
@@ -160,4 +161,9 @@ public  class Controller {
 	public void wyswietlenieRemanentu() {
     	view.remanent();
 	}
+
+	public void zmienStatusZamowienia(Integer nrZamowienia){
+		szczegolyZamowienieController = new OknoSzczegolyZamowieniaController();
+    	szczegolyZamowienieController.zmienStatusZamowienia(nrZamowienia);
+    }
 }

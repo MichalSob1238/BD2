@@ -28,6 +28,7 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
     private JLabel name;
     private JLabel tytul;
     private JButton cofnij;
+    private JLabel zamawiajacy;
 
     private JLabel order_id;
     private JLabel is_done;
@@ -43,8 +44,9 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
     private JLabel naz1, naz2, naz3, naz0;
     private JLabel ilosc1, ilosc2, ilosc3, ilosc0;
     private JLabel cena1, cena2, cena3, cena0;
+    private JLabel realizacja0;
 
-    private JButton next, prev;
+    private JButton next, prev, changeStatus;
     private JLabel strona;
 
     private GridBagLayout layout;
@@ -61,7 +63,7 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         cofnij = new JButton("cofnij");
         cofnij.addActionListener(this);
         tytul = new JLabel("Szczegoly Rezerwacji:");
-
+        zamawiajacy = new JLabel("");
 
         index = 1;
 
@@ -79,6 +81,9 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         next.addActionListener(this);
         prev = new JButton("prev");
         prev.addActionListener(this);
+        changeStatus = new JButton("Zmien stan");
+        changeStatus.addActionListener(this);
+
         strona = new JLabel();
 
         naz0 = new JLabel("nazwa");
@@ -91,7 +96,7 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         poz2 = new JLabel();
         poz3 = new JLabel();
 
-        ilosc0 = new JLabel("ilosc");
+        ilosc0 = new JLabel(" ilosc ");
         ilosc1 = new JLabel();
         ilosc2 = new JLabel();
         ilosc3 = new JLabel();
@@ -100,6 +105,9 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         cena1 = new JLabel();
         cena2 = new JLabel();
         cena3 = new JLabel();
+
+        realizacja0 = new JLabel("");
+
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -113,11 +121,21 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         pom.insets = new Insets(0, 0, 10, 0);
         pom.gridy = 1;
         pom.gridx = 0;
-        pom.gridwidth = 3;
+        pom.gridwidth = 1;
         add(tytul, pom);
+
+        pom.gridx = 1;
+        add(zamawiajacy,pom);
+
+        pom.gridx = 2;
+        add(realizacja0,pom);
+
+        pom.gridx = 3;
+        add(changeStatus,pom);
 
         pom.insets = new Insets(0, 0, 0, 0);
         pom.gridy = 2;
+        pom.gridx = 0;
         pom.gridwidth = 1;
         add(poz0, pom);
 
@@ -131,7 +149,7 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         add(poz3, pom);
 
         pom.gridy = 2;
-        pom.gridx = 2;
+        pom.gridx = 1;
         pom.gridwidth = 1;
         add(ilosc0, pom);
 
@@ -145,7 +163,7 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         add(ilosc3, pom);
 
         pom.gridy = 2;
-        pom.gridx = 3;
+        pom.gridx = 2;
         pom.gridwidth = 1;
         add(cena0, pom);
 
@@ -159,7 +177,7 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         add(cena3, pom);
 
         pom.gridy = 2;
-        pom.gridx = 4;
+        pom.gridx = 3;
         pom.gridwidth = 2;
         add(naz0, pom);
 
@@ -171,7 +189,6 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
 
         pom.gridy = 5;
         add(naz3, pom);
-
 
         pom.insets = new Insets(20, 0, 0, 0);
         pom.gridy = 6;
@@ -192,43 +209,53 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
         name.setText(nameUser);
         index = 1;
 
+        zamawiajacy.setText("  Zamawiajacy: " + tabArg[0].getClientSurname() + " " + tabArg[0].getClientName());
         tytul.setText("Rezerwacja: " + Integer.toString(tabArg[0].getOrder_id()));
+        if(tabArg[0].getIs_done()) realizacja0.setText("  Status: Zrealizowane");
+        else realizacja0.setText("  Status: Nie zrealizowane");
+
         tab = tabArg;
         int iloscStron = tabArg.length / 3;
         if(tabArg.length % 3 != 0) {
             iloscStron += 1;
         }
         if(tabArg.length == 1) {
-            poz1.setText(Integer.toString(index));
+            poz1.setText(Integer.toString(index*3-2));
             naz1.setText(tabArg[0].getProductName());
             ilosc1.setText(Integer.toString(tabArg[0].getAmount()));
             cena1.setText(Double.toString(tabArg[0].getCost()));
 
         }else if(tabArg.length == 2) {
-            poz1.setText(Integer.toString(index));
+            poz1.setText(Integer.toString(index*3-2));
             naz1.setText(tabArg[0].getProductName());
             ilosc1.setText(Integer.toString(tabArg[0].getAmount()));
             cena1.setText(Double.toString(tabArg[0].getCost()));
-            poz2.setText(Integer.toString(index+1));
+
+
+            poz2.setText(Integer.toString(index*3-1));
             naz2.setText(tabArg[1].getProductName());
             ilosc2.setText(Integer.toString(tabArg[1].getAmount()));
             cena2.setText(Double.toString(tabArg[1].getCost()));
+
 
         }else if(tabArg.length >= 3) {
-            poz1.setText(Integer.toString(index));
+            poz1.setText(Integer.toString(index*3-2));
             naz1.setText(tabArg[0].getProductName());
             ilosc1.setText(Integer.toString(tabArg[0].getAmount()));
             cena1.setText(Double.toString(tabArg[0].getCost()));
 
-            poz2.setText(Integer.toString(index+1));
+
+            poz2.setText(Integer.toString(index*3-1));
             naz2.setText(tabArg[1].getProductName());
             ilosc2.setText(Integer.toString(tabArg[1].getAmount()));
             cena2.setText(Double.toString(tabArg[1].getCost()));
 
-            poz3.setText(Integer.toString(index+2));
+
+            poz3.setText(Integer.toString(index*3));
             naz3.setText(tabArg[2].getProductName());
             ilosc3.setText(Integer.toString(tabArg[2].getAmount()));
             cena3.setText(Double.toString(tabArg[2].getCost()));
+
         }
         strona.setText(index + "/" + iloscStron);
         prev.setVisible(false);
@@ -257,10 +284,11 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
             strona.setText(index + "/" + iloscStron);
             int len = tab.length - (index-1)*3;
             if(len == 1) {
-                poz1.setText(Integer.toString(index));
+                poz1.setText(Integer.toString(index*3-2));
                 naz1.setText(tab[(index-1)*3].getProductName());
                 ilosc1.setText(Integer.toString(tab[(index-1)*3].getAmount()));
                 cena1.setText(Double.toString(tab[(index-1)*3].getCost()));
+
 
                 poz2.setText("");
                 naz2.setText("");
@@ -272,12 +300,12 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
                 ilosc3.setText("");
                 cena3.setText("");
             }else if(len == 2) {
-                poz1.setText(Integer.toString(index));
+                poz1.setText(Integer.toString(index*3-2));
                 naz1.setText(tab[(index-1)*3].getProductName());
                 ilosc1.setText(Integer.toString(tab[(index-1)*3].getAmount()));
                 cena1.setText(Double.toString(tab[(index-1)*3].getCost()));
 
-                poz2.setText(Integer.toString(index+1));
+                poz2.setText(Integer.toString(index*3-1));
                 naz2.setText(tab[(index-1)*3+1].getProductName());
                 ilosc2.setText(Integer.toString(tab[(index-1)*3+1].getAmount()));
                 cena2.setText(Double.toString(tab[(index-1)*3+1].getCost()));
@@ -287,17 +315,19 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
                 ilosc3.setText("");
                 cena3.setText("");
             }else if(len >= 3) {
-                poz1.setText(Integer.toString(index));
+                poz1.setText(Integer.toString(index*3-2));
                 naz1.setText(tab[(index-1)*3].getProductName());
                 ilosc1.setText(Integer.toString(tab[(index-1)*3].getAmount()));
                 cena1.setText(Double.toString(tab[(index-1)*3].getCost()));
 
-                poz2.setText(Integer.toString(index+1));
+
+                poz2.setText(Integer.toString(index*3-1));
                 naz2.setText(tab[(index-1)*3+1].getProductName());
                 ilosc2.setText(Integer.toString(tab[(index-1)*3+1].getAmount()));
                 cena2.setText(Double.toString(tab[(index-1)*3+1].getCost()));
 
-                poz3.setText(Integer.toString(index+2));
+
+                poz3.setText(Integer.toString(index*3));
                 naz3.setText(tab[(index-1)*3+2].getProductName());
                 ilosc3.setText(Integer.toString(tab[(index-1)*3+2].getAmount()));
                 cena3.setText(Double.toString(tab[(index-1)*3+2].getCost()));
@@ -314,22 +344,27 @@ public class oknoSzczegolyZamowienie extends JPanel implements ActionListener{
                 iloscStron += 1;
             }
             strona.setText(index + "/" + iloscStron);
-            poz1.setText(Integer.toString(index));
+            poz1.setText(Integer.toString(index*3-2));
             naz1.setText(tab[(index-1)*3].getProductName());
             ilosc1.setText(Integer.toString(tab[(index-1)*3].getAmount()));
             cena1.setText(Double.toString(tab[(index-1)*3].getCost()));
 
-            poz2.setText(Integer.toString(index+1));
+
+            poz2.setText(Integer.toString(index*3-1));
             naz2.setText(tab[(index-1)*3+1].getProductName());
             ilosc2.setText(Integer.toString(tab[(index-1)*3+1].getAmount()));
             cena2.setText(Double.toString(tab[(index-1)*3+1].getCost()));
 
-            poz3.setText(Integer.toString(index+2));
+
+            poz3.setText(Integer.toString(index*3));
             naz3.setText(tab[(index-1)*3+2].getProductName());
             ilosc3.setText(Integer.toString(tab[(index-1)*3+2].getAmount()));
             cena3.setText(Double.toString(tab[(index-1)*3+2].getCost()));
+
         } else if(button == cofnij) {
             view.wybranoRezerwacje();
+        } else if(button == changeStatus){
+            view.zmienStatusZamowienia(tab[0].getOrder_id());
         }
     }
 }

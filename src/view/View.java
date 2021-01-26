@@ -116,7 +116,7 @@ public class View {
 	}
 	
 	public void utworzFakture() {
-		
+		wsk.oknoFormularzaFaktury();
 	}
 	
 	public void wybranoFaktury() {
@@ -192,12 +192,16 @@ public class View {
 		wsk.oknoWyboruSposobuOddaniaKwoty(kwota);
 	}
 	
+	public void kwotaDoZwrotu() {
+		wsk.oknoWyboruSposobuOddaniaKwoty(kwotaZwrot);
+	}
+	
 	public void wybranoGotowkeZwrot() {
 		//wywo�a� kontrolera
 	}
 	
 	public void oknoPodaniaNrKonta() {
-		//wy�wietli� okno do podania numeru konta
+		wsk.oknoPodaniaNumeruKontaZwrot();
 	}
 	
 	public void wybranoPrzelewZwrot(String nrKonta) {
@@ -219,8 +223,14 @@ public class View {
 		wsk.oknoFinaliseTransaction(kwota);
 	}
 
+
+	public void zmienStatusZamowienia(Integer nrZamowienia){controller.zmienStatusZamowienia(nrZamowienia);}
+
 	public void wybranyRemanent() {
     	controller.wyswietlenieRemanentu();
 	}
+
+	
+	
 }
 
