@@ -24,17 +24,17 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         layout = new GridBagLayout();
         pom = new GridBagConstraints();
 
-        msg = new JLabel("Nie ma takiego paragonu!");
+        msg = new JLabel("To nie jest liczba!");
         msg.setForeground(Color.RED);
 
         name = new JLabel("");
 
-        nameLabel = new JLabel("Numer Rachunku:");
+        nameLabel = new JLabel("Podaj rzeczywista ilosc: ");
 
         idField = new JTextField();
         idField.setPreferredSize(new Dimension(70, 20));
 
-        loginButton = new JButton("Dokonaj Zwrotu");
+        loginButton = new JButton("Zatwierdz");
         loginButton.addActionListener(this);
 
         returnButton = new JButton("cofnij");
@@ -85,10 +85,11 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         JButton button = (JButton) arg0.getSource();
         if(button == returnButton) {
-            view.oknoStartowe();
+            view.remanent();
         }else if(button == loginButton) {
-            String receipt = idField.getText();
-            view.podanoPargonZwrot(receipt);
+//            int ilosc = idField.getText();
+            //TODO zmien ilosc w bazie danych
+            view.remanent();
 
         }
     }

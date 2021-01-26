@@ -28,7 +28,6 @@ public  class Controller {
 
     public void start(){
         view.oknoLogowania();
-
 //		view.remanent();
 		//view.zwrotPonownie();
     }
