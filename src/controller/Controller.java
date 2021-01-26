@@ -206,4 +206,10 @@ public  class Controller {
 	public void wyswietleniezmienIloscRemanent(String name, int index) {
     	view.zmienIloscRemanent(name, index);
 	}
+
+	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

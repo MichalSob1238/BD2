@@ -238,7 +238,28 @@ public class View {
 		controller.wyswietlenieRemanentu(ilosc, index);
 	}
 
+	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
+		controller.wypelnionoFormularzFaktury(daneNazwa, daneAdres, daneNIP, daneParagon);
+		
+	}
+	
+	public void zamowienieDetaliczne(String kwota, String produkt) {
+		wsk.zamowienieDetaliczne(kwota, produkt);
+	}
 
+	public void formularzZamowienia(String produkt, String ilosc, String kwota) {
+		wsk.formularzZamowienia(produkt, ilosc, kwota);
+	}
+
+	public void noweZamowienie(String produkt, String iloscProduktu, String imieZamawiajacego,
+			String nazwiskoZamawiajacego) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void wybranoZamowienieDetaliczne() {
+		
+	}
 
 	
 	
