@@ -108,7 +108,11 @@ public class fakturaFormularz extends JPanel implements ActionListener{
 		if(button == cofnij) {
 			view.wybranoFaktury();
 		} else if(button == zatwierdz) {
-			
+			String daneNazwa = nazwaPole.getText();
+			String daneAdres = adresPole.getText();
+			String daneNIP = nipPole.getText();
+			String daneParagon = paragonPole.getText();
+			view.wypelnionoFormularzFaktury(daneNazwa, daneAdres, daneNIP, daneParagon);
 		}
 	}
 

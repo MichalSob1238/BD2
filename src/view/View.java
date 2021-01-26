@@ -238,6 +238,11 @@ public class View {
 		controller.wyswietlenieRemanentu(ilosc, index);
 	}
 
+	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
+		controller.wypelnionoFormularzFaktury(daneNazwa, daneAdres, daneNIP, daneParagon);
+		
+	}
+
 
 
 	
