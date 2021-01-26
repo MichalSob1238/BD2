@@ -32,6 +32,10 @@ public  class Controller {
 				{"p1","a1","p1","i1"},
 				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"}
 		};
 //        view.oknoLogowania();
@@ -169,6 +173,10 @@ public  class Controller {
 				{"p1","a1","p1","i1"},
 				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"}
 		};
     	view.remanent(produkty);
@@ -177,6 +185,10 @@ public  class Controller {
 	public void wyswietlenieRemanentu(int ilosc, int index) {
 		String produkty[][] = {
 				{"p1","a1","p1","i1"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"},
 				{"p2","a2","p2","i2"}

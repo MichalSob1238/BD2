@@ -85,6 +85,15 @@ public class oknoRemanent extends JPanel implements ActionListener {
         wybierz3.addActionListener(this);
         next.addActionListener(this);
         prev.addActionListener(this);
+    }
+
+    private void showButtons(){
+//        cofnij.addActionListener(this);
+//        wybierz1.addActionListener(this);
+//        wybierz2.addActionListener(this);
+//        wybierz3.addActionListener(this);
+//        next.addActionListener(this);
+//        prev.addActionListener(this);
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -174,9 +183,6 @@ public class oknoRemanent extends JPanel implements ActionListener {
         add(wybierz3, pom);
 
 
-
-
-
         pom.insets = new Insets(20, 0, 0, 0);
         pom.gridy = 6;
 
@@ -189,14 +195,11 @@ public class oknoRemanent extends JPanel implements ActionListener {
         pom.gridx = 3;
         add(next, pom);
 
-
-
-
-
-
-
-
-
+        wybierz1.setVisible(true);
+        wybierz2.setVisible(true);
+        wybierz3.setVisible(true);
+        prev.setVisible(true);
+        next.setVisible(true);
     }
 
     private void showProdukt(String produktInfo[], int i) {
@@ -210,10 +213,12 @@ public class oknoRemanent extends JPanel implements ActionListener {
     public void show(String nameUser, String produkty[][]) {
 //        System.out.println(nameUser);
 //        System.out.println(produkty[0][0]);
+
         name.setText(nameUser);
         this.userName = userName;
         index = 1;
 
+        showButtons();
         this.produkty = produkty;
         int iloscStron = produkty.length / 3;
         if(produkty.length % 3 != 0) {
@@ -282,7 +287,8 @@ public class oknoRemanent extends JPanel implements ActionListener {
             }
 
         } else if(button == prev) {
-            index -= 1;
+            if(index>0)
+                index -= 1;
             next.setVisible(true);
             if(index == 1) {
                 prev.setVisible(false);
