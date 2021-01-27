@@ -57,6 +57,23 @@ public class DatabaseController {
         }
     }
 
+    int insertIntoDaneKlienta(String name, String lastName){
+        try{
+            Connection conn = getConnection();
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO dane_klienta VALUES(default,?,?)", Statement.RETURN_GENERATED_KEYS);
+            insert.setString(1, name);
+            insert.setString(2,  lastName);
+            insert.execute();
+            ResultSet keys = insert.getGeneratedKeys();
+            if (keys.next()) {
+                return keys.getInt(1);
+            }
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+
     void insertIntoStanowisko(String position){
         try{
             Connection conn = getConnection();
@@ -371,14 +388,50 @@ public class DatabaseController {
         return transactions;
     }
 
+    public Transakcja selectTransactionById(Integer idTransaction){
+        Transakcja transaction = null;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getTransaction = conn.prepareStatement("SELECT * from transakcja WHERE id_transakcja = ?")  ;
+            getTransaction.setInt(1, idTransaction);
+            ResultSet rs = getTransaction.executeQuery();
+            while (rs.next()) {
+                transaction = new Transakcja(rs.getInt("id_transakcja"), rs.getDate("data"),
+                        rs.getDouble("kwota"), rs.getInt("pracownik_id_pracownik"),
+                        Transakcja.transactionType.valueOf(rs.getString("typ")));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return transaction;
+    }
+
+    public void updateTransactionStatus(Integer idTransaction, String newStatus){
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement updateTransaction = conn.prepareStatement("UPDATE transakcja SET typ = ? WHERE id_transakcja = ?")  ;
+            updateTransaction.setString(1, newStatus);
+            updateTransaction.setInt(2, idTransaction);
+            updateTransaction.executeUpdate();
+
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return;
+    }
+
     public List<Produkt> selectProductFromTransaction(Integer idTransaction){
         List<Produkt> products = new ArrayList<>();
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
-            PreparedStatement getEmployee = conn.prepareStatement("SELECT * from produkt WHERE id_produkt IN (Select produkt_id_produkt from pozycja_paragon where transakcja_id_transakcja = ?)")  ;
-            getEmployee.setInt(1, idTransaction);
-            ResultSet rs = getEmployee.executeQuery();
+            PreparedStatement getProduct = conn.prepareStatement("SELECT * from produkt WHERE id_produkt IN (Select produkt_id_produkt from pozycja_paragon where transakcja_id_transakcja = ?)")  ;
+            getProduct.setInt(1, idTransaction);
+            ResultSet rs = getProduct.executeQuery();
             while (rs.next()) {
                 products.add(new Produkt(rs.getInt("id_produkt"),
                         rs.getString("nazwa"), rs.getDouble("koszt"),
@@ -480,6 +533,27 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return clients;
+    }
+
+    DaneKlienta selectDaneKlienta(String name, String surname ){
+        DaneKlienta client = null;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getClientData = conn.prepareStatement("SELECT * from dane_klienta WHERE imie = ? AND nazwisko = ? LIMIT 1");
+            getClientData.setString(1, name);
+            getClientData.setString(2, surname);
+            ResultSet rs = getClientData.executeQuery();
+
+            while (rs.next()) {
+                client = new DaneKlienta(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return client;
     }
 
     List<Kategoria> selectAllFromKategoria(){

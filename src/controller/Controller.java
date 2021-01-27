@@ -208,7 +208,7 @@ public  class Controller {
 	}
 
 	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
-		// TODO Auto-generated method stub
+		fakturaController.addInvoice(daneNazwa, daneAdres, daneNIP,daneParagon);
 		
 	}
 
@@ -220,7 +220,7 @@ public  class Controller {
 	public void noweZamowienie(String produkt, String iloscProduktu,
 							   String imieZamawiajacego, String nazwiskoZamawiajacego)
 	{
-		//TODO: wprowadzenie do bazy danych zamówienia
+		zamowienieController.createNewOrder(produkt, iloscProduktu, imieZamawiajacego, nazwiskoZamawiajacego);
 	}
 
 }
