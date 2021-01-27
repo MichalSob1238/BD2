@@ -8,7 +8,6 @@ import java.sql.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -536,6 +535,28 @@ public class DatabaseController {
         }
         return products;
     }
+
+    Produkt selectWholeProductByName(String name){
+        Produkt product = null;
+        try {
+            Connection conn = getConnection();
+            Statement st = conn.createStatement();
+            PreparedStatement getProductName = conn.prepareStatement("SELECT * from produkt WHERE nazwa = ? LIMIT 1");
+            getProductName.setString(1, name);
+            ResultSet rs = getProductName.executeQuery();
+            if(rs.next()) {
+                product = new Produkt(rs.getInt("id_produkt"), rs.getString("nazwa"),
+                        rs.getDouble("koszt"),rs.getInt("kategoria_id_kategoria"));
+            }
+            st.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return product;
+    }
+
+
+
     String selectProductById(Integer id){
         String product = null;
         try {

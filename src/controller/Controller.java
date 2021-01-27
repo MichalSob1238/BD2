@@ -18,6 +18,8 @@ public  class Controller {
     private OknoListaZamowienController zamowienieController;
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
     private OknoZwrotController zwrotController;
+    private String userName;
+    private String userSurname;
 
     public Controller (Model model, View view)
     {
@@ -39,10 +41,14 @@ public  class Controller {
     		if(logowanie.checkIfEmployeeIsManager(employee)) {
     			view.setUser(name, surname, true);
     			view.oknoStartoweMenadzer();
+    			userName = name;
+    			userSurname = surname;
     		}
     		else {
     			view.setUser(name, surname, false);
     			view.oknoStartoweZwyklegoPracownika();
+				userName = name;
+				userSurname = surname;
     		}
     	} else {
     	view.oknoLogowaniePonowne();
