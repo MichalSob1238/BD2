@@ -647,6 +647,7 @@ public class DatabaseController {
             st.close();
         } catch(SQLException ex){
             ex.printStackTrace();
+            product = null;
         }
         return product;
     }

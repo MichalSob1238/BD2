@@ -20,7 +20,14 @@ public class OknoListaOfertController {
 
     public String getProductById(String id){
         DatabaseController db = new DatabaseController();
-        String productName = db.selectProductById(Integer.parseInt(id));
+        String productName;
+        try{
+            productName = db.selectProductById(Integer.parseInt(id));
+        } catch (Exception e){
+            productName = null;
+            return productName;
+        }
+
         return productName;
     }
 

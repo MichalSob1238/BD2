@@ -24,6 +24,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
     private GridBagLayout layout;
     private GridBagConstraints pom;
     private JTextField idField;
+    private JLabel msg;
     private int index;
 
 
@@ -37,6 +38,9 @@ public class oknoZakupu extends JPanel implements ActionListener {
 
         name = new JLabel("Joanna Takczyk");
         returnButton = new JButton("cofnij");
+
+        msg = new JLabel("zly kod produktu!");
+        msg.setForeground(Color.RED);
 
         tytul = new JLabel("Koszyk:");
         produkt1 = new JLabel();
@@ -80,14 +84,19 @@ public class oknoZakupu extends JPanel implements ActionListener {
         pom.gridx = 2;
         add(name, pom);
 
-        pom.insets = new Insets(0,0,0,0);
+        msg.setVisible(false);
+
+        pom.insets = new Insets(10,0,0,0);
+        pom.gridy = 0;
+        pom.gridwidth = 2;
+        add(msg,pom);
         pom.gridx=0;
         pom.gridy=1;
         add(addToCartButton,pom);
-        pom.gridx = 1;
-        pom.gridwidth = 2;
+        pom.gridx = 2;
+
         add(idField,pom);
-        pom.gridx = 3;
+        pom.gridx = 4;
         add(finaliseTransactionButton,pom);
 
         pom.insets = new Insets(60, 0, 0, 0);
@@ -249,8 +258,14 @@ public class oknoZakupu extends JPanel implements ActionListener {
             reload();
         }else if (button == addToCartButton)
         {
-            String id = idField.getText();
+            String id = null;
+            id = idField.getText();
             id = view.addToCart(id);
+            if (id == null)
+            {
+                msg.setVisible(true);
+                return;
+            }
             tab  = Arrays.copyOf(tab, tab.length + 1); //create new array from old array and allocate one more element
             tab[tab.length - 1] = id;
             int iloscStron = tab.length / 3;
@@ -303,6 +318,7 @@ public class oknoZakupu extends JPanel implements ActionListener {
     
     public void reload(){
 
+        msg.setVisible(false);
         int iloscStron = tab.length / 3;
         if(tab.length % 3 != 0) {
             iloscStron += 1;
