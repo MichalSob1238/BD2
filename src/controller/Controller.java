@@ -18,6 +18,7 @@ public  class Controller {
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
     private OknoZwrotController zwrotController;
     private OknoRemanentController oknoRemanentController;
+    private OknoRaportController oknoRaportController;
     private String userName;
     private String userSurname;
 
@@ -214,5 +215,10 @@ public  class Controller {
 	public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc, String produkt) {
 		zwrotController = new OknoZwrotController();
 		zwrotController.wykonajZwrot(iloscZwrot, paragon, maxIlosc,produkt);
+	}
+
+	public BigDecimal getIncomeFromPeriod(String begin, String end){
+		oknoRaportController = new OknoRaportController();
+    	return oknoRaportController.getDataFromPeriodOfTime(begin, end);
 	}
 }

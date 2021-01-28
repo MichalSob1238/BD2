@@ -72,7 +72,7 @@ public class oknoRaport extends JPanel implements ActionListener {
         if(button == cofnij){
             view.oknoStartowe();
         } else if (button == zarobekOkres){
-
+//            view.getIncomeFromPeriod();
         }
 
     }
