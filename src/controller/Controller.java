@@ -213,7 +213,7 @@ public  class Controller {
 	}
 
 	public void wystawParagon(String tresc[]) {
-    	// TODO: wystawnienie paragonu
+    	zamowienieController.createNewTransaction(tresc, userName, userSurname);
 
 	}
 

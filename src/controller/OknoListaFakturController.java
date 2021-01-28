@@ -26,4 +26,5 @@ public class OknoListaFakturController {
                 false, daneNazwa, daneAdres, daneNIP, transaction.getId());
         db.updateTransactionStatus(transaction.getId(), Transakcja.transactionType.FAKTURA.toString());
     }
+
 }
