@@ -1146,6 +1146,7 @@ public class DatabaseController {
         }
     }
 
+
     public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc)
     {
         try {
@@ -1164,4 +1165,26 @@ public class DatabaseController {
             ex.printStackTrace();
         }
     }
+
+   public BigDecimal getIncomeFromPeriod(String data_poczatek, String data_koniec){
+       BigDecimal income = new BigDecimal(0.0);
+       try {
+           Connection conn = getConnection();
+           PreparedStatement getIncome = conn.prepareStatement("select sum(kwota) as zarobek from transakcja " +
+                   "where transakcja.data >= ? and transakcja.data <= ?");
+           getIncome.setString(1,data_poczatek);
+           getIncome.setString(2,data_koniec);
+           getIncome.executeQuery();
+
+           ResultSet rs = getIncome.executeQuery();
+           if(rs.next()) {
+               income = rs.getBigDecimal("zarobek");
+           }
+       } catch(SQLException ex){
+           ex.printStackTrace();
+       }
+       return income;
+    }
+
+
 }
