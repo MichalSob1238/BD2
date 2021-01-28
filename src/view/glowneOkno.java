@@ -3,8 +3,6 @@ package view;
 import model.*;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -295,9 +293,9 @@ public class glowneOkno extends JFrame{
 		repaint();
 	}
 
-	public void oknoRaport(){
+	public void oknoRaport(String sum){
 		getContentPane().removeAll();
-		raportowanie.show();
+		raportowanie.show(name, sum.toString());
 		add(raportowanie);
 		validate();
 		repaint();
