@@ -44,7 +44,7 @@ public class glowneOkno extends JFrame{
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
 		this.view = view;
-		setSize(400, 300);
+		setSize(600, 400);
 		setResizable(true);
 		setLocation(450, 200);
 		
