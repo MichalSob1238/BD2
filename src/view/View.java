@@ -277,5 +277,9 @@ public class View {
 	public void clearZakup() {
     	controller.clearZakup();
 	}
+
+	public void getIncomeFromPeriod(String begin, String end) {
+		BigDecimal sum = controller.getIncomeFromPeriod(begin, end);
+	}
 }
 
