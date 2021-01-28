@@ -3,7 +3,6 @@ package controller;
 import model.*;
 import view.View;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -18,6 +17,7 @@ public  class Controller {
     private OknoListaZamowienController zamowienieController;
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
     private OknoZwrotController zwrotController;
+    private OknoRemanentController oknoRemanentController;
     private String userName;
     private String userSurname;
 
@@ -32,6 +32,10 @@ public  class Controller {
 
     public void start(){
         view.oknoLogowania();
+		this.oknoRemanentController = new OknoRemanentController();
+		List<List<String>> produkty = oknoRemanentController.dajProduktyZMagazynu();
+
+//		view.remanent(produkty);
 		//view.transactionConfirmation(new BigDecimal("304.25"));
     }
 
@@ -169,32 +173,16 @@ public  class Controller {
 	}
 
 	public void wyswietlenieRemanentu() {
-    	String produkty[][] = {
-				{"p1","a1","p1","i1"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"}
-		};
+    	this.oknoRemanentController = new OknoRemanentController();
+		List<List<String>> produkty = oknoRemanentController.dajProduktyZMagazynu();
     	view.remanent(produkty);
 	}
 
-	public void wyswietlenieRemanentu(int ilosc, int index) {
-		String produkty[][] = {
-				{"p1","a1","p1","i1"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"}
-		};
-		produkty[index][3] = String.valueOf(ilosc);
-//		 TODO zmienic zawartosc bazy i przekazać zmieniony
+	public void wyswietlenieRemanentu(int ilosc, int index, String idProduktu) {
+		this.oknoRemanentController = new OknoRemanentController();
+		List<List<String>> produkty = oknoRemanentController.dajProduktyZMagazynu();
+		produkty.get(index).set(3, String.valueOf(ilosc));
+		oknoRemanentController.aktualizujProduktyMagazynu(ilosc, idProduktu);
 		view.remanent(produkty);
 	}
 
@@ -202,10 +190,6 @@ public  class Controller {
 		szczegolyZamowienieController = new OknoSzczegolyZamowieniaController();
     	szczegolyZamowienieController.zmienStatusZamowienia(nrZamowienia);
     }
-
-	public void wyswietleniezmienIloscRemanent(String name, int index) {
-    	view.zmienIloscRemanent(name, index);
-	}
 
 	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
 		fakturaController.addInvoice(daneNazwa, daneAdres, daneNIP,daneParagon);

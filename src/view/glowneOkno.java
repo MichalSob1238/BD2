@@ -76,7 +76,7 @@ public class glowneOkno extends JFrame{
 
 	}
 
-	public void oknoRemanent(String produkty[][]) {
+	public void oknoRemanent(List<List<String>> produkty) {
 
 		getContentPane().removeAll();
 		oknoRemanent.show(name, produkty);
@@ -86,10 +86,10 @@ public class glowneOkno extends JFrame{
 
 	}
 
-	public void zmienIloscRemanent(String name, int index) {
+	public void zmienIloscRemanent(String name, int index, String idProduktu) {
 
 		getContentPane().removeAll();
-		oknoZmienIloscRemanent.show(name, index);
+		oknoZmienIloscRemanent.show(name, index, idProduktu);
 		add(oknoZmienIloscRemanent);
 		validate();
 		repaint();

@@ -20,6 +20,7 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
     private GridBagLayout layout;
     private GridBagConstraints pom;
     private int index;
+    private String idProduktu;
 
     public oknoZmienIloscRemanent(View view) {
         this.view = view;
@@ -76,9 +77,10 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
 
     }
 
-    public void show(String nameUser, int index) {
+    public void show(String nameUser, int index, String idProduktu) {
         name.setText(nameUser);
         this.index = index;
+        this.idProduktu = idProduktu;
     }
 
 
@@ -92,7 +94,7 @@ public class oknoZmienIloscRemanent extends JPanel implements ActionListener {
         }else if(button == zatwierdzButton) {
             String text = idField.getText();
             int ilosc = parseInt(text);
-            view.wybranyRemanent(ilosc, index);
+            view.wybranyRemanent(ilosc, index, this.idProduktu);
         }
     }
 
