@@ -21,6 +21,7 @@ public class oknoHurtownia extends JPanel implements ActionListener {
 
     private JLabel tytul;
     private JLabel produkt1, produkt2, produkt3;
+    private JButton wybierz1, wybierz2, wybierz3;
 
 
     private JButton next, prev;
@@ -45,6 +46,9 @@ public class oknoHurtownia extends JPanel implements ActionListener {
         produkt2 = new JLabel();
         produkt3 = new JLabel();
 
+        wybierz1 = new JButton("szczegoly");
+        wybierz2 = new JButton("szczegoly");
+        wybierz3 = new JButton("szczegoly");
 
         next = new JButton("next");
         prev = new JButton("prev");
@@ -80,6 +84,17 @@ public class oknoHurtownia extends JPanel implements ActionListener {
 
         pom.gridy = 4;
         add(produkt3, pom);
+
+        pom.gridy = 2;
+        pom.gridx = 2;
+        pom.gridwidth = 1;
+        add(wybierz1, pom);
+
+        pom.gridy = 3;
+        add(wybierz2, pom);
+
+        pom.gridy = 4;
+        add(wybierz3, pom);
 
 
 
