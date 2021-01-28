@@ -153,6 +153,9 @@ public class View {
 	public void zakup(){
     	wsk.oknoZakupu();
 	}
+	public void doClearZakup(){
+		wsk.clearOknoZakupu();
+	}
 	public void hurtownie(String list[]){
     	wsk.oknoHurtownia(list);
 
@@ -266,6 +269,10 @@ public class View {
 
 	public void wystawParagon() {
     	controller.wystawParagon(wsk.trescParagonu());
+	}
+
+	public void clearZakup() {
+    	controller.clearZakup();
 	}
 }
 

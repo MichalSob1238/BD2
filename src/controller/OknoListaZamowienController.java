@@ -26,9 +26,18 @@ public class OknoListaZamowienController {
         }
         Pracownik employee = db.selectPracownik(name, surname);
         int transactionId = db.insertIntoTransakcja(new Date(), sum, employee.getId(), Transakcja.transactionType.PARAGON);
+        Produkt prod = products.get(0);
+        int i = 0;
         for(Produkt product : products){
-            db.insertIntoPozycjaParagon(1, product.getCost(), transactionId, product.getId());
+            if (prod.getId() == product.getId()) {
+                i++;
+            } else {
+                db.insertIntoPozycjaParagon(i, prod.getCost(), transactionId, prod.getId());
+                i=0;
+            }
+            prod = product;
         }
+        db.insertIntoPozycjaParagon(i+1, prod.getCost(), transactionId, prod.getId());
     }
 
     public void createNewOrder(String produkt, String iloscProduktu,

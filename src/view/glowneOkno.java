@@ -134,6 +134,11 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
+	public void clearOknoZakupu() {
+
+		zakup.clear();
+
+	}
 
 	public void setName(String name) {
 		this.name = name;

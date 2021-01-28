@@ -197,6 +197,7 @@ public  class Controller {
 	}
 
 	public void wystawParagon(String tresc[]) {
+    	zamowienieController = new OknoListaZamowienController();
     	zamowienieController.createNewTransaction(tresc, userName, userSurname);
 
 	}
@@ -204,7 +205,11 @@ public  class Controller {
 	public void noweZamowienie(String produkt, String iloscProduktu,
 							   String imieZamawiajacego, String nazwiskoZamawiajacego)
 	{
+		zamowienieController = new OknoListaZamowienController();
 		zamowienieController.createNewOrder(produkt, iloscProduktu, imieZamawiajacego, nazwiskoZamawiajacego);
 	}
 
+	public void clearZakup() {
+    	view.doClearZakup();
+	}
 }

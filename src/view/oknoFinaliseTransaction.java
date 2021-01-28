@@ -41,10 +41,10 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         name = new JLabel("");
 
 
-        oplacGotowkaButton = new JButton("Op³aæ Gotowka");
+        oplacGotowkaButton = new JButton("Oplac Gotowka");
         oplacGotowkaButton.addActionListener(this);
 
-        oplacKartaButon = new JButton("Op³aæ Karta");
+        oplacKartaButon = new JButton("Oplac Karta");
         oplacKartaButon.addActionListener(this);
 
 
@@ -100,9 +100,12 @@ public class oknoFinaliseTransaction extends JPanel implements ActionListener{
         // TODO Auto-generated method stub
         JButton button = (JButton) arg0.getSource();
         if(button == returnButton) {
-            view.zakup();
+
+            view.wybranoZakup();
         }else if(button == oplacGotowkaButton || button == oplacKartaButon) {
             view.wystawParagon();
+            view.clearZakup();
+            view.wybranoZakup();
         }
     }
 
