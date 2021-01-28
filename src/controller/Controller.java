@@ -19,6 +19,8 @@ public  class Controller {
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
     private OknoZwrotController zwrotController;
     private oknoRemanentController oknoRemanentController;
+    private String userName;
+    private String userSurname;
 
     public Controller (Model model, View view)
     {
@@ -30,10 +32,7 @@ public  class Controller {
     }
 
     public void start(){
-//        view.oknoLogowania();
-		String produkty[][] = oknoRemanentController.dajProduktyZMagazynu();
-
-//		view.remanent(produkty);
+        view.oknoLogowania();
 		//view.transactionConfirmation(new BigDecimal("304.25"));
     }
 
@@ -43,10 +42,14 @@ public  class Controller {
     		if(logowanie.checkIfEmployeeIsManager(employee)) {
     			view.setUser(name, surname, true);
     			view.oknoStartoweMenadzer();
+    			userName = name;
+    			userSurname = surname;
     		}
     		else {
     			view.setUser(name, surname, false);
     			view.oknoStartoweZwyklegoPracownika();
+				userName = name;
+				userSurname = surname;
     		}
     	} else {
     	view.oknoLogowaniePonowne();
@@ -208,7 +211,7 @@ public  class Controller {
 	}
 
 	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
-		// TODO Auto-generated method stub
+		fakturaController.addInvoice(daneNazwa, daneAdres, daneNIP,daneParagon);
 		
 	}
 
@@ -220,7 +223,7 @@ public  class Controller {
 	public void noweZamowienie(String produkt, String iloscProduktu,
 							   String imieZamawiajacego, String nazwiskoZamawiajacego)
 	{
-		//TODO: wprowadzenie do bazy danych zamówienia
+		zamowienieController.createNewOrder(produkt, iloscProduktu, imieZamawiajacego, nazwiskoZamawiajacego);
 	}
 
 }
