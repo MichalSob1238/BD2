@@ -266,6 +266,9 @@ public class View {
 		
 	}
 
+	public void wybranoRaporty(){
+		wsk.oknoRaport();
+	}
 
 	public void wystawParagon() {
     	controller.wystawParagon(wsk.trescParagonu());
