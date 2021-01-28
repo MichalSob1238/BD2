@@ -271,7 +271,7 @@ public class View {
 	}
 
 	public void wybranoRaporty(){
-		wsk.oknoRaport();
+		wsk.oknoRaport("");
 	}
 
 	public void wystawParagon() {
@@ -288,6 +288,7 @@ public class View {
 
 	public void getIncomeFromPeriod(String begin, String end) {
 		BigDecimal sum = controller.getIncomeFromPeriod(begin, end);
+		wsk.oknoRaport(sum.toString());
 	}
 }
 
