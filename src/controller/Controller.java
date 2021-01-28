@@ -18,6 +18,7 @@ public  class Controller {
     private OknoListaZamowienController zamowienieController;
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
     private OknoZwrotController zwrotController;
+    private oknoRemanentController oknoRemanentController;
 
     public Controller (Model model, View view)
     {
@@ -29,7 +30,10 @@ public  class Controller {
     }
 
     public void start(){
-        view.oknoLogowania();
+//        view.oknoLogowania();
+		String produkty[][] = oknoRemanentController.dajProduktyZMagazynu();
+
+//		view.remanent(produkty);
 		//view.transactionConfirmation(new BigDecimal("304.25"));
     }
 
@@ -163,16 +167,18 @@ public  class Controller {
 	}
 
 	public void wyswietlenieRemanentu() {
-    	String produkty[][] = {
-				{"p1","a1","p1","i1"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"},
-				{"p2","a2","p2","i2"}
-		};
+    	String produkty[][] = oknoRemanentController.dajProduktyZMagazynu();
+
+//    	String produkty[][] = {
+//				{"p1","a1","p1","i1"},
+//				{"p2","a2","p2","i2"},
+//				{"p2","a2","p2","i2"},
+//				{"p2","a2","p2","i2"},
+//				{"p2","a2","p2","i2"},
+//				{"p2","a2","p2","i2"},
+//				{"p2","a2","p2","i2"},
+//				{"p2","a2","p2","i2"}
+//		};
     	view.remanent(produkty);
 	}
 
