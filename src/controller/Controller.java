@@ -141,6 +141,7 @@ public  class Controller {
 		view.hurtownie(list);
 	}
 
+
 	public void pobierzSzczegolyHurtowni(String name) {
 		ofertaController = new OknoListaOfertController();
 		Hurtownia warehouse = ofertaController.getWarehousesDetails(name);
@@ -213,8 +214,8 @@ public  class Controller {
     	view.doClearZakup();
 	}
 
-	public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc) {
+	public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc, String produkt) {
 		zwrotController = new OknoZwrotController();
-		zwrotController.wykonajZwrot(iloscZwrot, paragon, maxIlosc);
+		zwrotController.wykonajZwrot(iloscZwrot, paragon, maxIlosc,produkt);
 	}
 }

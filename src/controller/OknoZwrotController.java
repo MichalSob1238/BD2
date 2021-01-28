@@ -21,8 +21,8 @@ public class OknoZwrotController {
 
     }
 
-    public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc) {
+    public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc, String produkt) {
         DatabaseController db = new DatabaseController();
-        db.wykonajZwrot(iloscZwrot,paragon,maxIlosc);
+        db.wykonajZwrot(iloscZwrot,paragon,maxIlosc, produkt);
     }
 }

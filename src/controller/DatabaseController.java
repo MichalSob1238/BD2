@@ -1147,19 +1147,22 @@ public class DatabaseController {
     }
 
 
-    public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc)
+    public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc, String produkt)
     {
+        int newQuantity = Integer.parseInt(maxIlosc) - Integer.parseInt(iloscZwrot);
         try {
             Connection conn = getConnection();
-            PreparedStatement getStatus = conn.prepareStatement(
-                    "update pozycja_paragon set produkt_id_produkt = ? " +
-                            "and transakcja_id_transakcja = ? LIMIT 1");
-            
-            ResultSet rs = getStatus.executeQuery();
+            PreparedStatement updatePozycjaParagon = conn.prepareStatement(
+                    "UPDATE pozycja_paragon set ilosc = ? " +
+                            "WHERE transakcja_id_transakcja = ? AND produkt_id_produkt = ?");
+            updatePozycjaParagon.setInt(1, newQuantity);
+            updatePozycjaParagon.setInt(2, Integer.parseInt(paragon));
+            updatePozycjaParagon.setInt(3, Integer.parseInt(produkt));
+            ResultSet rs = updatePozycjaParagon.executeQuery();
             if(rs.next()) {
 
             }
-            getStatus.close();
+            updatePozycjaParagon.close();
 
         } catch(SQLException ex){
             ex.printStackTrace();

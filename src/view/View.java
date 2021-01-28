@@ -206,8 +206,7 @@ public class View {
 	}
 	
 	public void wybranoGotowkeZwrot() {
-		//TODO: faktyczny zwrot
-		controller.wykonajZwrot(wybranaIloscZwrotu, paragonZwrot,maxIloscZwrot);
+		controller.wykonajZwrot(wybranaIloscZwrotu, paragonZwrot,maxIloscZwrot, produktZwrot);
 	}
 	
 	public void oknoPodaniaNrKonta() {
@@ -267,6 +266,9 @@ public class View {
 		
 	}
 
+	public void wybranoRaporty(){
+		wsk.oknoRaport();
+	}
 
 	public void wystawParagon() {
     	controller.wystawParagon(wsk.trescParagonu());
