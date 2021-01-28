@@ -108,12 +108,12 @@ public class View {
 		wsk.oknoListaDostaw(dostawy);
 	}
 
-	public void remanent(String produkty[][]) {
+	public void remanent(List<List<String>> produkty) {
 		wsk.oknoRemanent(produkty);
 	}
 
-	public void zmienIloscRemanent(String name, int index) {
-		wsk.zmienIloscRemanent(name,  index);
+	public void zmienIloscRemanent(String name, int index, String idProduktu) {
+		wsk.zmienIloscRemanent(name,  index, idProduktu);
 	}
 
 	public void wybranoPrzegladFaktur() {
@@ -236,8 +236,8 @@ public class View {
     	controller.wyswietlenieRemanentu();
 	}
 
-	public void wybranyRemanent(int ilosc, int index) {
-		controller.wyswietlenieRemanentu(ilosc, index);
+	public void wybranyRemanent(int ilosc, int index, String idProduktu) {
+		controller.wyswietlenieRemanentu(ilosc, index, idProduktu);
 	}
 
 	public void wypelnionoFormularzFaktury(String daneNazwa, String daneAdres, String daneNIP, String daneParagon) {
