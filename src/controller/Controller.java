@@ -141,6 +141,7 @@ public  class Controller {
 		view.hurtownie(list);
 	}
 
+
 	public void pobierzSzczegolyHurtowni(String name) {
 		ofertaController = new OknoListaOfertController();
 		Hurtownia warehouse = ofertaController.getWarehousesDetails(name);
