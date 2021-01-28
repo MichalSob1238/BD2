@@ -213,8 +213,8 @@ public  class Controller {
     	view.doClearZakup();
 	}
 
-	public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc) {
+	public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc, String produkt) {
 		zwrotController = new OknoZwrotController();
-		zwrotController.wykonajZwrot(iloscZwrot, paragon, maxIlosc);
+		zwrotController.wykonajZwrot(iloscZwrot, paragon, maxIlosc,produkt);
 	}
 }
