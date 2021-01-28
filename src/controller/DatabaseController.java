@@ -1172,7 +1172,7 @@ public class DatabaseController {
        try {
            Connection conn = getConnection();
            PreparedStatement getIncome = conn.prepareStatement("select sum(kwota) as zarobek from transakcja " +
-                   "where transakcja.data >= ? and transakcja.data <= ?");
+                   "where transakcja.data BETWEEN ? and ?");
            getIncome.setString(1,data_poczatek);
            getIncome.setString(2,data_koniec);
            getIncome.executeQuery();

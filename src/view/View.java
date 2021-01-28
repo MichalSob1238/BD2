@@ -281,8 +281,9 @@ public class View {
 		wsk.oknoSzczegolyHurtowni(warehouse);
 	}
 
-	public void getIncomeFromPeriod(String begin, String end) {
+	public BigDecimal getIncomeFromPeriod(String begin, String end) {
 		BigDecimal sum = controller.getIncomeFromPeriod(begin, end);
+		return sum;
 	}
 }
 

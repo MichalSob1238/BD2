@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Date;
 
 public class oknoRaport extends JPanel implements ActionListener {
 
@@ -11,7 +13,7 @@ public class oknoRaport extends JPanel implements ActionListener {
 
     private JLabel name;
     private JLabel zarobek;
-    private JButton cofnij, zarobekOkres;
+    private JButton cofnij, zarobekOkresMiesiąc, zarobekOkresRok, getZarobekOkres5 ;
 
     private JLabel tytul, okresOd, okresDo;
     private GridBagLayout layout;
@@ -30,10 +32,14 @@ public class oknoRaport extends JPanel implements ActionListener {
         tytul = new JLabel("Raportowanie");
         okresOd = new JLabel("okres od:");
         okresDo = new JLabel("okres do:");
-        zarobekOkres = new JButton("Sprawdz zarobek za okres");
+        zarobekOkresMiesiąc = new JButton("Sprawdz zarobek za ostatni miesiąc");
+        zarobekOkresRok = new JButton("Sprawdz zarobek za ostatni rok");
+        getZarobekOkres5 = new JButton("Sprawdz zarobek za ostatnie pięć lat");
 
         cofnij.addActionListener(this);
-        zarobekOkres.addActionListener(this);
+        zarobekOkresMiesiąc.addActionListener(this);
+        zarobekOkresRok.addActionListener(this);
+        getZarobekOkres5.addActionListener(this);
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -53,7 +59,9 @@ public class oknoRaport extends JPanel implements ActionListener {
         pom.insets = new Insets(0, 0, 0, 0);
         pom.gridy = 2;
         pom.gridwidth = 2;
-        add(zarobekOkres, pom);
+        add(zarobekOkresMiesiąc, pom);
+        add(zarobekOkresRok);
+        add(getZarobekOkres5);
 
         pom.gridx = 2;
         add(okresOd, pom);
@@ -69,12 +77,24 @@ public class oknoRaport extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent arg0) {
         JButton button = (JButton) arg0.getSource();
-        if(button == cofnij){
+        if (button == cofnij) {
             view.oknoStartowe();
-        } else if (button == zarobekOkres){
-//            view.getIncomeFromPeriod();
+        } else if (button == zarobekOkresMiesiąc) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            c.add(Calendar.MONTH, -1);
+            System.out.println(view.getIncomeFromPeriod(new Date().toString(), c.getTime().toString()));
+        } else if (button == zarobekOkresRok) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            c.add(Calendar.YEAR, -1);
+            System.out.println(view.getIncomeFromPeriod(new Date().toString(), c.getTime().toString()));
+        }else if (button == getZarobekOkres5) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            c.add(Calendar.YEAR, -5);
+            System.out.println(view.getIncomeFromPeriod(new Date().toString(), c.getTime().toString()));
         }
-
     }
 
 
