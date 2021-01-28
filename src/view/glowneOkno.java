@@ -314,4 +314,6 @@ public class glowneOkno extends JFrame{
 		validate();
 		repaint();
 	}
+
+
 }

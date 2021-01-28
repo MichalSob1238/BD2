@@ -29,6 +29,7 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
 
     private GridBagLayout layout;
     private GridBagConstraints pom;
+    private int id;
 
     public oknoSzczegolyProdukt(View view) {
 
@@ -90,7 +91,7 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
 
     public void show(String nameUser, Szczegolowe_informacje szczegol) {
         name.setText(nameUser);
-
+        id = szczegol.getProduct_id();
         kolor.setText("kolor: " + szczegol.getColor());
         waga.setText("waga: " + Integer.toString(szczegol.getWeight()));
         dodatkowe_informacje.setText("dodatkowy opis: " + szczegol.getAdditional_informations());
@@ -105,7 +106,7 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
         if (button == cofnij) {
             view.wybranoOferte();
         }else if(button == zamowienie) {
-        	view.wybranoZamowienieDetaliczne();
+        	view.wybranoZamowienieDetaliczne(id);
         }
     }
 }

@@ -62,7 +62,7 @@ public class DatabaseController {
     int insertIntoDaneKlienta(String name, String lastName){
         try{
             Connection conn = getConnection();
-            PreparedStatement insert = conn.prepareStatement("INSERT INTO dane_klienta VALUES(default,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement insert = conn.prepareStatement("INSERT INTO dane_klienta VALUES(default,?,?,null)", Statement.RETURN_GENERATED_KEYS);
             insert.setString(1, name);
             insert.setString(2,  lastName);
             insert.execute();
@@ -612,7 +612,7 @@ public class DatabaseController {
         return products;
     }
 
-    Produkt selectWholeProductByName(String name){
+    public Produkt selectWholeProductByName(String name){
         Produkt product = null;
         try {
             Connection conn = getConnection();
@@ -633,7 +633,7 @@ public class DatabaseController {
 
 
 
-    String selectProductById(Integer id){
+    public String selectProductById(Integer id){
         String product = null;
         try {
             Connection conn = getConnection();

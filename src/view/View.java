@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import controller.DatabaseController;
 import model.*;
 
 import javax.swing.*;
@@ -261,8 +262,12 @@ public class View {
 		
 	}
 
-	public void wybranoZamowienieDetaliczne() {
-		
+	public void wybranoZamowienieDetaliczne(int id) {
+		//controller.wybranoZamowienieDetaliczne();
+		DatabaseController db = new DatabaseController();
+		String nazwa  = db.selectProductById(id);
+		Produkt prod = db.selectWholeProductByName(nazwa);
+		wsk.zamowienieDetaliczne(Double.toString(prod.getCost()),prod.getName() );
 	}
 
 	public void wybranoRaporty(){

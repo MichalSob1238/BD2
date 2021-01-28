@@ -49,13 +49,13 @@ public class formularzZamowienia extends JPanel implements ActionListener{
 		nazwaProduktu = new JLabel();
 		ilosc = new JLabel();
 		koszt = new JLabel();
-		podajImie = new JLabel("Podaj imiê: ");
+		podajImie = new JLabel("Podaj imie: ");
 		imie = new JTextField();
 		imie.setPreferredSize(new Dimension(70, 20));
 		podajNazwisko = new JLabel("Podaj nazwisko: ");
 		nazwisko = new JTextField();
 		nazwisko.setPreferredSize(new Dimension(70, 20));
-		zamow = new JButton("op³aæ i zamów");
+		zamow = new JButton("oplac i zamow");
 		zamow.addActionListener(this);
 		
 		 pom.insets = new Insets(0, 0, 20, 50);
@@ -105,7 +105,7 @@ public class formularzZamowienia extends JPanel implements ActionListener{
 		this.kwota = kwota;
 		iloscProduktu = ilosc;
 		nazwaProduktu.setText("Produkt: "+produkt);
-		this.ilosc.setText("Iloœæ produktu: "+ilosc);
+		this.ilosc.setText("Ilosc produktu: "+ilosc);
 		koszt.setText("Cena jednostkowa: "+kwota);
 		
 	}
@@ -120,6 +120,7 @@ public class formularzZamowienia extends JPanel implements ActionListener{
 			String imieZamawiajacego = imie.getText();
 			String nazwiskoZamawiajacego = nazwisko.getText();
 			view.noweZamowienie(produkt, iloscProduktu, imieZamawiajacego, nazwiskoZamawiajacego);
+			view.oknoStartowe();
 		}
 	}
 }

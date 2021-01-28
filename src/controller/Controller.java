@@ -221,4 +221,8 @@ public  class Controller {
 		oknoRaportController = new OknoRaportController();
     	return oknoRaportController.getDataFromPeriodOfTime(begin, end);
 	}
+
+	public void wybranoZamowienieDetaliczne() {
+    	//view.
+	}
 }
