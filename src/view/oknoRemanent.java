@@ -300,11 +300,11 @@ public class oknoRemanent extends JPanel implements ActionListener {
         } else if(button == cofnij) {
             view.oknoStartowe();
         } else if(button == wybierz1){
-            view.zmienIloscRemanent(this.userName, (index-1)*3);
+            view.zmienIloscRemanent(this.userName, (index-1)*3, produkty.get((index-1)*3).get(4));
         } else if(button == wybierz2){
-            view.zmienIloscRemanent(this.userName, (index-1)*3+1);
+            view.zmienIloscRemanent(this.userName, (index-1)*3+1, produkty.get((index-1)*3).get(4));
         } else if(button == wybierz3){
-            view.zmienIloscRemanent(this.userName, (index-1)*3+2);
+            view.zmienIloscRemanent(this.userName, (index-1)*3+2, produkty.get((index-1)*3).get(4));
         }
     }
 

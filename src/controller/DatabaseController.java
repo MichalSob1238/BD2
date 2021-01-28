@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class DatabaseController {
 
     private static final String url = "jdbc:mysql://localhost:8889/deliveryEarn";
@@ -1070,7 +1072,7 @@ public class DatabaseController {
                     "select ilosc from pozycja_paragon where produkt_id_produkt = ? " +
                             "and transakcja_id_transakcja = ? LIMIT 1");
             getStatus.setInt(1,id);
-            getStatus.setInt(2,Integer.parseInt(paragon));
+            getStatus.setInt(2, parseInt(paragon));
             ResultSet rs = getStatus.executeQuery();
             if(rs.next()) {
                 amount = rs.getString(1);
@@ -1103,19 +1105,13 @@ public class DatabaseController {
 
     public List<List<String>> getProductsFromWarehouse() { //TODO zapytanie do bazy danych o dane z magazynu
         //format "produktName", "Alley", "shelf", "how many"
-//        String produkty[][] = {
-//				{"p1","a1","p1","i1"},
-//				{"p2","a2","p2","i2"}
-//		};
         List<List<String>> produkty = new ArrayList<List<String>>();
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
-//            p.Nazwa, m.magazyn_id_alejka, m.magazyn_id_polki, m.ilosc
-//            PreparedStatement getProducts = conn.prepareStatement
-//                    ("SELECT produkt.Nazwa, magazyn.alejka_id_alejka, magazyn.polka_id_polki, magazyn.ilosc FROM magazyn JOIN produkt ON produkt.id_produkt = magazyn.produkt_id_produkt");
             PreparedStatement getProducts = conn.prepareStatement
-                    ("SELECT p.Nazwa, m.nr_alejki, m.nr_polki, m.ilosc FROM magazyn as m JOIN produkt as p ON p.id_produkt = m.produkt_id_produkt");
+                    ("SELECT p.Nazwa, m.nr_alejki, m.nr_polki, m.ilosc, m.produkt_id_produkt  FROM magazyn as m JOIN produkt as p " +
+                            "ON p.id_produkt = m.produkt_id_produkt");
             ResultSet rs = getProducts.executeQuery();
             int i = 0;
             while (rs.next()) {
@@ -1124,6 +1120,7 @@ public class DatabaseController {
                 produkty.get(i).add(rs.getString("nr_alejki"));
                 produkty.get(i).add(rs.getString("nr_polki"));
                 produkty.get(i).add(rs.getString("ilosc"));
+                produkty.get(i).add(rs.getString("produkt_id_produkt"));
                 i++;
             }
             st.close();
@@ -1131,6 +1128,21 @@ public class DatabaseController {
             ex.printStackTrace();
         }
         return produkty;
+    }
+
+    void updateProductsFromWarehouse( int ilosc, String idProduktu){
+        Boolean isDone = false;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement changeStatus = conn.prepareStatement("update magazyn set ilosc = ? " +
+                    "where produkt_id_produkt = ?");
+            changeStatus.setInt(1,ilosc);
+            changeStatus.setInt(2,parseInt(idProduktu));
+            changeStatus.executeUpdate();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 
 }

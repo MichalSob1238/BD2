@@ -7,4 +7,9 @@ public class OknoRemanentController {
         DatabaseController db = new DatabaseController();
         return db.getProductsFromWarehouse();
     }
+
+    public void aktualizujProduktyMagazynu(int ilosc, String idProduktu) {
+        DatabaseController db = new DatabaseController();
+        db.updateProductsFromWarehouse(ilosc, idProduktu);
+    }
 }
