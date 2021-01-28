@@ -35,24 +35,6 @@ public  class Controller {
 		this.oknoRemanentController = new OknoRemanentController();
 		List<List<String>> produkty = oknoRemanentController.dajProduktyZMagazynu();
 
-//		String produkty[][] = {
-//				{"p1","a1","p1","i1"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"}
-//		};
-
-//		List<List<String>> produkty = new ArrayList<List<String>>();
-//		produkty.add(new ArrayList<String>());
-//		produkty.get(0).add("p1");
-//		produkty.get(0).add("a1");
-//		produkty.get(0).add("p1");
-//		produkty.get(0).add("i1");
-
 		view.remanent(produkty);
 		//view.transactionConfirmation(new BigDecimal("304.25"));
     }
@@ -191,35 +173,14 @@ public  class Controller {
 	}
 
 	public void wyswietlenieRemanentu() {
-//    	String produkty[][] = oknoRemanentController.dajProduktyZMagazynu();
-
-//    	String produkty[][] = {
-//				{"p1","a1","p1","i1"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"},
-//				{"p2","a2","p2","i2"}
-//		};
-
-		List<List<String>> produkty = new ArrayList<List<String>>();
-		produkty.add(new ArrayList<String>());
-		produkty.get(0).add("p1");
-		produkty.get(0).add("a1");
-		produkty.get(0).add("p1");
-		produkty.get(0).add("i1");
+    	this.oknoRemanentController = new OknoRemanentController();
+		List<List<String>> produkty = oknoRemanentController.dajProduktyZMagazynu();
     	view.remanent(produkty);
 	}
 
 	public void wyswietlenieRemanentu(int ilosc, int index) {
-		List<List<String>> produkty = new ArrayList<List<String>>();
-		produkty.add(new ArrayList<String>());
-		produkty.get(0).add("p1");
-		produkty.get(0).add("a1");
-		produkty.get(0).add("p1");
-		produkty.get(0).add("i1");
+		this.oknoRemanentController = new OknoRemanentController();
+		List<List<String>> produkty = oknoRemanentController.dajProduktyZMagazynu();
 		produkty.get(index).set(3, String.valueOf(ilosc));
 //		 TODO zmienic zawartosc bazy i przekazać zmieniony
 		view.remanent(produkty);
