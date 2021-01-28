@@ -9,12 +9,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class oknoRemanent extends JPanel implements ActionListener {
 
     private View view;
     private int index;
     private String produkty[][];
+//    private List<String>
 
     private JLabel name;
     private  String userName;

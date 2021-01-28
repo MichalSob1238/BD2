@@ -1107,13 +1107,20 @@ public class DatabaseController {
 				{"p1","a1","p1","i1"},
 				{"p2","a2","p2","i2"}
 		};
+        List<String> orders = new ArrayList<>();
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
+//            p.Nazwa, m.magazyn_id_alejka, m.magazyn_id_polki, m.ilosc
 //            PreparedStatement getProducts = conn.prepareStatement
 //                    ("SELECT produkt.Nazwa, magazyn.alejka_id_alejka, magazyn.polka_id_polki, magazyn.ilosc FROM magazyn JOIN produkt ON produkt.id_produkt = magazyn.produkt_id_produkt");
             PreparedStatement getProducts = conn.prepareStatement
-                    ("SELECT p.Nazwa, m.alejka_id_alejka, m.polka_id_polki, m.ilosc FROM magazyn as m JOIN produkt as p ON p.id_produkt = m.produkt_id_produkt");
+                    ("SELECT p.Nazwa FROM magazyn as m JOIN produkt as p ON p.id_produkt = m.produkt_id_produkt");
+            ResultSet rs = getProducts.executeQuery();
+            while (rs.next()) {
+
+                orders.add(rs.getString("Nazwa"));
+            }
 //            getProducts.setString(1,produkty[0]);
 //            ResultSet rs = getProducts.executeQuery();
 //            if(rs.next()) {

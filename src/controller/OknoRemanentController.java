@@ -1,6 +1,6 @@
 package controller;
 
-public class oknoRemanentController {
+public class OknoRemanentController {
     public String[][] dajProduktyZMagazynu() {
         DatabaseController db = new DatabaseController();
         String produkty[][] = db.getProductsFromWarehouse();

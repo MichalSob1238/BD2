@@ -3,7 +3,6 @@ package controller;
 import model.*;
 import view.View;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -18,7 +17,7 @@ public  class Controller {
     private OknoListaZamowienController zamowienieController;
     private OknoSzczegolyZamowieniaController szczegolyZamowienieController;
     private OknoZwrotController zwrotController;
-    private oknoRemanentController oknoRemanentController;
+    private OknoRemanentController oknoRemanentController;
     private String userName;
     private String userSurname;
 
@@ -32,7 +31,22 @@ public  class Controller {
     }
 
     public void start(){
-        view.oknoLogowania();
+//        view.oknoLogowania();
+//		this.oknoRemanentController = new OknoRemanentController();
+//		String produkty[][] = oknoRemanentController.dajProduktyZMagazynu();
+
+		String produkty[][] = {
+				{"p1","a1","p1","i1"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"},
+				{"p2","a2","p2","i2"}
+		};
+
+		view.remanent(produkty);
 		//view.transactionConfirmation(new BigDecimal("304.25"));
     }
 
