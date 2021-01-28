@@ -1146,6 +1146,26 @@ public class DatabaseController {
         }
     }
 
+
+    public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc)
+    {
+        try {
+            Connection conn = getConnection();
+            PreparedStatement getStatus = conn.prepareStatement(
+                    "update pozycja_paragon set produkt_id_produkt = ? " +
+                            "and transakcja_id_transakcja = ? LIMIT 1");
+            
+            ResultSet rs = getStatus.executeQuery();
+            if(rs.next()) {
+
+            }
+            getStatus.close();
+
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
    public BigDecimal getIncomeFromPeriod(String data_poczatek, String data_koniec){
        BigDecimal income = new BigDecimal(0.0);
        try {
@@ -1165,5 +1185,6 @@ public class DatabaseController {
        }
        return income;
     }
+
 
 }

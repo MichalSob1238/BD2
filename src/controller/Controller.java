@@ -213,4 +213,9 @@ public  class Controller {
 	public void clearZakup() {
     	view.doClearZakup();
 	}
+
+	public void wykonajZwrot(String iloscZwrot, String paragon, String maxIlosc) {
+		zwrotController = new OknoZwrotController();
+		zwrotController.wykonajZwrot(iloscZwrot, paragon, maxIlosc);
+	}
 }

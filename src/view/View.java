@@ -207,6 +207,7 @@ public class View {
 	
 	public void wybranoGotowkeZwrot() {
 		//TODO: faktyczny zwrot
+		controller.wykonajZwrot(wybranaIloscZwrotu, paragonZwrot,maxIloscZwrot);
 	}
 	
 	public void oknoPodaniaNrKonta() {
