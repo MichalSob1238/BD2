@@ -1,5 +1,6 @@
 package view;
 
+import model.Hurtownia;
 import model.Szczegolowe_informacje;
 
 import java.awt.GridBagConstraints;
@@ -12,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
+public class oknoSzczegolyHurtowni extends JPanel implements ActionListener {
 
     private View view;
 
@@ -20,17 +21,15 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
     private JButton cofnij;
 
     private JLabel tytul;
-    private JLabel kolor;
-    private JLabel waga;
-    private JLabel dodatkowe_informacje;
-    private JLabel alergeny;
-    private JLabel wymiary;
-    private JButton zamowienie;
+    private JLabel id;
+    private JLabel nazwa;
+    private JLabel kontakt;
+
 
     private GridBagLayout layout;
     private GridBagConstraints pom;
 
-    public oknoSzczegolyProdukt(View view) {
+    public oknoSzczegolyHurtowni(View view) {
 
         this.view = view;
         layout = new GridBagLayout();
@@ -42,13 +41,11 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
         cofnij.addActionListener(this);
         tytul = new JLabel("Szczegolowe informacje:");
 
-        kolor = new JLabel();
-        waga = new JLabel();
-        dodatkowe_informacje = new JLabel();
-        alergeny = new JLabel();
-        wymiary = new JLabel();
-        zamowienie = new JButton("Zamow");
-        zamowienie.addActionListener(this);
+        id = new JLabel();
+        nazwa = new JLabel();
+        kontakt = new JLabel();
+
+
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -68,34 +65,23 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
         pom.insets = new Insets(0, 0, 0, 0);
         pom.gridy = 2;
         pom.gridwidth = 2;
-        add(kolor, pom);
+        add(id, pom);
 
         pom.gridy = 3;
-        add(waga, pom);
+        add(nazwa, pom);
 
         pom.gridy = 4;
-        add(dodatkowe_informacje, pom);
+        add(kontakt, pom);
 
-        pom.gridy = 5;
-        add(alergeny, pom);
-
-        pom.gridy = 6;
-        add(wymiary, pom);
-        
-        pom.gridx = 2;
-        pom.gridy = 5;
-        add(zamowienie, pom);
-        
     }
 
-    public void show(String nameUser, Szczegolowe_informacje szczegol) {
+    public void show(String nameUser, Hurtownia szczegol) {
         name.setText(nameUser);
 
-        kolor.setText("kolor: " + szczegol.getColor());
-        waga.setText("waga: " + Integer.toString(szczegol.getWeight()));
-        dodatkowe_informacje.setText("dodatkowy opis: " + szczegol.getAdditional_informations());
-        alergeny.setText("alergeny: " + szczegol.getAllergens());
-        wymiary.setText("wymiary: " + szczegol.getDimensions());
+        id.setText("id: " + szczegol.getId());
+        nazwa.setText("nazwa: " + szczegol.getName());
+        kontakt.setText("kontakt: " + szczegol.getContactString());
+
     }
 
     @Override
@@ -103,9 +89,7 @@ public class oknoSzczegolyProdukt extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         JButton button = (JButton) arg0.getSource();
         if (button == cofnij) {
-            view.wybranoOferte();
-        }else if(button == zamowienie) {
-        	view.wybranoZamowienieDetaliczne();
+            view.wybranoHurtownia();
         }
     }
 }

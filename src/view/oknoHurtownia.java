@@ -58,6 +58,9 @@ public class oknoHurtownia extends JPanel implements ActionListener {
 
         next.addActionListener(this);
         prev.addActionListener(this);
+        wybierz1.addActionListener(this);
+        wybierz2.addActionListener(this);
+        wybierz3.addActionListener(this);
 
         pom.insets = new Insets(0, 0, 20, 50);
         pom.gridx = 0;
@@ -164,19 +167,21 @@ public class oknoHurtownia extends JPanel implements ActionListener {
                 produkt1.setText(tab[(index-1)*3]);
                 produkt2.setText("");
                 produkt3.setText("");
-
+                wybierz2.setVisible(false);
+                wybierz3.setVisible(false);
             }else if(len == 2) {
                 produkt1.setText(tab[(index-1)*3]);
                 produkt2.setText(tab[(index-1)*3+1]);
                 produkt3.setText("");
-
+                wybierz3.setVisible(false);
             }else if(len >= 3) {
                 produkt1.setText(tab[(index-1)*3]);
                 produkt2.setText(tab[(index-1)*3+1]);
                 produkt3.setText(tab[(index-1)*3+2]);
             }
 
-        } else if(button == prev) {
+        } else if(button == prev)
+        {
             index -= 1;
             next.setVisible(true);
             if(index == 1) {
@@ -190,9 +195,18 @@ public class oknoHurtownia extends JPanel implements ActionListener {
             produkt1.setText(tab[(index-1)*3]);
             produkt2.setText(tab[(index-1)*3+1]);
             produkt3.setText(tab[(index-1)*3+2]);
-
-        } else if(button == cofnij) {
+            wybierz1.setVisible(true);
+            wybierz2.setVisible(true);
+            wybierz3.setVisible(true);
+        } else if(button == cofnij)
+        {
             view.oknoStartowe();
+        } else if(button == wybierz1){
+            view.pobierzSzczegolyHurtowni(tab[(index-1)*3]);
+        } else if(button == wybierz2){
+            view.pobierzSzczegolyHurtowni(tab[(index-1)*3+1]);
+        } else if(button == wybierz3){
+            view.pobierzSzczegolyHurtowni(tab[(index-1)*3+2]);
         }
     }
 }

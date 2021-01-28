@@ -1,11 +1,7 @@
 package view;
 
 import controller.Controller;
-import model.Model;
-import model.Szczegolowe_informacje;
-import model.Faktura;
-import model.SzczegolyFaktura;
-import model.SzczegolyZamowienie;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,9 +67,9 @@ public class View {
 
 	public void pobierzSzczegoly(String nazwa){ controller.pobierzSzczegoly(nazwa); }
 	public void pobierzSzczegolyZakup(String nazwa){ controller.pobierzSzczegolyZakup(nazwa); }
-//	public void pobierzSzczegolyHurtowni(String s) {
-//		controller.pobierzSzczegolyHurtowni(s);
-//	}
+	public void pobierzSzczegolyHurtowni(String s) {
+		controller.pobierzSzczegolyHurtowni(s);
+	}
 
 	public void szczegoly(Szczegolowe_informacje szczegoly){wsk.oknoSzczegoly(szczegoly);}
 
@@ -207,6 +203,7 @@ public class View {
 	
 	public void wybranoGotowkeZwrot() {
 		controller.wykonajZwrot(wybranaIloscZwrotu, paragonZwrot,maxIloscZwrot, produktZwrot);
+
 	}
 	
 	public void oknoPodaniaNrKonta() {
@@ -215,6 +212,8 @@ public class View {
 	
 	public void wybranoPrzelewZwrot(String nrKonta) {
 		//TODO: faktyczny zwrot, usunięcie z bazy
+		controller.wykonajZwrot(wybranaIloscZwrotu, paragonZwrot,maxIloscZwrot, produktZwrot);
+
 	}
 
 	public void wybranoHurtownia() {
@@ -276,6 +275,10 @@ public class View {
 
 	public void clearZakup() {
     	controller.clearZakup();
+	}
+
+	public void szczegolyHurtowni(Hurtownia warehouse) {
+    	wsk.oknoSzczegolyHurtowni(warehouse);
 	}
 }
 

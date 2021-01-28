@@ -89,7 +89,6 @@ public  class Controller {
 	public void wyswietlenieFaktur() {
 		startoweController  = new  OknoStartoweController();
 		String faktury[] = startoweController.getInvoiceNumbers().toArray(new String[0]);
-		System.out.println(faktury);
 		view.faktury(faktury);
 	}
 
@@ -145,9 +144,7 @@ public  class Controller {
 	public void pobierzSzczegolyHurtowni(String name) {
 		ofertaController = new OknoListaOfertController();
 		Hurtownia warehouse = ofertaController.getWarehousesDetails(name);
-		//Tutaj trzeba użyć czegoś innego bo inne są szczegóły na temat hurtowni a inne na temat produktu
-		// W sensie musi być metoda która po prostu bierze Hurtownię
-//		view.szczegoly(szczegoly);
+		view.szczegolyHurtowni(warehouse);
 	}
 
 	public void pobierzSzczegolyFaktura(String nrFaktura){

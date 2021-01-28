@@ -76,6 +76,7 @@ public class oknoPodaniaKonta extends JPanel implements ActionListener {
 		}else if(button == zatwierdz) {
 			String kontoNumer = konto.getText();
 			view.wybranoPrzelewZwrot(kontoNumer);
+			view.zwrot();
 		}
 		
 	}

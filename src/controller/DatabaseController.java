@@ -1157,11 +1157,9 @@ public class DatabaseController {
                             "WHERE transakcja_id_transakcja = ? AND produkt_id_produkt = ?");
             updatePozycjaParagon.setInt(1, newQuantity);
             updatePozycjaParagon.setInt(2, Integer.parseInt(paragon));
-            updatePozycjaParagon.setInt(3, Integer.parseInt(produkt));
-            ResultSet rs = updatePozycjaParagon.executeQuery();
-            if(rs.next()) {
-
-            }
+            int a = selectProductByName(produkt);
+            updatePozycjaParagon.setInt(3, a);
+            updatePozycjaParagon.executeUpdate();
             updatePozycjaParagon.close();
 
         } catch(SQLException ex){

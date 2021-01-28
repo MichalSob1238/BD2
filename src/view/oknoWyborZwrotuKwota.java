@@ -80,6 +80,7 @@ public class oknoWyborZwrotuKwota extends JPanel implements ActionListener {
 			view.ileProduktuZwrot();
 		}else if(button == wybierzGotowka) {
 			view.wybranoGotowkeZwrot();
+			view.zwrot();
 		} else if(button == wybierzPrzelew) {
 			view.oknoPodaniaNrKonta();
 		}

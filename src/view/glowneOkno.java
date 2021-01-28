@@ -1,9 +1,6 @@
 package view;
 
-import model.Faktura;
-import model.Szczegolowe_informacje;
-import model.SzczegolyFaktura;
-import model.SzczegolyZamowienie;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +39,7 @@ public class glowneOkno extends JFrame{
 	private zamowienieDetaliczne zamowienieDetaliczne;
 	private formularzZamowienia formularzZamowienia;
 	private oknoRaport raportowanie;
+	private oknoSzczegolyHurtowni szczegolyHurtowni;
 	
 	public glowneOkno(View view) {
 		super("Baza danych - Sklep");
@@ -75,6 +73,7 @@ public class glowneOkno extends JFrame{
 		zamowienieDetaliczne = new zamowienieDetaliczne(view);
 		formularzZamowienia = new formularzZamowienia(view);
 		raportowanie = new oknoRaport(view);
+		szczegolyHurtowni = new oknoSzczegolyHurtowni(view);
 	}
 
 	public void oknoRemanent(List<List<String>> produkty) {
@@ -306,5 +305,13 @@ public class glowneOkno extends JFrame{
 
 	public String[] trescParagonu( ) {
 		return zakup.trescParagonu();
+	}
+
+	public void oknoSzczegolyHurtowni(Hurtownia szczegoly) {
+		getContentPane().removeAll();
+		szczegolyHurtowni.show(name, szczegoly);
+		add(szczegolyHurtowni);
+		validate();
+		repaint();
 	}
 }
