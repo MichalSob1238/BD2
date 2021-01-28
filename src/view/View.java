@@ -108,7 +108,7 @@ public class View {
 		wsk.oknoListaDostaw(dostawy);
 	}
 
-	public void remanent(String produkty[][]) {
+	public void remanent(List<List<String>> produkty) {
 		wsk.oknoRemanent(produkty);
 	}
 

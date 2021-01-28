@@ -1,9 +1,10 @@
 package controller;
 
+import java.util.List;
+
 public class OknoRemanentController {
-    public String[][] dajProduktyZMagazynu() {
+    public List<List<String>> dajProduktyZMagazynu() {
         DatabaseController db = new DatabaseController();
-        String produkty[][] = db.getProductsFromWarehouse();
-        return produkty;
+        return db.getProductsFromWarehouse();
     }
 }

@@ -16,8 +16,7 @@ public class oknoRemanent extends JPanel implements ActionListener {
 
     private View view;
     private int index;
-    private String produkty[][];
-//    private List<String>
+    private List<List<String>> produkty;
 
     private JLabel name;
     private  String userName;
@@ -196,15 +195,15 @@ public class oknoRemanent extends JPanel implements ActionListener {
         next.setVisible(true);
     }
 
-    private void showProdukt(String produktInfo[], int i) {
-        produkt[i].setText(produktInfo[0]);
-        alejka[i].setText(produktInfo[1]);
-        polka[i].setText(produktInfo[2]);
-        ilosc[i].setText(produktInfo[3]);
+    private void showProdukt(List<String> produktInfo, int i) {
+        produkt[i].setText(produktInfo.get(0));
+        alejka[i].setText(produktInfo.get(1));
+        polka[i].setText(produktInfo.get(2));
+        ilosc[i].setText(produktInfo.get(3));
     }
 
     //kolejne Atrybuty listy "produkt", "alejka", "polka", "ilosc"
-    public void show(String nameUser, String produkty[][]) {
+    public void show(String nameUser, List<List<String>> produkty) {
 //        System.out.println(nameUser);
 //        System.out.println(produkty[0][0]);
 
@@ -214,22 +213,22 @@ public class oknoRemanent extends JPanel implements ActionListener {
 
         showButtons();
         this.produkty = produkty;
-        int iloscStron = produkty.length / 3;
-        if(produkty.length % 3 != 0) {
+        int iloscStron = produkty.size() / 3;
+        if(produkty.size() % 3 != 0) {
             iloscStron += 1;
         }
-        if(produkty.length == 1) {
-            showProdukt(produkty[0], 0);
+        if(produkty.size() == 1) {
+            showProdukt(produkty.get(0), 0);
             wybierz2.setVisible(false);
             wybierz3.setVisible(false);
-        }else if(produkty.length == 2) {
-            showProdukt(produkty[0], 0);
-            showProdukt(produkty[1], 1);
+        }else if(produkty.size() == 2) {
+            showProdukt(produkty.get(0), 0);
+            showProdukt(produkty.get(1), 1);
             wybierz3.setVisible(false);
-        }else if(produkty.length >= 3) {
-            showProdukt(produkty[0], 0);
-            showProdukt(produkty[1], 1);
-            showProdukt(produkty[2], 2);
+        }else if(produkty.size() >= 3) {
+            showProdukt(produkty.get(0), 0);
+            showProdukt(produkty.get(1), 1);
+            showProdukt(produkty.get(2), 2);
         }
         strona.setText(index + "/" + iloscStron);
         prev.setVisible(false);
@@ -253,8 +252,8 @@ public class oknoRemanent extends JPanel implements ActionListener {
             index += 1;
 
             prev.setVisible(true);
-            int iloscStron = produkty.length / 3;
-            if(produkty.length % 3 != 0) {
+            int iloscStron = produkty.size() / 3;
+            if(produkty.size() % 3 != 0) {
                 iloscStron += 1;
             }
             //strona.setText(index + "/" + iloscStron);
@@ -262,22 +261,22 @@ public class oknoRemanent extends JPanel implements ActionListener {
                 next.setVisible(false);
             }
             strona.setText(index + "/" + iloscStron);
-            int len = produkty.length - (index-1)*3;
+            int len = produkty.size() - (index-1)*3;
             if(len == 1) {
-                showProdukt(produkty[(index-1)*3], 0);
+                showProdukt(produkty.get((index-1)*3), 0);
                 hideProdukt(1);
                 hideProdukt(2);
                 wybierz2.setVisible(false);
                 wybierz3.setVisible(false);
             }else if(len == 2) {
-                showProdukt(produkty[(index-1)*3], 0);
-                showProdukt(produkty[(index-1)*3+1], 1);
+                showProdukt(produkty.get((index-1)*3), 0);
+                showProdukt(produkty.get((index-1)*3+1), 1);
                 hideProdukt(2);
                 wybierz3.setVisible(false);
             }else if(len >= 3) {
-                showProdukt(produkty[(index-1)*3], 0);
-                showProdukt(produkty[(index-1)*3+1], 1);
-                showProdukt(produkty[(index-1)*3+2], 2);
+                showProdukt(produkty.get((index-1)*3), 0);
+                showProdukt(produkty.get((index-1)*3+1), 1);
+                showProdukt(produkty.get((index-1)*3+2), 2);
             }
 
         } else if(button == prev) {
@@ -287,14 +286,14 @@ public class oknoRemanent extends JPanel implements ActionListener {
             if(index == 1) {
                 prev.setVisible(false);
             }
-            int iloscStron = produkty.length / 3;
-            if(produkty.length % 3 != 0) {
+            int iloscStron = produkty.size() / 3;
+            if(produkty.size() % 3 != 0) {
                 iloscStron += 1;
             }
             strona.setText(index + "/" + iloscStron);
-            showProdukt(produkty[(index-1)*3], 0);
-            showProdukt(produkty[(index-1)*3+1], 1);
-            showProdukt(produkty[(index-1)*3+2], 2);
+            showProdukt(produkty.get((index-1)*3), 0);
+            showProdukt(produkty.get((index-1)*3+1), 1);
+            showProdukt(produkty.get((index-1)*3+2), 2);
             wybierz1.setVisible(true);
             wybierz2.setVisible(true);
             wybierz3.setVisible(true);

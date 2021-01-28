@@ -76,7 +76,7 @@ public class glowneOkno extends JFrame{
 
 	}
 
-	public void oknoRemanent(String produkty[][]) {
+	public void oknoRemanent(List<List<String>> produkty) {
 
 		getContentPane().removeAll();
 		oknoRemanent.show(name, produkty);

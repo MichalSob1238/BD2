@@ -1101,13 +1101,13 @@ public class DatabaseController {
         return product;
     }
 
-    public String[][] getProductsFromWarehouse() { //TODO zapytanie do bazy danych o dane z magazynu
+    public List<List<String>> getProductsFromWarehouse() { //TODO zapytanie do bazy danych o dane z magazynu
         //format "produktName", "Alley", "shelf", "how many"
-        String produkty[][] = {
-				{"p1","a1","p1","i1"},
-				{"p2","a2","p2","i2"}
-		};
-        List<String> orders = new ArrayList<>();
+//        String produkty[][] = {
+//				{"p1","a1","p1","i1"},
+//				{"p2","a2","p2","i2"}
+//		};
+        List<List<String>> produkty = new ArrayList<List<String>>();
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
@@ -1115,17 +1115,17 @@ public class DatabaseController {
 //            PreparedStatement getProducts = conn.prepareStatement
 //                    ("SELECT produkt.Nazwa, magazyn.alejka_id_alejka, magazyn.polka_id_polki, magazyn.ilosc FROM magazyn JOIN produkt ON produkt.id_produkt = magazyn.produkt_id_produkt");
             PreparedStatement getProducts = conn.prepareStatement
-                    ("SELECT p.Nazwa FROM magazyn as m JOIN produkt as p ON p.id_produkt = m.produkt_id_produkt");
+                    ("SELECT p.Nazwa, m.nr_alejki, m.nr_polki, m.ilosc FROM magazyn as m JOIN produkt as p ON p.id_produkt = m.produkt_id_produkt");
             ResultSet rs = getProducts.executeQuery();
+            int i = 0;
             while (rs.next()) {
-
-                orders.add(rs.getString("Nazwa"));
+                produkty.add( new ArrayList<String>());
+                produkty.get(i).add(rs.getString("Nazwa"));
+                produkty.get(i).add(rs.getString("nr_alejki"));
+                produkty.get(i).add(rs.getString("nr_polki"));
+                produkty.get(i).add(rs.getString("ilosc"));
+                i++;
             }
-//            getProducts.setString(1,produkty[0]);
-//            ResultSet rs = getProducts.executeQuery();
-//            if(rs.next()) {
-//                product = rs.getInt(1);
-//            }
             st.close();
         } catch(SQLException ex){
             ex.printStackTrace();
