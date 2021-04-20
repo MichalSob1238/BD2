@@ -1,4 +1,4 @@
-# BD2
+# Sklep Zoologiczny
 Projekt zrobiony na potrzeby przedmiotu BD2 z kierunku Informatyka wydziału EiTI PW.  
 Przedstawia on szkielet aplikacji służącej do zarządzania sklepem zoologicznym z zewnętrznym magazynem.  
 Podstawowy interfejs graficzny pozwala na wykonanie określonych zmian.  
